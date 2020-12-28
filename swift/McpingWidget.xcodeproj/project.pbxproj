@@ -1,0 +1,630 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4E308A8825915FB80073C5D7 /* McpingWidgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308A8725915FB80073C5D7 /* McpingWidgetApp.swift */; };
+		4E308A8A25915FB80073C5D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308A8925915FB80073C5D7 /* ContentView.swift */; };
+		4E308A8C25915FBA0073C5D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E308A8B25915FBA0073C5D7 /* Assets.xcassets */; };
+		4E308A8F25915FBA0073C5D7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E308A8E25915FBA0073C5D7 /* Preview Assets.xcassets */; };
+		4E308A9A25915FBA0073C5D7 /* McpingWidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308A9925915FBA0073C5D7 /* McpingWidgetTests.swift */; };
+		4E308AA525915FBA0073C5D7 /* McpingWidgetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308AA425915FBA0073C5D7 /* McpingWidgetUITests.swift */; };
+		4E84BEC2259A7EEC00A47983 /* mcping_widget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E84BEC1259A7EEC00A47983 /* mcping_widget.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4E308A9625915FBA0073C5D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E308A7C25915FB80073C5D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E308A8325915FB80073C5D7;
+			remoteInfo = "mcping-widget";
+		};
+		4E308AA125915FBA0073C5D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E308A7C25915FB80073C5D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E308A8325915FB80073C5D7;
+			remoteInfo = "mcping-widget";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4E308A8425915FB80073C5D7 /* McpingWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = McpingWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E308A8725915FB80073C5D7 /* McpingWidgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McpingWidgetApp.swift; sourceTree = "<group>"; };
+		4E308A8925915FB80073C5D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4E308A8B25915FBA0073C5D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4E308A8E25915FBA0073C5D7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4E308A9025915FBA0073C5D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E308A9525915FBA0073C5D7 /* McpingWidgetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = McpingWidgetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E308A9925915FBA0073C5D7 /* McpingWidgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McpingWidgetTests.swift; sourceTree = "<group>"; };
+		4E308A9B25915FBA0073C5D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E308AA025915FBA0073C5D7 /* McpingWidgetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = McpingWidgetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E308AA425915FBA0073C5D7 /* McpingWidgetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McpingWidgetUITests.swift; sourceTree = "<group>"; };
+		4E308AA625915FBA0073C5D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E3C153B259160C800549980 /* mcping-widget-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mcping-widget-Bridging-Header.h"; sourceTree = "<group>"; };
+		4E84BEC1259A7EEC00A47983 /* mcping_widget.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = mcping_widget.a; path = ../../rust/target/mcping_widget.a; sourceTree = "<group>"; };
+		4E84BEC3259A7EF100A47983 /* mcping_widget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mcping_widget.h; path = ../../rust/target/mcping_widget.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4E308A8125915FB80073C5D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E84BEC2259A7EEC00A47983 /* mcping_widget.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E308A9225915FBA0073C5D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E308A9D25915FBA0073C5D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4E308A7B25915FB80073C5D7 = {
+			isa = PBXGroup;
+			children = (
+				4E3C153A2591609B00549980 /* mcping-widget-lib */,
+				4E308A8625915FB80073C5D7 /* mcping-widget */,
+				4E308A9825915FBA0073C5D7 /* mcping-widgetTests */,
+				4E308AA325915FBA0073C5D7 /* mcping-widgetUITests */,
+				4E308A8525915FB80073C5D7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4E308A8525915FB80073C5D7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4E308A8425915FB80073C5D7 /* McpingWidget.app */,
+				4E308A9525915FBA0073C5D7 /* McpingWidgetTests.xctest */,
+				4E308AA025915FBA0073C5D7 /* McpingWidgetUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4E308A8625915FB80073C5D7 /* mcping-widget */ = {
+			isa = PBXGroup;
+			children = (
+				4E308A9025915FBA0073C5D7 /* Info.plist */,
+				4E308A8925915FB80073C5D7 /* ContentView.swift */,
+				4E308A8725915FB80073C5D7 /* McpingWidgetApp.swift */,
+				4E308A8B25915FBA0073C5D7 /* Assets.xcassets */,
+				4E308A8D25915FBA0073C5D7 /* Preview Content */,
+			);
+			path = "mcping-widget";
+			sourceTree = "<group>";
+		};
+		4E308A8D25915FBA0073C5D7 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				4E308A8E25915FBA0073C5D7 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4E308A9825915FBA0073C5D7 /* mcping-widgetTests */ = {
+			isa = PBXGroup;
+			children = (
+				4E308A9925915FBA0073C5D7 /* McpingWidgetTests.swift */,
+				4E308A9B25915FBA0073C5D7 /* Info.plist */,
+			);
+			path = "mcping-widgetTests";
+			sourceTree = "<group>";
+		};
+		4E308AA325915FBA0073C5D7 /* mcping-widgetUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4E308AA425915FBA0073C5D7 /* McpingWidgetUITests.swift */,
+				4E308AA625915FBA0073C5D7 /* Info.plist */,
+			);
+			path = "mcping-widgetUITests";
+			sourceTree = "<group>";
+		};
+		4E3C153A2591609B00549980 /* mcping-widget-lib */ = {
+			isa = PBXGroup;
+			children = (
+				4E3C153B259160C800549980 /* mcping-widget-Bridging-Header.h */,
+				4E84BEC3259A7EF100A47983 /* mcping_widget.h */,
+				4E84BEC1259A7EEC00A47983 /* mcping_widget.a */,
+			);
+			path = "mcping-widget-lib";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4E308A8325915FB80073C5D7 /* McpingWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E308AA925915FBA0073C5D7 /* Build configuration list for PBXNativeTarget "McpingWidget" */;
+			buildPhases = (
+				4E80584E25916859004146D5 /* ShellScript */,
+				4E308A8025915FB80073C5D7 /* Sources */,
+				4E308A8125915FB80073C5D7 /* Frameworks */,
+				4E308A8225915FB80073C5D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = McpingWidget;
+			productName = "mcping-widget";
+			productReference = 4E308A8425915FB80073C5D7 /* McpingWidget.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4E308A9425915FBA0073C5D7 /* McpingWidgetTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E308AAC25915FBA0073C5D7 /* Build configuration list for PBXNativeTarget "McpingWidgetTests" */;
+			buildPhases = (
+				4E308A9125915FBA0073C5D7 /* Sources */,
+				4E308A9225915FBA0073C5D7 /* Frameworks */,
+				4E308A9325915FBA0073C5D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4E308A9725915FBA0073C5D7 /* PBXTargetDependency */,
+			);
+			name = McpingWidgetTests;
+			productName = "mcping-widgetTests";
+			productReference = 4E308A9525915FBA0073C5D7 /* McpingWidgetTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4E308A9F25915FBA0073C5D7 /* McpingWidgetUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E308AAF25915FBA0073C5D7 /* Build configuration list for PBXNativeTarget "McpingWidgetUITests" */;
+			buildPhases = (
+				4E308A9C25915FBA0073C5D7 /* Sources */,
+				4E308A9D25915FBA0073C5D7 /* Frameworks */,
+				4E308A9E25915FBA0073C5D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4E308AA225915FBA0073C5D7 /* PBXTargetDependency */,
+			);
+			name = McpingWidgetUITests;
+			productName = "mcping-widgetUITests";
+			productReference = 4E308AA025915FBA0073C5D7 /* McpingWidgetUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4E308A7C25915FB80073C5D7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1230;
+				LastUpgradeCheck = 1230;
+				TargetAttributes = {
+					4E308A8325915FB80073C5D7 = {
+						CreatedOnToolsVersion = 12.3;
+						LastSwiftMigration = 1230;
+					};
+					4E308A9425915FBA0073C5D7 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 4E308A8325915FB80073C5D7;
+					};
+					4E308A9F25915FBA0073C5D7 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 4E308A8325915FB80073C5D7;
+					};
+				};
+			};
+			buildConfigurationList = 4E308A7F25915FB80073C5D7 /* Build configuration list for PBXProject "McpingWidget" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4E308A7B25915FB80073C5D7;
+			productRefGroup = 4E308A8525915FB80073C5D7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4E308A8325915FB80073C5D7 /* McpingWidget */,
+				4E308A9425915FBA0073C5D7 /* McpingWidgetTests */,
+				4E308A9F25915FBA0073C5D7 /* McpingWidgetUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4E308A8225915FB80073C5D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E308A8F25915FBA0073C5D7 /* Preview Assets.xcassets in Resources */,
+				4E308A8C25915FBA0073C5D7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E308A9325915FBA0073C5D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E308A9E25915FBA0073C5D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4E80584E25916859004146D5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "set -e\n# Location of rust project\nRUST_PROJ=\"../rust\"\n# Location of the lib folder in the XCode project\nXCODE_PROJ_LIB=\"$PROJECT_DIR/mcping-widget-lib\"\n# Provide access to Rust utilities\nPATH=\"$HOME/.cargo/bin:$PATH\"\n\ncd \"$RUST_PROJ\"\n# Generate C bindings\ncbindgen -l C -o target/mcping_widget.h\n# Build for iOS architectures\nif [ $CONFIGURATION = \"Release\" ]\nthen\n    cargo build --release --target aarch64-apple-ios\n    cargo build --release --target x86_64-apple-ios\n    export RELEASE_OR_DEBUG=\"release\"\nelse\n    cargo build --target aarch64-apple-ios\n    cargo build --target x86_64-apple-ios\n    export RELEASE_OR_DEBUG=\"debug\"\nfi\n# Combine them into a universal library\nlipo -create target/aarch64-apple-ios/$RELEASE_OR_DEBUG/libmcping_widget.a target/x86_64-apple-ios/$RELEASE_OR_DEBUG/libmcping_widget.a -output target/mcping_widget.a\n# Copy resources to the iOS folder, overwriting old ones\ncp target/mcping_widget.h target/mcping_widget.a \"$XCODE_PROJ_LIB\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4E308A8025915FB80073C5D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E308A8A25915FB80073C5D7 /* ContentView.swift in Sources */,
+				4E308A8825915FB80073C5D7 /* McpingWidgetApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E308A9125915FBA0073C5D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E308A9A25915FBA0073C5D7 /* McpingWidgetTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E308A9C25915FBA0073C5D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E308AA525915FBA0073C5D7 /* McpingWidgetUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4E308A9725915FBA0073C5D7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4E308A8325915FB80073C5D7 /* McpingWidget */;
+			targetProxy = 4E308A9625915FBA0073C5D7 /* PBXContainerItemProxy */;
+		};
+		4E308AA225915FBA0073C5D7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4E308A8325915FB80073C5D7 /* McpingWidget */;
+			targetProxy = 4E308AA125915FBA0073C5D7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		4E308AA725915FBA0073C5D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4E308AA825915FBA0073C5D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4E308AAA25915FBA0073C5D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"mcping-widget/Preview Content\"";
+				DEVELOPMENT_TEAM = 3QW3A57NDT;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "mcping-widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/mcping-widget-lib";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.mcping-widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "mcping-widget-lib/mcping-widget-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4E308AAB25915FBA0073C5D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"mcping-widget/Preview Content\"";
+				DEVELOPMENT_TEAM = 3QW3A57NDT;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "mcping-widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/mcping-widget-lib";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.mcping-widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "mcping-widget-lib/mcping-widget-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4E308AAD25915FBA0073C5D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3QW3A57NDT;
+				INFOPLIST_FILE = "mcping-widgetTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.mcping-widgetTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/McpingWidget.app/McpingWidget";
+			};
+			name = Debug;
+		};
+		4E308AAE25915FBA0073C5D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3QW3A57NDT;
+				INFOPLIST_FILE = "mcping-widgetTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.mcping-widgetTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/McpingWidget.app/McpingWidget";
+			};
+			name = Release;
+		};
+		4E308AB025915FBA0073C5D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3QW3A57NDT;
+				INFOPLIST_FILE = "mcping-widgetUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.mcping-widgetUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "mcping-widget";
+			};
+			name = Debug;
+		};
+		4E308AB125915FBA0073C5D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3QW3A57NDT;
+				INFOPLIST_FILE = "mcping-widgetUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.mcping-widgetUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "mcping-widget";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4E308A7F25915FB80073C5D7 /* Build configuration list for PBXProject "McpingWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E308AA725915FBA0073C5D7 /* Debug */,
+				4E308AA825915FBA0073C5D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4E308AA925915FBA0073C5D7 /* Build configuration list for PBXNativeTarget "McpingWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E308AAA25915FBA0073C5D7 /* Debug */,
+				4E308AAB25915FBA0073C5D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4E308AAC25915FBA0073C5D7 /* Build configuration list for PBXNativeTarget "McpingWidgetTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E308AAD25915FBA0073C5D7 /* Debug */,
+				4E308AAE25915FBA0073C5D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4E308AAF25915FBA0073C5D7 /* Build configuration list for PBXNativeTarget "McpingWidgetUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E308AB025915FBA0073C5D7 /* Debug */,
+				4E308AB125915FBA0073C5D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4E308A7C25915FB80073C5D7 /* Project object */;
+}
