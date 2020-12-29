@@ -29,7 +29,12 @@ pub struct McInfoRaw {
 impl McInfoRaw {
     fn new(latency: u64, status: Response) -> Self {
         let description = CString::new(status.description.text()).unwrap();
-        let favicon = status.favicon.map(|s| CString::new(s).unwrap());
+        let favicon = status
+            .favicon
+            // Trim off the non-base64 part of the string to make it easier to get
+            // an image in Swift land
+            .map(|s| CString::new(s.trim_start_matches("data:image/png;base64,")).unwrap());
+
         Self {
             latency,
             version: VersionRaw::from(status.version),

@@ -12,7 +12,11 @@ struct McInfo {
     var description: String
     /// The server icon (a Base64-encoded PNG image)
     var favicon: String?
-    
+}
+
+// Using a separate extension for this initializer keeps the default memberwise initializer
+// around
+extension McInfo {
     /// Copies data from the given `McInfoRaw` in order to create this struct.
     ///
     /// The given `McInfoRaw` will be freed after initialization is finished, regardless of whether or not
@@ -46,12 +50,18 @@ struct McInfo {
             self.favicon = nil
         }
     }
+    
+    static func forServerAddress(_ serverAddress: String) -> McInfo? {
+        return McInfo(get_server_status(serverAddress))
+    }
 }
 
 struct Version {
     var name: String
     var protocol_version: Int64
-    
+}
+
+extension Version {
     /// Copies data from the given `VersionRaw` in order to create this struct.
     init?(_ from: VersionRaw) {
         if let name_cstr = from.name {
@@ -67,7 +77,9 @@ struct Version {
 struct Player {
     var name: String
     var id: String
-    
+}
+
+extension Player {
     /// Copies data from the given `PlayerRaw` in order to create this struct.
     init?(_ from: PlayerRaw) {
         if let name_cstr = from.name {
@@ -88,7 +100,9 @@ struct Players {
     var max: Int64
     var online: Int64
     var sample: [Player]
-    
+}
+
+extension Players {
     /// Copies data from the given `PlayersRaw` in order to create this struct.
     init?(_ from: PlayersRaw) {
         self.max = from.max

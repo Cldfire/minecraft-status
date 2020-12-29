@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E258F24259AC7D90093B65F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E258F23259AC7D90093B65F /* WidgetKit.framework */; };
+		4E258F26259AC7D90093B65F /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E258F25259AC7D90093B65F /* SwiftUI.framework */; };
+		4E258F29259AC7D90093B65F /* McpingWidgetViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E258F28259AC7D90093B65F /* McpingWidgetViewExtension.swift */; };
+		4E258F2C259AC7DA0093B65F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E258F2B259AC7DA0093B65F /* Assets.xcassets */; };
+		4E258F2E259AC7DA0093B65F /* McpingWidgetViewExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 4E258F2A259AC7D90093B65F /* McpingWidgetViewExtension.intentdefinition */; };
+		4E258F2F259AC7DA0093B65F /* McpingWidgetViewExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 4E258F2A259AC7D90093B65F /* McpingWidgetViewExtension.intentdefinition */; };
+		4E258F32259AC7DA0093B65F /* McpingWidgetViewExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4E258F21259AC7D90093B65F /* McpingWidgetViewExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4E258F44259ACA3B0093B65F /* mcping_widget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E84BEC1259A7EEC00A47983 /* mcping_widget.a */; };
+		4E258F51259ACBA90093B65F /* McStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EC426259AAA58004B142B /* McStructs.swift */; };
+		4E258F5B259BCD300093B65F /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E258F5A259BCD300093B65F /* PreviewData.swift */; };
 		4E308A8825915FB80073C5D7 /* McpingWidgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308A8725915FB80073C5D7 /* McpingWidgetApp.swift */; };
 		4E308A8A25915FB80073C5D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308A8925915FB80073C5D7 /* ContentView.swift */; };
 		4E308A8C25915FBA0073C5D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E308A8B25915FBA0073C5D7 /* Assets.xcassets */; };
@@ -18,6 +28,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4E258F30259AC7DA0093B65F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E308A7C25915FB80073C5D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E258F20259AC7D90093B65F;
+			remoteInfo = McpingWidgetViewExtension;
+		};
 		4E308A9625915FBA0073C5D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4E308A7C25915FB80073C5D7 /* Project object */;
@@ -34,7 +51,29 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4E258F33259AC7DA0093B65F /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4E258F32259AC7DA0093B65F /* McpingWidgetViewExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		4E258F21259AC7D90093B65F /* McpingWidgetViewExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = McpingWidgetViewExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E258F23259AC7D90093B65F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		4E258F25259AC7D90093B65F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		4E258F28259AC7D90093B65F /* McpingWidgetViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McpingWidgetViewExtension.swift; sourceTree = "<group>"; };
+		4E258F2A259AC7D90093B65F /* McpingWidgetViewExtension.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = McpingWidgetViewExtension.intentdefinition; sourceTree = "<group>"; };
+		4E258F2B259AC7DA0093B65F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4E258F2D259AC7DA0093B65F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E258F5A259BCD300093B65F /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
 		4E308A8425915FB80073C5D7 /* McpingWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = McpingWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E308A8725915FB80073C5D7 /* McpingWidgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McpingWidgetApp.swift; sourceTree = "<group>"; };
 		4E308A8925915FB80073C5D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,6 +93,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4E258F1E259AC7D90093B65F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E258F26259AC7D90093B65F /* SwiftUI.framework in Frameworks */,
+				4E258F24259AC7D90093B65F /* WidgetKit.framework in Frameworks */,
+				4E258F44259ACA3B0093B65F /* mcping_widget.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4E308A8125915FB80073C5D7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -79,6 +128,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E258F22259AC7D90093B65F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4E258F23259AC7D90093B65F /* WidgetKit.framework */,
+				4E258F25259AC7D90093B65F /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4E258F27259AC7D90093B65F /* McpingWidgetViewExtension */ = {
+			isa = PBXGroup;
+			children = (
+				4E258F28259AC7D90093B65F /* McpingWidgetViewExtension.swift */,
+				4E258F2A259AC7D90093B65F /* McpingWidgetViewExtension.intentdefinition */,
+				4E258F2B259AC7DA0093B65F /* Assets.xcassets */,
+				4E258F2D259AC7DA0093B65F /* Info.plist */,
+				4E258F5A259BCD300093B65F /* PreviewData.swift */,
+			);
+			path = McpingWidgetViewExtension;
+			sourceTree = "<group>";
+		};
 		4E308A7B25915FB80073C5D7 = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +156,8 @@
 				4E308A8625915FB80073C5D7 /* mcping-widget */,
 				4E308A9825915FBA0073C5D7 /* mcping-widgetTests */,
 				4E308AA325915FBA0073C5D7 /* mcping-widgetUITests */,
+				4E258F27259AC7D90093B65F /* McpingWidgetViewExtension */,
+				4E258F22259AC7D90093B65F /* Frameworks */,
 				4E308A8525915FB80073C5D7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -96,6 +168,7 @@
 				4E308A8425915FB80073C5D7 /* McpingWidget.app */,
 				4E308A9525915FBA0073C5D7 /* McpingWidgetTests.xctest */,
 				4E308AA025915FBA0073C5D7 /* McpingWidgetUITests.xctest */,
+				4E258F21259AC7D90093B65F /* McpingWidgetViewExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,6 +225,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4E258F20259AC7D90093B65F /* McpingWidgetViewExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E258F36259AC7DA0093B65F /* Build configuration list for PBXNativeTarget "McpingWidgetViewExtension" */;
+			buildPhases = (
+				4E258F1D259AC7D90093B65F /* Sources */,
+				4E258F1E259AC7D90093B65F /* Frameworks */,
+				4E258F1F259AC7D90093B65F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = McpingWidgetViewExtension;
+			productName = McpingWidgetViewExtension;
+			productReference = 4E258F21259AC7D90093B65F /* McpingWidgetViewExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		4E308A8325915FB80073C5D7 /* McpingWidget */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4E308AA925915FBA0073C5D7 /* Build configuration list for PBXNativeTarget "McpingWidget" */;
@@ -160,10 +250,12 @@
 				4E308A8025915FB80073C5D7 /* Sources */,
 				4E308A8125915FB80073C5D7 /* Frameworks */,
 				4E308A8225915FB80073C5D7 /* Resources */,
+				4E258F33259AC7DA0093B65F /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4E258F31259AC7DA0093B65F /* PBXTargetDependency */,
 			);
 			name = McpingWidget;
 			productName = "mcping-widget";
@@ -215,6 +307,9 @@
 				LastSwiftUpdateCheck = 1230;
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
+					4E258F20259AC7D90093B65F = {
+						CreatedOnToolsVersion = 12.3;
+					};
 					4E308A8325915FB80073C5D7 = {
 						CreatedOnToolsVersion = 12.3;
 						LastSwiftMigration = 1230;
@@ -245,11 +340,20 @@
 				4E308A8325915FB80073C5D7 /* McpingWidget */,
 				4E308A9425915FBA0073C5D7 /* McpingWidgetTests */,
 				4E308A9F25915FBA0073C5D7 /* McpingWidgetUITests */,
+				4E258F20259AC7D90093B65F /* McpingWidgetViewExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4E258F1F259AC7D90093B65F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E258F2C259AC7DA0093B65F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4E308A8225915FB80073C5D7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -278,7 +382,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		4E80584E25916859004146D5 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -296,12 +400,24 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4E258F1D259AC7D90093B65F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E258F5B259BCD300093B65F /* PreviewData.swift in Sources */,
+				4E258F2E259AC7DA0093B65F /* McpingWidgetViewExtension.intentdefinition in Sources */,
+				4E258F51259ACBA90093B65F /* McStructs.swift in Sources */,
+				4E258F29259AC7D90093B65F /* McpingWidgetViewExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4E308A8025915FB80073C5D7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				4E308A8A25915FB80073C5D7 /* ContentView.swift in Sources */,
 				4E6EC427259AAA58004B142B /* McStructs.swift in Sources */,
+				4E258F2F259AC7DA0093B65F /* McpingWidgetViewExtension.intentdefinition in Sources */,
 				4E308A8825915FB80073C5D7 /* McpingWidgetApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -325,6 +441,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4E258F31259AC7DA0093B65F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4E258F20259AC7D90093B65F /* McpingWidgetViewExtension */;
+			targetProxy = 4E258F30259AC7DA0093B65F /* PBXContainerItemProxy */;
+		};
 		4E308A9725915FBA0073C5D7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4E308A8325915FB80073C5D7 /* McpingWidget */;
@@ -338,6 +459,52 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		4E258F34259AC7DA0093B65F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3QW3A57NDT;
+				INFOPLIST_FILE = McpingWidgetViewExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/mcping-widget-lib";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.mcping-widget.McpingWidgetViewExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "mcping-widget-lib/mcping-widget-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4E258F35259AC7DA0093B65F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3QW3A57NDT;
+				INFOPLIST_FILE = McpingWidgetViewExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/mcping-widget-lib";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.mcping-widget.McpingWidgetViewExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "mcping-widget-lib/mcping-widget-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		4E308AA725915FBA0073C5D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -457,6 +624,7 @@
 		4E308AAA25915FBA0073C5D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
@@ -483,6 +651,7 @@
 		4E308AAB25915FBA0073C5D7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
@@ -592,6 +761,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4E258F36259AC7DA0093B65F /* Build configuration list for PBXNativeTarget "McpingWidgetViewExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E258F34259AC7DA0093B65F /* Debug */,
+				4E258F35259AC7DA0093B65F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4E308A7F25915FB80073C5D7 /* Build configuration list for PBXProject "McpingWidget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
