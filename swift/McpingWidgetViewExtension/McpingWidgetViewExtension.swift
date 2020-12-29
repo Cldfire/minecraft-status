@@ -69,7 +69,7 @@ struct McpingWidgetExtensionEntryView : View {
 
 @main
 struct McpingWidgetExtension: Widget {
-    let kind: String = "McpingWidgetExtension"
+    let kind: String = "McpingWidgetViewExtension"
 
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
