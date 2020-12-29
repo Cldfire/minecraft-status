@@ -13,6 +13,7 @@
 		4E308A8F25915FBA0073C5D7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E308A8E25915FBA0073C5D7 /* Preview Assets.xcassets */; };
 		4E308A9A25915FBA0073C5D7 /* McpingWidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308A9925915FBA0073C5D7 /* McpingWidgetTests.swift */; };
 		4E308AA525915FBA0073C5D7 /* McpingWidgetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308AA425915FBA0073C5D7 /* McpingWidgetUITests.swift */; };
+		4E6EC427259AAA58004B142B /* McStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EC426259AAA58004B142B /* McStructs.swift */; };
 		4E84BEC2259A7EEC00A47983 /* mcping_widget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E84BEC1259A7EEC00A47983 /* mcping_widget.a */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		4E308AA425915FBA0073C5D7 /* McpingWidgetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McpingWidgetUITests.swift; sourceTree = "<group>"; };
 		4E308AA625915FBA0073C5D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E3C153B259160C800549980 /* mcping-widget-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mcping-widget-Bridging-Header.h"; sourceTree = "<group>"; };
+		4E6EC426259AAA58004B142B /* McStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McStructs.swift; sourceTree = "<group>"; };
 		4E84BEC1259A7EEC00A47983 /* mcping_widget.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = mcping_widget.a; path = ../../rust/target/mcping_widget.a; sourceTree = "<group>"; };
 		4E84BEC3259A7EF100A47983 /* mcping_widget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mcping_widget.h; path = ../../rust/target/mcping_widget.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +108,7 @@
 				4E308A8725915FB80073C5D7 /* McpingWidgetApp.swift */,
 				4E308A8B25915FBA0073C5D7 /* Assets.xcassets */,
 				4E308A8D25915FBA0073C5D7 /* Preview Content */,
+				4E6EC426259AAA58004B142B /* McStructs.swift */,
 			);
 			path = "mcping-widget";
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E308A8A25915FB80073C5D7 /* ContentView.swift in Sources */,
+				4E6EC427259AAA58004B142B /* McStructs.swift in Sources */,
 				4E308A8825915FB80073C5D7 /* McpingWidgetApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

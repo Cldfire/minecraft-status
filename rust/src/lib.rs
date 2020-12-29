@@ -12,12 +12,12 @@ use mcping::Response;
 
 /// The server status response
 #[repr(C)]
-pub struct McInfo {
+pub struct McInfoRaw {
     /// Latency to the server
     pub latency: c_ulonglong,
-    pub version: Version,
+    pub version: VersionRaw,
     /// Information about online players
-    pub players: Players,
+    pub players: PlayersRaw,
     /// The server's description text
     pub description: *mut c_char,
     /// The server icon (a Base64-encoded PNG image)
@@ -26,14 +26,14 @@ pub struct McInfo {
     pub favicon: *mut c_char,
 }
 
-impl McInfo {
+impl McInfoRaw {
     fn new(latency: u64, status: Response) -> Self {
         let description = CString::new(status.description.text()).unwrap();
         let favicon = status.favicon.map(|s| CString::new(s).unwrap());
         Self {
             latency,
-            version: Version::from(status.version),
-            players: Players::from(status.players),
+            version: VersionRaw::from(status.version),
+            players: PlayersRaw::from(status.players),
             description: description.into_raw(),
             favicon: favicon
                 .map(|s| s.into_raw())
@@ -44,7 +44,7 @@ impl McInfo {
 
 /// Information about the server's version
 #[repr(C)]
-pub struct Version {
+pub struct VersionRaw {
     /// The name of the version the server is running
     ///
     /// In practice this comes in a large variety of different formats.
@@ -53,7 +53,7 @@ pub struct Version {
     pub protocol: c_longlong,
 }
 
-impl From<mcping::Version> for Version {
+impl From<mcping::Version> for VersionRaw {
     fn from(version: mcping::Version) -> Self {
         let name = CString::new(version.name).unwrap();
         Self {
@@ -64,14 +64,14 @@ impl From<mcping::Version> for Version {
 }
 
 #[repr(C)]
-pub struct Player {
+pub struct PlayerRaw {
     /// The player's name
     pub name: *mut c_char,
     /// The player's UUID
     pub id: *mut c_char,
 }
 
-impl From<mcping::Player> for Player {
+impl From<mcping::Player> for PlayerRaw {
     fn from(player: mcping::Player) -> Self {
         let name = CString::new(player.name).unwrap();
         let id = CString::new(player.id).unwrap();
@@ -83,22 +83,22 @@ impl From<mcping::Player> for Player {
 }
 
 #[repr(C)]
-pub struct Players {
+pub struct PlayersRaw {
     pub max: c_longlong,
     pub online: c_longlong,
     /// A preview of which players are online
     ///
     /// In practice servers often don't send this or use it for more advertising.
     /// This will be a null pointer if not present.
-    pub sample: *mut Player,
+    pub sample: *mut PlayerRaw,
     pub sample_len: c_uint,
 }
 
-impl From<mcping::Players> for Players {
+impl From<mcping::Players> for PlayersRaw {
     fn from(players: mcping::Players) -> Self {
         let (sample, sample_len) = if let Some(sample) = players.sample {
             // Map into a vector of our repr(C) `Player` struct
-            let mut sample = sample.into_iter().map(Player::from).collect::<Vec<_>>();
+            let mut sample = sample.into_iter().map(PlayerRaw::from).collect::<Vec<_>>();
             sample.shrink_to_fit();
             assert!(sample.len() == sample.capacity());
             let ptr = sample.as_mut_ptr();
@@ -122,17 +122,17 @@ impl From<mcping::Players> for Players {
 
 /// Ping a Minecraft server
 #[no_mangle]
-pub extern "C" fn get_server_status(address: *const c_char) -> McInfo {
+pub extern "C" fn get_server_status(address: *const c_char) -> McInfoRaw {
     let address = unsafe { CStr::from_ptr(address) };
     let address = address.to_str().unwrap();
 
     let (latency, status) = mcping::get_status(&address).unwrap();
-    McInfo::new(latency, status)
+    McInfoRaw::new(latency, status)
 }
 
 /// Free the info object returned by `get_server_status`
 #[no_mangle]
-pub extern "C" fn free_mcinfo(mc_info: McInfo) {
+pub extern "C" fn free_mcinfo(mc_info: McInfoRaw) {
     let _ = unsafe { CString::from_raw(mc_info.description) };
 
     if !mc_info.favicon.is_null() {
