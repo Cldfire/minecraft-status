@@ -18,7 +18,7 @@ struct Provider: IntentTimelineProvider {
         let currentDate = Date()
         let refreshDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
         
-        McPinger.ping { mcInfo in
+        McPinger.ping(configuration.serverAddress ?? "mc.hypixel.net") { mcInfo in
             let entry = McServerStatusEntry(date: currentDate, configuration: configuration, mcInfo: mcInfo)
             let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
             completion(timeline)
@@ -34,9 +34,9 @@ struct McServerStatusEntry: TimelineEntry {
 }
 
 struct McPinger {
-    static func ping(completion: @escaping (McInfo?) -> Void) {
+    static func ping(_ serverAddress: String, completion: @escaping (McInfo?) -> Void) {
         DispatchQueue.global(qos: .background).async {
-            let mcInfo = McInfo.forServerAddress("mc.hypixel.net")
+            let mcInfo = McInfo.forServerAddress(serverAddress)
             print("\(mcInfo!)")
             completion(mcInfo)
         }
@@ -63,7 +63,7 @@ struct McpingWidgetExtensionEntryView : View {
                     ZStack {
                         Rectangle().opacity(0.6).frame(height: 50)
                         VStack(alignment: .leading) {
-                            Text("mc.hypixel.net").foregroundColor(.white).font(.custom("minecraft", size: 12)).shadow(color: .black, radius: 1, x: 1, y: 1)
+                            Text(entry.configuration.serverAddress ?? "mc.hypixel.net").foregroundColor(.white).font(.custom("minecraft", size: 12)).shadow(color: .black, radius: 1, x: 1, y: 1)
                             Spacer().frame(height: 3)
                             Text("\(mcInfo.players.online) / \(mcInfo.players.max)").foregroundColor(.white).font(.custom("minecraft", size: 12)).shadow(color: .black, radius: 1, x: 1, y: 1)
                         }
