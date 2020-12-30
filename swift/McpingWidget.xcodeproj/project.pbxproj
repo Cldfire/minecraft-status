@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E1FCB35259BF07B0018AAA3 /* mcping_widget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1FCB34259BF07B0018AAA3 /* mcping_widget.a */; };
+		4E1FCB36259BF07B0018AAA3 /* mcping_widget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1FCB34259BF07B0018AAA3 /* mcping_widget.a */; };
 		4E258F24259AC7D90093B65F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E258F23259AC7D90093B65F /* WidgetKit.framework */; };
 		4E258F26259AC7D90093B65F /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E258F25259AC7D90093B65F /* SwiftUI.framework */; };
 		4E258F29259AC7D90093B65F /* McpingWidgetViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E258F28259AC7D90093B65F /* McpingWidgetViewExtension.swift */; };
@@ -14,7 +16,6 @@
 		4E258F2E259AC7DA0093B65F /* McpingWidgetViewExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 4E258F2A259AC7D90093B65F /* McpingWidgetViewExtension.intentdefinition */; };
 		4E258F2F259AC7DA0093B65F /* McpingWidgetViewExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 4E258F2A259AC7D90093B65F /* McpingWidgetViewExtension.intentdefinition */; };
 		4E258F32259AC7DA0093B65F /* McpingWidgetViewExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4E258F21259AC7D90093B65F /* McpingWidgetViewExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		4E258F44259ACA3B0093B65F /* mcping_widget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E84BEC1259A7EEC00A47983 /* mcping_widget.a */; };
 		4E258F51259ACBA90093B65F /* McStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EC426259AAA58004B142B /* McStructs.swift */; };
 		4E258F5B259BCD300093B65F /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E258F5A259BCD300093B65F /* PreviewData.swift */; };
 		4E308A8825915FB80073C5D7 /* McpingWidgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308A8725915FB80073C5D7 /* McpingWidgetApp.swift */; };
@@ -24,7 +25,6 @@
 		4E308A9A25915FBA0073C5D7 /* McpingWidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308A9925915FBA0073C5D7 /* McpingWidgetTests.swift */; };
 		4E308AA525915FBA0073C5D7 /* McpingWidgetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308AA425915FBA0073C5D7 /* McpingWidgetUITests.swift */; };
 		4E6EC427259AAA58004B142B /* McStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EC426259AAA58004B142B /* McStructs.swift */; };
-		4E84BEC2259A7EEC00A47983 /* mcping_widget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E84BEC1259A7EEC00A47983 /* mcping_widget.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +66,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4E1FCB34259BF07B0018AAA3 /* mcping_widget.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = mcping_widget.a; sourceTree = "<group>"; };
+		4E1FCB3F259BF1350018AAA3 /* mcping_widget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mcping_widget.h; sourceTree = "<group>"; };
+		4E1FCB64259BFF740018AAA3 /* generate-rust-lib.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "generate-rust-lib.sh"; sourceTree = "<group>"; };
 		4E258F21259AC7D90093B65F /* McpingWidgetViewExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = McpingWidgetViewExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E258F23259AC7D90093B65F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		4E258F25259AC7D90093B65F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -88,8 +91,6 @@
 		4E308AA625915FBA0073C5D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E3C153B259160C800549980 /* mcping-widget-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mcping-widget-Bridging-Header.h"; sourceTree = "<group>"; };
 		4E6EC426259AAA58004B142B /* McStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McStructs.swift; sourceTree = "<group>"; };
-		4E84BEC1259A7EEC00A47983 /* mcping_widget.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = mcping_widget.a; path = ../../rust/target/mcping_widget.a; sourceTree = "<group>"; };
-		4E84BEC3259A7EF100A47983 /* mcping_widget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mcping_widget.h; path = ../../rust/target/mcping_widget.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +100,7 @@
 			files = (
 				4E258F26259AC7D90093B65F /* SwiftUI.framework in Frameworks */,
 				4E258F24259AC7D90093B65F /* WidgetKit.framework in Frameworks */,
-				4E258F44259ACA3B0093B65F /* mcping_widget.a in Frameworks */,
+				4E1FCB36259BF07B0018AAA3 /* mcping_widget.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,7 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E84BEC2259A7EEC00A47983 /* mcping_widget.a in Frameworks */,
+				4E1FCB35259BF07B0018AAA3 /* mcping_widget.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +153,7 @@
 		4E308A7B25915FB80073C5D7 = {
 			isa = PBXGroup;
 			children = (
+				4E1FCB64259BFF740018AAA3 /* generate-rust-lib.sh */,
 				4E3C153A2591609B00549980 /* mcping-widget-lib */,
 				4E308A8625915FB80073C5D7 /* mcping-widget */,
 				4E308A9825915FBA0073C5D7 /* mcping-widgetTests */,
@@ -216,8 +218,8 @@
 			isa = PBXGroup;
 			children = (
 				4E3C153B259160C800549980 /* mcping-widget-Bridging-Header.h */,
-				4E84BEC3259A7EF100A47983 /* mcping_widget.h */,
-				4E84BEC1259A7EEC00A47983 /* mcping_widget.a */,
+				4E1FCB3F259BF1350018AAA3 /* mcping_widget.h */,
+				4E1FCB34259BF07B0018AAA3 /* mcping_widget.a */,
 			);
 			path = "mcping-widget-lib";
 			sourceTree = "<group>";
@@ -229,6 +231,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4E258F36259AC7DA0093B65F /* Build configuration list for PBXNativeTarget "McpingWidgetViewExtension" */;
 			buildPhases = (
+				4E1FCB23259BEE610018AAA3 /* ShellScript */,
 				4E258F1D259AC7D90093B65F /* Sources */,
 				4E258F1E259AC7D90093B65F /* Frameworks */,
 				4E258F1F259AC7D90093B65F /* Resources */,
@@ -246,7 +249,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4E308AA925915FBA0073C5D7 /* Build configuration list for PBXNativeTarget "McpingWidget" */;
 			buildPhases = (
-				4E80584E25916859004146D5 /* ShellScript */,
 				4E308A8025915FB80073C5D7 /* Sources */,
 				4E308A8125915FB80073C5D7 /* Frameworks */,
 				4E308A8225915FB80073C5D7 /* Resources */,
@@ -380,9 +382,9 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4E80584E25916859004146D5 /* ShellScript */ = {
+		4E1FCB23259BEE610018AAA3 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
@@ -394,8 +396,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "set -e\n# Location of rust project\nRUST_PROJ=\"../rust\"\n# Location of the lib folder in the XCode project\nXCODE_PROJ_LIB=\"$PROJECT_DIR/mcping-widget-lib\"\n# Provide access to Rust utilities\nPATH=\"$HOME/.cargo/bin:$PATH\"\n\nif [ $CONFIGURATION = \"Release\" ]\nthen\n    export RELEASE_OR_DEBUG=\"release\"\nelse\n    export RELEASE_OR_DEBUG=\"debug\"\nfi\n\ncd \"$RUST_PROJ\"\n\nAARCH64_OBJECT_PATH=target/aarch64-apple-ios/$RELEASE_OR_DEBUG/libmcping_widget.a\nX86_OBJECT_PATH=target/x86_64-apple-ios/$RELEASE_OR_DEBUG/libmcping_widget.a\nUNIVERSAL_OBJECT_PATH=target/mcping_widget.a\n\n# Build for iOS architectures\nif [ $RELEASE_OR_DEBUG = \"release\" ]\nthen\n    cargo build --release --target aarch64-apple-ios\n    cargo build --release --target x86_64-apple-ios\nelse\n    cargo build --target aarch64-apple-ios\n    cargo build --target x86_64-apple-ios\nfi\n\n# get the last modified timestamp of a file cargo would have changed if it needed to rebuild something\nTIME_AFTER_CARGO=$(stat -t %s -f %m $AARCH64_OBJECT_PATH)\n# get the last modified timestamp of the universal object file we make from what cargo generates\nTIME_UNIVERSAL=$(stat -t %s -f %m $UNIVERSAL_OBJECT_PATH)\n\n# We only want to perform these actions if cargo had to rebuild something (the file cargo generated has a newer timestamp\n#   than what we generated the last time cargo rebuilt something)\n#\n# This keeps live-updating previews working in the swiftui code\n#\n# TODO: this could do the wrong thing if you first do a release build, then do a debug build, then do a release build again (the release universal lib wouldn't get generated)\nif [ $TIME_AFTER_CARGO -gt $TIME_UNIVERSAL ]\nthen\n    # Generate C bindings\n    cbindgen -l C -o target/mcping_widget.h\n    # Combine them into a universal library\n    lipo -create target/aarch64-apple-ios/$RELEASE_OR_DEBUG/libmcping_widget.a target/x86_64-apple-ios/$RELEASE_OR_DEBUG/libmcping_widget.a -output target/mcping_widget.a\n    # Copy resources to the iOS folder, overwriting old ones\n    cp target/mcping_widget.h target/mcping_widget.a \"$XCODE_PROJ_LIB\"\nfi\n";
+			shellPath = /bin/sh;
+			shellScript = "$SRCROOT/generate-rust-lib.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
