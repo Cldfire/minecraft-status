@@ -57,9 +57,19 @@ struct McpingWidgetExtensionEntryView : View {
             ZStack {
                 Image("minecraft-dirt").interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fill)
                 Rectangle().opacity(0.6)
-                Image(uiImage: convertBase64StringToImage(imageBase64String: mcInfo.favicon!)).interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fit).shadow(radius: 50)
-                Rectangle().opacity(0.3)
-                Text("I have mcinfo! Online players: \(mcInfo.players.online)").foregroundColor(.white)
+                Image(uiImage: convertBase64StringToImage(imageBase64String: mcInfo.favicon!)).interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fit).shadow(color: .black, radius: 30)
+                VStack(alignment: .leading) {
+                    Spacer()
+                    ZStack {
+                        Rectangle().opacity(0.6).frame(height: 50)
+                        VStack(alignment: .leading) {
+                            Text("mc.hypixel.net").foregroundColor(.white).font(.custom("minecraft", size: 12)).shadow(color: .black, radius: 1, x: 1, y: 1)
+                            Spacer().frame(height: 3)
+                            Text("\(mcInfo.players.online) / \(mcInfo.players.max)").foregroundColor(.white).font(.custom("minecraft", size: 12)).shadow(color: .black, radius: 1, x: 1, y: 1)
+                        }
+                    }
+                    Spacer().frame(height: 12)
+                }
             }
         } else {
             Text("I do not have mcinfo")

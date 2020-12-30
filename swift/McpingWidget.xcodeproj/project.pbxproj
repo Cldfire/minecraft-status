@@ -24,6 +24,8 @@
 		4E308A8F25915FBA0073C5D7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E308A8E25915FBA0073C5D7 /* Preview Assets.xcassets */; };
 		4E308A9A25915FBA0073C5D7 /* McpingWidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308A9925915FBA0073C5D7 /* McpingWidgetTests.swift */; };
 		4E308AA525915FBA0073C5D7 /* McpingWidgetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308AA425915FBA0073C5D7 /* McpingWidgetUITests.swift */; };
+		4E3C08DE259C1DBB00303A35 /* minecraft.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C08DD259C1DBB00303A35 /* minecraft.ttf */; };
+		4E3C08DF259C1DBB00303A35 /* minecraft.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C08DD259C1DBB00303A35 /* minecraft.ttf */; };
 		4E6EC427259AAA58004B142B /* McStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EC426259AAA58004B142B /* McStructs.swift */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +91,8 @@
 		4E308AA025915FBA0073C5D7 /* McpingWidgetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = McpingWidgetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E308AA425915FBA0073C5D7 /* McpingWidgetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McpingWidgetUITests.swift; sourceTree = "<group>"; };
 		4E308AA625915FBA0073C5D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E3C08DD259C1DBB00303A35 /* minecraft.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = minecraft.ttf; sourceTree = "<group>"; };
+		4E3C08E9259C23C300303A35 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		4E3C153B259160C800549980 /* mcping-widget-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mcping-widget-Bridging-Header.h"; sourceTree = "<group>"; };
 		4E6EC426259AAA58004B142B /* McStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McStructs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,6 +145,7 @@
 		4E258F27259AC7D90093B65F /* McpingWidgetViewExtension */ = {
 			isa = PBXGroup;
 			children = (
+				4E3C08E4259C227C00303A35 /* Fonts */,
 				4E258F28259AC7D90093B65F /* McpingWidgetViewExtension.swift */,
 				4E258F2A259AC7D90093B65F /* McpingWidgetViewExtension.intentdefinition */,
 				4E258F2B259AC7DA0093B65F /* Assets.xcassets */,
@@ -212,6 +217,15 @@
 				4E308AA625915FBA0073C5D7 /* Info.plist */,
 			);
 			path = "mcping-widgetUITests";
+			sourceTree = "<group>";
+		};
+		4E3C08E4259C227C00303A35 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4E3C08DD259C1DBB00303A35 /* minecraft.ttf */,
+				4E3C08E9259C23C300303A35 /* LICENSE */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		4E3C153A2591609B00549980 /* mcping-widget-lib */ = {
@@ -352,6 +366,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E3C08DF259C1DBB00303A35 /* minecraft.ttf in Resources */,
 				4E258F2C259AC7DA0093B65F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,6 +377,7 @@
 			files = (
 				4E308A8F25915FBA0073C5D7 /* Preview Assets.xcassets in Resources */,
 				4E308A8C25915FBA0073C5D7 /* Assets.xcassets in Resources */,
+				4E3C08DE259C1DBB00303A35 /* minecraft.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
