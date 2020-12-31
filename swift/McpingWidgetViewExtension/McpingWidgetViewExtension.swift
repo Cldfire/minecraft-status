@@ -10,7 +10,7 @@ struct Provider: IntentTimelineProvider {
     }
     
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (McServerStatusEntry) -> ()) {
-        // TODO: should the snapshot entry be hypixel?
+        // Preview uses a ping response from mc.hypixel.net
         let entry = previewData[2]
         completion(entry)
     }
@@ -20,6 +20,7 @@ struct Provider: IntentTimelineProvider {
         let refreshDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
         
         // TODO: how to do defaulting better?
+        // TODO: nicely handle when a server goes offline
         McPinger.ping(configuration.serverAddress ?? "mc.hypixel.net") { mcInfo in
             let entry = McServerStatusEntry(date: currentDate, configuration: configuration, mcInfo: mcInfo)
             let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
@@ -55,25 +56,49 @@ struct McpingWidgetExtensionEntryView : View {
     var entry: Provider.Entry
     
     var body: some View {
-        // TODO: make all of the styling better, handle multiple sizes
         if let mcInfo = entry.mcInfo {
             ZStack {
+                // The backing images
                 Image("minecraft-dirt").interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fill)
-                Rectangle().opacity(0.75)
-                Image(uiImage: convertBase64StringToImage(imageBase64String: mcInfo.favicon!)).interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fit).shadow(color: .black, radius: 30)
-                VStack(alignment: .leading) {
+                Rectangle().opacity(0.65)
+                // TODO: what do we do if there's no server icon?
+                Image(uiImage: convertBase64StringToImage(imageBase64String: mcInfo.favicon!)).interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fit).shadow(radius: 30)
+                
+                // The banner content
+                VStack {
+                    // This spacer shoves the banner towards the bottom of the widget
                     Spacer()
+                    
                     ZStack {
-                        Rectangle().opacity(0.6).frame(height: 50)
-                        VStack(alignment: .leading) {
-                            Text(entry.configuration.serverAddress ?? "mc.hypixel.net").foregroundColor(.white).font(.custom("minecraft", size: 12)).shadow(color: .black, radius: 1, x: 1, y: 1)
-                            Spacer().frame(height: 3)
-                            Text("\(mcInfo.players.online) / \(mcInfo.players.max)").foregroundColor(.white).font(.custom("minecraft", size: 12)).shadow(color: .black, radius: 1, x: 1, y: 1)
-                        }
-                    }
+                        // The translucent banner backing (stretches horizontally across the entire widget)
+                        Rectangle().opacity(0.7)
+                        
+                        // The content on top of the banner
+                        VStack(alignment: .leading, spacing: 4) {
+                            // Server address
+                            Text("\(entry.configuration.serverAddress ?? "mc.hypixel.net")").foregroundColor(.white).font(.custom("minecraft", size: 12)).shadow(color: .black, radius: 0.5, x: 1, y: 1).lineLimit(1)
+                            
+                            // Players online and latency indicator
+                            HStack(spacing: 5) {
+                                Text("\(mcInfo.players.online) / \(mcInfo.players.max)").foregroundColor(.white).font(.custom("minecraft", size: 12)).shadow(color: .black, radius: 0.5, x: 1, y: 1).minimumScaleFactor(0.8).lineLimit(1)
+                                
+                                Group {
+                                    if mcInfo.latency < 400 {
+                                        Circle().foregroundColor(Color.green)
+                                    } else if mcInfo.latency < 1000 {
+                                        Circle().foregroundColor(Color.orange)
+                                    } else {
+                                        Circle().foregroundColor(Color.red)
+                                    }
+                                }.fixedSize().scaleEffect(0.9)
+                            }
+                        }.frame(maxWidth: .infinity).padding(.leading, 10).padding(.trailing, 10)
+                    }.frame(height: 45)
+                    
+                    // This spacer separates the banner from the bottom of the widget
                     Spacer().frame(height: 12)
                 }
-            }.colorScheme(.light)
+            }.colorScheme(.light) // Force the light colorscheme to keep the translucent banner black
         } else {
             Text("I do not have mcinfo")
         }
@@ -88,8 +113,10 @@ struct McpingWidgetExtension: Widget {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             McpingWidgetExtensionEntryView(entry: entry)
         }
-        .configurationDisplayName("Minecraft Server Info")
-        .description("Displays information about a Minecraft server")
+        .configurationDisplayName("Minecraft Server Icon")
+        .description("Information about a Minecraft server on top of its icon")
+        // TODO: work on the large widget a bit
+        .supportedFamilies([.systemSmall, .systemLarge])
     }
 }
 
