@@ -2,6 +2,7 @@ use std::{
     ffi::CStr,
     mem,
     os::raw::{c_uint, c_ulonglong},
+    panic,
 };
 use std::{
     ffi::CString,
@@ -9,6 +10,19 @@ use std::{
 };
 
 use mcping::Response;
+use thiserror::Error;
+
+#[derive(Debug, Error)]
+pub enum McInfoError {
+    #[error("{0}")]
+    McpingError(#[from] mcping::Error),
+    #[error("the pointer to the server address string was null")]
+    AddressPointerNull,
+    #[error("{0}")]
+    Utf8Error(#[from] std::str::Utf8Error),
+    #[error("a panic occurred in rust")]
+    PanicOccurred,
+}
 
 /// The server status response
 #[repr(C)]
@@ -125,33 +139,59 @@ impl From<mcping::Players> for PlayersRaw {
     }
 }
 
-/// Ping a Minecraft server
-#[no_mangle]
-pub extern "C" fn get_server_status(address: *const c_char) -> McInfoRaw {
-    let address = unsafe { CStr::from_ptr(address) };
-    let address = address.to_str().unwrap();
+/// This function catches any panics that could possibly occur.
+fn get_server_status_rust(address: *const c_char) -> Result<McInfoRaw, McInfoError> {
+    if address.is_null() {
+        return Err(McInfoError::AddressPointerNull);
+    }
 
-    let (latency, status) = mcping::get_status(&address).unwrap();
-    McInfoRaw::new(latency, status)
+    let address = unsafe { CStr::from_ptr(address) };
+    let address = address.to_str()?;
+
+    let (latency, status) = match panic::catch_unwind(|| mcping::get_status(&address)) {
+        Ok(result) => result?,
+        Err(_) => return Err(McInfoError::PanicOccurred),
+    };
+
+    Ok(McInfoRaw::new(latency, status))
+}
+
+/// Ping a Minecraft server at the given `address`.
+///
+/// Returns 1 if successful and 0 if an error occurred. `out` will only be set
+/// if the call was successful.
+#[no_mangle]
+pub extern "C" fn get_server_status(address: *const c_char, out: *mut McInfoRaw) -> i32 {
+    match get_server_status_rust(address) {
+        Ok(mcinfo) => {
+            if !out.is_null() {
+                unsafe {
+                    *out = mcinfo;
+                }
+            }
+            1
+        }
+        Err(_) => 0,
+    }
 }
 
 /// Free the info object returned by `get_server_status`
 #[no_mangle]
-pub extern "C" fn free_mcinfo(mc_info: McInfoRaw) {
-    let _ = unsafe { CString::from_raw(mc_info.description) };
+pub extern "C" fn free_mcinfo(mcinfo: McInfoRaw) {
+    let _ = unsafe { CString::from_raw(mcinfo.description) };
 
-    if !mc_info.favicon.is_null() {
-        let _ = unsafe { CString::from_raw(mc_info.favicon) };
+    if !mcinfo.favicon.is_null() {
+        let _ = unsafe { CString::from_raw(mcinfo.favicon) };
     }
 
-    let _ = unsafe { CString::from_raw(mc_info.version.name) };
+    let _ = unsafe { CString::from_raw(mcinfo.version.name) };
 
-    if !mc_info.players.sample.is_null() {
+    if !mcinfo.players.sample.is_null() {
         let sample = unsafe {
             Vec::from_raw_parts(
-                mc_info.players.sample,
-                mc_info.players.sample_len as _,
-                mc_info.players.sample_len as _,
+                mcinfo.players.sample,
+                mcinfo.players.sample_len as _,
+                mcinfo.players.sample_len as _,
             )
         };
 

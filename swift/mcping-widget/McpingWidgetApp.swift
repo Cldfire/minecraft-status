@@ -9,9 +9,4 @@ struct McpingWidgetApp: App {
             ContentView()
         }
     }
-
-    static func main() {
-        let mcInfo = McInfo(get_server_status("mc.cldfire.net"))!
-        print(mcInfo)
-    }
 }

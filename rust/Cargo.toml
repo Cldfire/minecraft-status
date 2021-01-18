@@ -11,3 +11,4 @@ crate-type = ["lib", "staticlib"]
 
 [dependencies]
 mcping = "0.1.2"
+thiserror = "1.0"

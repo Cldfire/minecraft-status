@@ -52,7 +52,17 @@ extension McInfo {
     }
     
     static func forServerAddress(_ serverAddress: String) -> McInfo? {
-        return McInfo(get_server_status(serverAddress))
+        let rawInfo = UnsafeMutablePointer<McInfoRaw>.allocate(capacity: 1)
+        
+        let info: McInfo?
+        if get_server_status(serverAddress, rawInfo) == 1 {
+            info = McInfo(rawInfo.pointee)
+        } else {
+            info = nil
+        }
+        
+        rawInfo.deallocate()
+        return info
     }
 }
 
