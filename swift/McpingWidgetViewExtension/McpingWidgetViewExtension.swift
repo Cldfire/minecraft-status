@@ -19,9 +19,8 @@ struct Provider: IntentTimelineProvider {
         let currentDate = Date()
         let refreshDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
         
-        // TODO: how to do defaulting better?
         // TODO: nicely handle when a server goes offline
-        McPinger.ping(configuration.serverAddress ?? "mc.hypixel.net") { mcInfo in
+        McPinger.ping(configuration.serverAddress ?? "") { mcInfo in
             let entry = McServerStatusEntry(date: currentDate, configuration: configuration, mcInfo: mcInfo)
             let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
             completion(timeline)
@@ -52,6 +51,14 @@ func convertBase64StringToImage(imageBase64String: String) -> UIImage {
     return image!
 }
 
+func chooseBestHeaderText(for configuration: ConfigurationIntent) -> String {
+    if let serverName = configuration.serverName, !serverName.isEmpty {
+        return serverName
+    } else {
+        return configuration.serverAddress ?? ""
+    }
+}
+
 struct McpingWidgetExtensionEntryView : View {
     var entry: Provider.Entry
     
@@ -76,7 +83,7 @@ struct McpingWidgetExtensionEntryView : View {
                         // The content on top of the banner
                         VStack(alignment: .leading, spacing: 4) {
                             // Server address
-                            Text("\(entry.configuration.serverAddress ?? "mc.hypixel.net")").foregroundColor(.white).font(.custom("minecraft", size: 12)).shadow(color: .black, radius: 0.5, x: 1, y: 1).lineLimit(1)
+                            Text("\(chooseBestHeaderText(for: entry.configuration))").foregroundColor(.white).font(.custom("minecraft", size: 12)).shadow(color: .black, radius: 0.5, x: 1, y: 1).lineLimit(1)
                             
                             // Players online and latency indicator
                             HStack(spacing: 5) {
@@ -100,7 +107,11 @@ struct McpingWidgetExtensionEntryView : View {
                 }
             }.colorScheme(.light) // Force the light colorscheme to keep the translucent banner black
         } else {
-            Text("I do not have mcinfo")
+            if let serverAddress = entry.configuration.serverAddress, !serverAddress.isEmpty {
+                Text("Unable to ping Minecraft server at address \"\(serverAddress)\"").padding()
+            } else {
+                Text("No server address specified, please edit the widget").padding()
+            }
         }
     }
 }
