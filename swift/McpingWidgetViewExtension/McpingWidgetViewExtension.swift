@@ -83,7 +83,11 @@ struct McpingWidgetExtensionEntryView : View {
                 
                 // The banner content
                 VStack {
-                    // This spacer shoves the banner towards the bottom of the widget
+                    // These spacers move the banner towards the bottom of the widget
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
                     Spacer()
                     
                     ZStack {
@@ -113,7 +117,7 @@ struct McpingWidgetExtensionEntryView : View {
                     }.frame(height: 45)
                     
                     // This spacer separates the banner from the bottom of the widget
-                    Spacer().frame(height: 12)
+                    Spacer()
                 }
             }.colorScheme(.light) // Force the light colorscheme to keep the translucent banner black
         } else {
