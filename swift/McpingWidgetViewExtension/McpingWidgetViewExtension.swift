@@ -45,10 +45,17 @@ struct McPinger {
     }
 }
 
-func convertBase64StringToImage(imageBase64String: String) -> UIImage {
-    let imageData = Data.init(base64Encoded: imageBase64String)
-    let image = UIImage(data: imageData!)
-    return image!
+/// Attempts to convert a maybe-present base64 image string into a `UIImage`.
+func convertBase64StringToImage(imageBase64String: String?) -> UIImage? {
+    guard let imageString = imageBase64String else {
+        return nil
+    }
+
+    guard let imageData = Data.init(base64Encoded: imageString) else {
+        return nil
+    }
+
+    return UIImage(data: imageData)
 }
 
 func chooseBestHeaderText(for configuration: ConfigurationIntent) -> String {
@@ -68,8 +75,11 @@ struct McpingWidgetExtensionEntryView : View {
                 // The backing images
                 Image("minecraft-dirt").interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fill).unredacted()
                 Rectangle().opacity(0.65)
+                
                 // TODO: what do we do if there's no server icon?
-                Image(uiImage: convertBase64StringToImage(imageBase64String: mcInfo.favicon!)).interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fit).shadow(radius: 30)
+                if let favicon = convertBase64StringToImage(imageBase64String: mcInfo.favicon) {
+                    Image(uiImage: favicon).interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fit).shadow(radius: 30)
+                }
                 
                 // The banner content
                 VStack {
