@@ -483,7 +483,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3QW3A57NDT;
+				DEVELOPMENT_TEAM = Z79T9AJ776;
 				INFOPLIST_FILE = McpingWidgetViewExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -492,7 +492,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/mcping-widget-lib";
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.mcping-widget.McpingWidgetViewExtension";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.minecraft-status.McpingWidgetViewExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "mcping-widget-lib/mcping-widget-Bridging-Header.h";
@@ -507,7 +507,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3QW3A57NDT;
+				DEVELOPMENT_TEAM = Z79T9AJ776;
 				INFOPLIST_FILE = McpingWidgetViewExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -516,7 +516,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/mcping-widget-lib";
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.mcping-widget.McpingWidgetViewExtension";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.minecraft-status.McpingWidgetViewExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "mcping-widget-lib/mcping-widget-Bridging-Header.h";
@@ -650,7 +650,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"mcping-widget/Preview Content\"";
-				DEVELOPMENT_TEAM = 3QW3A57NDT;
+				DEVELOPMENT_TEAM = Z79T9AJ776;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "mcping-widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -659,7 +659,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/mcping-widget-lib";
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.mcping-widget";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.minecraft-status";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "mcping-widget-lib/mcping-widget-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -677,7 +677,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"mcping-widget/Preview Content\"";
-				DEVELOPMENT_TEAM = 3QW3A57NDT;
+				DEVELOPMENT_TEAM = Z79T9AJ776;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "mcping-widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -686,7 +686,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/mcping-widget-lib";
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.mcping-widget";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.minecraft-status";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "mcping-widget-lib/mcping-widget-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -700,7 +700,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3QW3A57NDT;
+				DEVELOPMENT_TEAM = Z79T9AJ776;
 				INFOPLIST_FILE = "mcping-widgetTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -722,7 +722,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3QW3A57NDT;
+				DEVELOPMENT_TEAM = Z79T9AJ776;
 				INFOPLIST_FILE = "mcping-widgetTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -743,7 +743,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3QW3A57NDT;
+				DEVELOPMENT_TEAM = Z79T9AJ776;
 				INFOPLIST_FILE = "mcping-widgetUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -763,7 +763,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3QW3A57NDT;
+				DEVELOPMENT_TEAM = Z79T9AJ776;
 				INFOPLIST_FILE = "mcping-widgetUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
