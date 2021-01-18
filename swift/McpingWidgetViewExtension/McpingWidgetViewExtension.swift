@@ -6,7 +6,7 @@ import Intents
 
 struct Provider: IntentTimelineProvider {
     func placeholder(in context: Context) -> McServerStatusEntry {
-        McServerStatusEntry(date: Date(), configuration: ConfigurationIntent(), mcInfo: nil)
+        previewData[0]
     }
     
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (McServerStatusEntry) -> ()) {
@@ -66,7 +66,7 @@ struct McpingWidgetExtensionEntryView : View {
         if let mcInfo = entry.mcInfo {
             ZStack {
                 // The backing images
-                Image("minecraft-dirt").interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fill)
+                Image("minecraft-dirt").interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fill).unredacted()
                 Rectangle().opacity(0.65)
                 // TODO: what do we do if there's no server icon?
                 Image(uiImage: convertBase64StringToImage(imageBase64String: mcInfo.favicon!)).interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fit).shadow(radius: 30)
@@ -143,6 +143,11 @@ struct McpingWidgetExtension_Previews: PreviewProvider {
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .environment(\.colorScheme, .dark)
                 .previewDisplayName("Dark Mode")
+            
+            McpingWidgetExtensionEntryView(entry: previewData[0])
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+                .redacted(reason: .placeholder)
+                .previewDisplayName("Redacted")
         }
     }
 }
