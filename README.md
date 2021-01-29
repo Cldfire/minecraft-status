@@ -6,7 +6,7 @@ Built on top of the [mcping](https://github.com/Scetch/mcping) crate.
 
 ## Screenshots
 
-![screenshot of small widget on home screen](./readme-assets/screenshot.png)
+<img src="./readme-assets/screenshot.png" alt="screenshot of small widget on home screen" height=500>
 
 ## Building
 
