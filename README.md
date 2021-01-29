@@ -1,8 +1,12 @@
-# mcping-widget
+# minecraft-status
 
 An iOS app with widgets that display the results of pinging a Minecraft server.
 
 Built on top of the [mcping](https://github.com/Scetch/mcping) crate.
+
+## Screenshots
+
+![screenshot of small widget on home screen](./readme-assets/screenshot.png)
 
 ## Building
 
