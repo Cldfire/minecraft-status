@@ -19,7 +19,7 @@
 		4E258F51259ACBA90093B65F /* McStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EC426259AAA58004B142B /* McStructs.swift */; };
 		4E258F5B259BCD300093B65F /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E258F5A259BCD300093B65F /* PreviewData.swift */; };
 		4E308A8825915FB80073C5D7 /* McpingWidgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308A8725915FB80073C5D7 /* McpingWidgetApp.swift */; };
-		4E308A8A25915FB80073C5D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308A8925915FB80073C5D7 /* ContentView.swift */; };
+		4E308A8A25915FB80073C5D7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308A8925915FB80073C5D7 /* SettingsView.swift */; };
 		4E308A8C25915FBA0073C5D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E308A8B25915FBA0073C5D7 /* Assets.xcassets */; };
 		4E308A8F25915FBA0073C5D7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E308A8E25915FBA0073C5D7 /* Preview Assets.xcassets */; };
 		4E308A9A25915FBA0073C5D7 /* McpingWidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308A9925915FBA0073C5D7 /* McpingWidgetTests.swift */; };
@@ -81,7 +81,7 @@
 		4E258F5A259BCD300093B65F /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
 		4E308A8425915FB80073C5D7 /* McpingWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = McpingWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E308A8725915FB80073C5D7 /* McpingWidgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McpingWidgetApp.swift; sourceTree = "<group>"; };
-		4E308A8925915FB80073C5D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4E308A8925915FB80073C5D7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		4E308A8B25915FBA0073C5D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E308A8E25915FBA0073C5D7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4E308A9025915FBA0073C5D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				4E308A9025915FBA0073C5D7 /* Info.plist */,
-				4E308A8925915FB80073C5D7 /* ContentView.swift */,
+				4E308A8925915FB80073C5D7 /* SettingsView.swift */,
 				4E308A8725915FB80073C5D7 /* McpingWidgetApp.swift */,
 				4E308A8B25915FBA0073C5D7 /* Assets.xcassets */,
 				4E308A8D25915FBA0073C5D7 /* Preview Content */,
@@ -433,7 +433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E308A8A25915FB80073C5D7 /* ContentView.swift in Sources */,
+				4E308A8A25915FB80073C5D7 /* SettingsView.swift in Sources */,
 				4E6EC427259AAA58004B142B /* McStructs.swift in Sources */,
 				4E258F2F259AC7DA0093B65F /* McpingWidgetViewExtension.intentdefinition in Sources */,
 				4E308A8825915FB80073C5D7 /* McpingWidgetApp.swift in Sources */,
@@ -483,6 +483,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = Z79T9AJ776;
 				INFOPLIST_FILE = McpingWidgetViewExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -492,6 +493,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/mcping-widget-lib";
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.minecraft-status.McpingWidgetViewExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -507,6 +509,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = Z79T9AJ776;
 				INFOPLIST_FILE = McpingWidgetViewExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -516,6 +519,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/mcping-widget-lib";
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.minecraft-status.McpingWidgetViewExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -649,6 +653,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"mcping-widget/Preview Content\"";
 				DEVELOPMENT_TEAM = Z79T9AJ776;
 				ENABLE_PREVIEWS = YES;
@@ -659,6 +664,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/mcping-widget-lib";
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.minecraft-status";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "mcping-widget-lib/mcping-widget-Bridging-Header.h";
@@ -676,6 +682,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"mcping-widget/Preview Content\"";
 				DEVELOPMENT_TEAM = Z79T9AJ776;
 				ENABLE_PREVIEWS = YES;
@@ -686,6 +693,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/mcping-widget-lib";
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.minecraft-status";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "mcping-widget-lib/mcping-widget-Bridging-Header.h";
