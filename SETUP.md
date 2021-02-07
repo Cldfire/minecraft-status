@@ -9,11 +9,10 @@ cargo install cbindgen
 
 3. Install [`homebrew`](https://brew.sh/)
 
-4. Run `scripts/bootstrap.sh`
+4. Run `swift/scripts/bootstrap.sh`
 
 ```
-cd swift
-sh scripts/bootstrap.sh
+sh swift/scripts/bootstrap.sh
 ```
 
 After performing the above steps, open the XCode project in XCode and build the `Minecraft Status` scheme.
