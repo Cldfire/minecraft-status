@@ -1,7 +1,5 @@
 # Setup
 
-Follow these steps to build the iOS app:
-
 1. Install [Rust](https://www.rust-lang.org/)
 2. Install [`cbindgen`](https://github.com/eqrion/cbindgen):
 
@@ -9,23 +7,13 @@ Follow these steps to build the iOS app:
 cargo install cbindgen
 ```
 
-3. Add needed targets via rustup:
+3. Install [`homebrew`](https://brew.sh/)
 
-```
-rustup target add aarch64-apple-ios x86_64-apple-ios
-```
-
-4. Install [`mint`](https://github.com/yonaskolb/mint):
-
-```
-brew install mint
-```
-
-5. Setup tooling with mint:
+4. Run `scripts/bootstrap.sh`
 
 ```
 cd swift
-mint bootstrap
+sh scripts/bootstrap.sh
 ```
 
 After performing the above steps, open the XCode project in XCode and build the `Minecraft Status` scheme.

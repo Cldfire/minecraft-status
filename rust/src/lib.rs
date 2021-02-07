@@ -160,14 +160,16 @@ fn get_server_status_rust(address: *const c_char) -> Result<McInfoRaw, McInfoErr
 ///
 /// Returns 1 if successful and 0 if an error occurred. `out` will only be set
 /// if the call was successful.
+///
+/// # Safety
+///
+/// The provided pointers must be valid.
 #[no_mangle]
-pub extern "C" fn get_server_status(address: *const c_char, out: *mut McInfoRaw) -> i32 {
+pub unsafe extern "C" fn get_server_status(address: *const c_char, out: *mut McInfoRaw) -> i32 {
     match get_server_status_rust(address) {
         Ok(mcinfo) => {
             if !out.is_null() {
-                unsafe {
-                    *out = mcinfo;
-                }
+                *out = mcinfo;
             }
             1
         }

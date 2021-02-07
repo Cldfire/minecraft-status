@@ -1,0 +1,67 @@
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+
+name: Swift CI
+
+defaults:
+  run:
+    working-directory: swift
+
+jobs:
+  lint:
+    runs-on: macos-latest
+    env:
+      MINT_PATH: ${{ github.workspace }}/mint
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Cache Mint Packages
+        uses: actions/cache@v1
+        with:
+          path: ${{ env.MINT_PATH }}
+          key: ${{ runner.os }}-mint-${{ hashFiles('**/Mintfile') }}
+          restore-keys: ${{ runner.os }}-mint-
+
+      - name: Install Dependencies
+        run: sh scripts/bootstrap.sh
+        working-directory: swift
+
+      - name: SwiftLint
+        run: mint run swiftlint
+        working-directory: swift
+
+      - name: SwiftFormat
+        run: mint run swiftformat . --lint
+        working-directory: swift
+
+  # TODO: I think this job is running into the big sur issue described in
+  # https://github.com/TimNN/cargo-lipo/issues/41#issuecomment-745623541
+  # test:
+  #   runs-on: macos-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v1
+
+  #     - name: Rust Toolchain
+  #       uses: actions-rs/toolchain@v1
+  #       with:
+  #         profile: minimal
+  #         toolchain: stable
+
+  #     - name: Install cbindgen
+  #       uses: actions-rs/cargo@v1
+  #       with:
+  #         command: install
+  #         args: cbindgen
+
+  #     - name: Test
+  #       uses: sersoft-gmbh/xcodebuild-action@v1
+  #       with:
+  #         project: swift/McPingWidget.xcodeproj
+  #         scheme: Minecraft Status
+  #         destination: platform=iOS Simulator,name=iPhone 12
+  #         action: test

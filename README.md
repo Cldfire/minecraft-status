@@ -1,5 +1,9 @@
 # minecraft-status
 
+![Rust CI](https://github.com/Cldfire/minecraft-status/workflows/Rust%20CI/badge.svg)
+![Swift CI](https://github.com/Cldfire/minecraft-status/workflows/Swift%20CI/badge.svg)
+
+
 An iOS app with widgets that display the results of pinging a Minecraft server.
 
 Built on top of the [mcping](https://github.com/Scetch/mcping) crate.
