@@ -1,0 +1,7 @@
+disabled_rules:
+  - trailing_comma
+  - todo
+  - line_length
+  - multiple_closures_with_trailing_closure
+identifier_name:
+  min_length: 1

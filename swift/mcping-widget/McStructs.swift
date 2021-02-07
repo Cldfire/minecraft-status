@@ -27,40 +27,40 @@ extension McInfo {
         }
 
         self.latency = from.latency
-        
+
         guard let version = Version(from.version) else {
             return nil
         }
         self.version = version
-        
+
         guard let players = Players(from.players) else {
             return nil
         }
         self.players = players
 
-        if let description_cstr = from.description {
-            self.description = String.init(cString: description_cstr)
+        if let descriptionCstr = from.description {
+            self.description = String.init(cString: descriptionCstr)
         } else {
             self.description = ""
         }
 
-        if let favicon_cstr = from.favicon {
-            self.favicon = String.init(cString: favicon_cstr)
+        if let faviconCstr = from.favicon {
+            self.favicon = String.init(cString: faviconCstr)
         } else {
             self.favicon = nil
         }
     }
-    
+
     static func forServerAddress(_ serverAddress: String) -> McInfo? {
         let rawInfo = UnsafeMutablePointer<McInfoRaw>.allocate(capacity: 1)
-        
+
         let info: McInfo?
         if get_server_status(serverAddress, rawInfo) == 1 {
             info = McInfo(rawInfo.pointee)
         } else {
             info = nil
         }
-        
+
         rawInfo.deallocate()
         return info
     }
@@ -68,19 +68,19 @@ extension McInfo {
 
 struct Version {
     var name: String
-    var protocol_version: Int64
+    var protocolVersion: Int64
 }
 
 extension Version {
     /// Copies data from the given `VersionRaw` in order to create this struct.
     init?(_ from: VersionRaw) {
-        if let name_cstr = from.name {
-            self.name = String.init(cString: name_cstr)
+        if let nameCstr = from.name {
+            self.name = String.init(cString: nameCstr)
         } else {
             self.name = ""
         }
 
-        self.protocol_version = from.protocol
+        self.protocolVersion = from.protocol
     }
 }
 
@@ -92,14 +92,14 @@ struct Player {
 extension Player {
     /// Copies data from the given `PlayerRaw` in order to create this struct.
     init?(_ from: PlayerRaw) {
-        if let name_cstr = from.name {
-            self.name = String.init(cString: name_cstr)
+        if let nameCstr = from.name {
+            self.name = String.init(cString: nameCstr)
         } else {
             self.name = ""
         }
 
-        if let id_cstr = from.id {
-            self.id = String.init(cString: id_cstr)
+        if let idCstr = from.id {
+            self.id = String.init(cString: idCstr)
         } else {
             self.id = ""
         }
@@ -117,7 +117,7 @@ extension Players {
     init?(_ from: PlayersRaw) {
         self.max = from.max
         self.online = from.online
-        
+
         self.sample = [Player]()
         self.sample.reserveCapacity(Int(from.sample_len))
 

@@ -8,17 +8,17 @@ struct Provider: IntentTimelineProvider {
     func placeholder(in context: Context) -> McServerStatusEntry {
         previewData[0]
     }
-    
-    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (McServerStatusEntry) -> ()) {
+
+    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (McServerStatusEntry) -> Void) {
         // Preview uses a ping response from mc.hypixel.net
         let entry = previewData[2]
         completion(entry)
     }
-    
-    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+
+    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
         let currentDate = Date()
         let refreshDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
-        
+
         // TODO: nicely handle when a server goes offline
         McPinger.ping(configuration.serverAddress ?? "") { mcInfo in
             let entry = McServerStatusEntry(date: currentDate, configuration: configuration, mcInfo: mcInfo)
@@ -66,21 +66,21 @@ func chooseBestHeaderText(for configuration: ConfigurationIntent) -> String {
     }
 }
 
-struct McpingWidgetExtensionEntryView : View {
+struct McpingWidgetExtensionEntryView: View {
     var entry: Provider.Entry
-    
+
     var body: some View {
         if let mcInfo = entry.mcInfo {
             ZStack {
                 // The backing images
                 Image("minecraft-dirt").interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fill).unredacted()
                 Rectangle().opacity(0.65)
-                
+
                 // TODO: what do we do if there's no server icon?
                 if let favicon = convertBase64StringToImage(imageBase64String: mcInfo.favicon) {
                     Image(uiImage: favicon).interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fit).shadow(radius: 30)
                 }
-                
+
                 // The banner content
                 VStack {
                     // These spacers move the banner towards the bottom of the widget
@@ -89,20 +89,20 @@ struct McpingWidgetExtensionEntryView : View {
                     Spacer()
                     Spacer()
                     Spacer()
-                    
+
                     ZStack {
                         // The translucent banner backing (stretches horizontally across the entire widget)
                         Rectangle().opacity(0.7)
-                        
+
                         // The content on top of the banner
                         VStack(alignment: .leading, spacing: 4) {
                             // Server address
                             Text("\(chooseBestHeaderText(for: entry.configuration))").foregroundColor(.white).font(.custom("minecraft", size: 12)).shadow(color: .black, radius: 0.5, x: 1, y: 1).lineLimit(1)
-                            
+
                             // Players online and latency indicator
                             HStack(spacing: 5) {
                                 Text("\(mcInfo.players.online) / \(mcInfo.players.max)").foregroundColor(.white).font(.custom("minecraft", size: 12)).shadow(color: .black, radius: 0.5, x: 1, y: 1).minimumScaleFactor(0.8).lineLimit(1)
-                                
+
                                 Group {
                                     if mcInfo.latency < 400 {
                                         Circle().foregroundColor(Color.green)
@@ -115,7 +115,7 @@ struct McpingWidgetExtensionEntryView : View {
                             }
                         }.frame(maxWidth: .infinity).padding(.leading, 10).padding(.trailing, 10)
                     }.frame(height: 45)
-                    
+
                     // This spacer separates the banner from the bottom of the widget
                     Spacer()
                 }
@@ -133,7 +133,7 @@ struct McpingWidgetExtensionEntryView : View {
 @main
 struct McpingWidgetExtension: Widget {
     let kind: String = "McpingWidgetViewExtension"
-    
+
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             McpingWidgetExtensionEntryView(entry: entry)
@@ -152,12 +152,12 @@ struct McpingWidgetExtension_Previews: PreviewProvider {
                 McpingWidgetExtensionEntryView(entry: previewData[i])
                     .previewContext(WidgetPreviewContext(family: .systemSmall))
             }
-            
+
             McpingWidgetExtensionEntryView(entry: previewData[0])
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .environment(\.colorScheme, .dark)
                 .previewDisplayName("Dark Mode")
-            
+
             McpingWidgetExtensionEntryView(entry: previewData[0])
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .redacted(reason: .placeholder)

@@ -27,7 +27,7 @@ struct SettingsView: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
-    
+
     var footer: some View {
         McpingWidgetApp.fullVersion
             .map { Text("version \($0)") }
@@ -80,7 +80,7 @@ struct ContentView_Previews: PreviewProvider {
 enum SettingsRowItemAction {
     case openUrl(URL)
     case shareUrl(URL)
-    
+
     func performAction() {
         switch self {
         case .openUrl(let url):
@@ -112,7 +112,7 @@ struct SettingsRowItem: Identifiable {
 }
 
 let headerRows = [
-    SettingsRowItem(title: "Widget Setup", subtitle: "Learn how to use widgets", systemImageName: "questionmark", color: .blue, action: .openUrl(URL(string: "https://support.apple.com/en-us/HT207122")!)),
+    SettingsRowItem(title: "Widget Setup", subtitle: "Learn how to use widgets", systemImageName: "questionmark", color: .blue, action: .openUrl(URL(string: "https://support.apple.com/en-us/HT207122")!))
 ]
 
 let footerRows = [

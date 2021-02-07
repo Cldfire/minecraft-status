@@ -70,7 +70,6 @@
 /* Begin PBXFileReference section */
 		4E1FCB34259BF07B0018AAA3 /* mcping_widget.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = mcping_widget.a; sourceTree = "<group>"; };
 		4E1FCB3F259BF1350018AAA3 /* mcping_widget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mcping_widget.h; sourceTree = "<group>"; };
-		4E1FCB64259BFF740018AAA3 /* generate-rust-lib.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "generate-rust-lib.sh"; sourceTree = "<group>"; };
 		4E258F21259AC7D90093B65F /* McpingWidgetViewExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = McpingWidgetViewExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E258F23259AC7D90093B65F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		4E258F25259AC7D90093B65F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -158,7 +157,6 @@
 		4E308A7B25915FB80073C5D7 = {
 			isa = PBXGroup;
 			children = (
-				4E1FCB64259BFF740018AAA3 /* generate-rust-lib.sh */,
 				4E3C153A2591609B00549980 /* mcping-widget-lib */,
 				4E308A8625915FB80073C5D7 /* mcping-widget */,
 				4E308A9825915FBA0073C5D7 /* mcping-widgetTests */,
@@ -247,6 +245,7 @@
 			buildPhases = (
 				4E1FCB23259BEE610018AAA3 /* ShellScript */,
 				4E258F1D259AC7D90093B65F /* Sources */,
+				4E38E85B25CF898500BF6025 /* ShellScript */,
 				4E258F1E259AC7D90093B65F /* Frameworks */,
 				4E258F1F259AC7D90093B65F /* Resources */,
 			);
@@ -413,7 +412,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/generate-rust-lib.sh\n";
+			shellScript = "$SRCROOT/scripts/generate-rust-lib.sh\n";
+		};
+		4E38E85B25CF898500BF6025 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$SRCROOT/scripts/swiftlint.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
