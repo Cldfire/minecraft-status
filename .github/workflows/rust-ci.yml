@@ -23,8 +23,6 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: check
-          # unfortunately we can't specify a working directory here :(
-          args: --manifest-path rust/Cargo.toml
 
   test:
     name: Test
@@ -38,8 +36,6 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: test
-          # unfortunately we can't specify a working directory here :(
-          args: --manifest-path rust/Cargo.toml
 
   fmt:
     name: Rustfmt
@@ -54,7 +50,7 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: fmt
-          args: --manifest-path rust/Cargo.toml --all -- --check
+          args: --all -- --check
 
   clippy:
     name: Clippy
@@ -69,4 +65,4 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: clippy
-          args: --manifest-path rust/Cargo.toml -- -D warnings
+          args: -- -D warnings

@@ -1,5 +1,4 @@
-/rust/target
-Cargo.lock
+/target
 
 xcuserdata/
 .DS_Store
