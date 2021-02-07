@@ -1,4 +1,4 @@
-// 
+//
 
 import Foundation
 
@@ -39,13 +39,13 @@ extension McInfo {
         self.players = players
 
         if let descriptionCstr = from.description {
-            self.description = String.init(cString: descriptionCstr)
+            self.description = String(cString: descriptionCstr)
         } else {
             self.description = ""
         }
 
         if let faviconCstr = from.favicon {
-            self.favicon = String.init(cString: faviconCstr)
+            self.favicon = String(cString: faviconCstr)
         } else {
             self.favicon = nil
         }
@@ -75,7 +75,7 @@ extension Version {
     /// Copies data from the given `VersionRaw` in order to create this struct.
     init?(_ from: VersionRaw) {
         if let nameCstr = from.name {
-            self.name = String.init(cString: nameCstr)
+            self.name = String(cString: nameCstr)
         } else {
             self.name = ""
         }
@@ -93,13 +93,13 @@ extension Player {
     /// Copies data from the given `PlayerRaw` in order to create this struct.
     init?(_ from: PlayerRaw) {
         if let nameCstr = from.name {
-            self.name = String.init(cString: nameCstr)
+            self.name = String(cString: nameCstr)
         } else {
             self.name = ""
         }
 
         if let idCstr = from.id {
-            self.id = String.init(cString: idCstr)
+            self.id = String(cString: idCstr)
         } else {
             self.id = ""
         }

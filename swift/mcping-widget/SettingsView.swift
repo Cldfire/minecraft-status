@@ -68,7 +68,6 @@ struct SettingsRow: View {
         }
         .padding(.vertical, 5.0)
     }
-
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -83,9 +82,9 @@ enum SettingsRowItemAction {
 
     func performAction() {
         switch self {
-        case .openUrl(let url):
+        case let .openUrl(url):
             UIApplication.shared.open(url)
-        case .shareUrl(let url):
+        case let .shareUrl(url):
             present(UIActivityViewController(activityItems: [url], applicationActivities: nil), animated: true)
         }
     }
@@ -112,11 +111,11 @@ struct SettingsRowItem: Identifiable {
 }
 
 let headerRows = [
-    SettingsRowItem(title: "Widget Setup", subtitle: "Learn how to use widgets", systemImageName: "questionmark", color: .blue, action: .openUrl(URL(string: "https://support.apple.com/en-us/HT207122")!))
+    SettingsRowItem(title: "Widget Setup", subtitle: "Learn how to use widgets", systemImageName: "questionmark", color: .blue, action: .openUrl(URL(string: "https://support.apple.com/en-us/HT207122")!)),
 ]
 
 let footerRows = [
     SettingsRowItem(title: "Rate the App", subtitle: "Reviews are greatly appreciated!", systemImageName: "star.fill", color: .pink, action: .openUrl(URL(string: "itms-apps://apps.apple.com/app/id1549596839?action=write-review")!)),
     SettingsRowItem(title: "Share", subtitle: "Tell your friends!", systemImageName: "square.and.arrow.up", color: .green, action: .shareUrl(URL(string: "https://apps.apple.com/app/id1549596839")!)),
-    SettingsRowItem(title: "Open Source", subtitle: "Contribute and file issues", systemImageName: "swift", color: .orange, action: .openUrl(URL(string: "https://github.com/Cldfire/minecraft-status")!))
+    SettingsRowItem(title: "Open Source", subtitle: "Contribute and file issues", systemImageName: "swift", color: .orange, action: .openUrl(URL(string: "https://github.com/Cldfire/minecraft-status")!)),
 ]

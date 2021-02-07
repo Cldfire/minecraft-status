@@ -412,7 +412,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/scripts/generate-rust-lib.sh\n";
+			shellScript = "$SRCROOT/scripts/generate-rust-lib.sh\n$SRCROOT/scripts/swiftformat.sh\n";
 		};
 		4E38E85B25CF898500BF6025 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

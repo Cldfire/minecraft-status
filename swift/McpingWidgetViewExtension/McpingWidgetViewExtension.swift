@@ -1,21 +1,21 @@
 //
 
-import WidgetKit
-import SwiftUI
 import Intents
+import SwiftUI
+import WidgetKit
 
 struct Provider: IntentTimelineProvider {
-    func placeholder(in context: Context) -> McServerStatusEntry {
+    func placeholder(in _: Context) -> McServerStatusEntry {
         previewData[0]
     }
 
-    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (McServerStatusEntry) -> Void) {
+    func getSnapshot(for _: ConfigurationIntent, in _: Context, completion: @escaping (McServerStatusEntry) -> Void) {
         // Preview uses a ping response from mc.hypixel.net
         let entry = previewData[2]
         completion(entry)
     }
 
-    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
+    func getTimeline(for configuration: ConfigurationIntent, in _: Context, completion: @escaping (Timeline<Entry>) -> Void) {
         let currentDate = Date()
         let refreshDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
 
@@ -36,7 +36,7 @@ struct McServerStatusEntry: TimelineEntry {
     // TODO: relevance
 }
 
-struct McPinger {
+enum McPinger {
     static func ping(_ serverAddress: String, completion: @escaping (McInfo?) -> Void) {
         DispatchQueue.global(qos: .background).async {
             let mcInfo = McInfo.forServerAddress(serverAddress)
@@ -51,7 +51,7 @@ func convertBase64StringToImage(imageBase64String: String?) -> UIImage? {
         return nil
     }
 
-    guard let imageData = Data.init(base64Encoded: imageString) else {
+    guard let imageData = Data(base64Encoded: imageString) else {
         return nil
     }
 
