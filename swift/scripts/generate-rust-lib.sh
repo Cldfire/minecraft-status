@@ -16,8 +16,8 @@ fi
 
 cd "$RUST_PROJ"
 
-AARCH64_OBJECT_PATH=target/aarch64-apple-ios/$RELEASE_OR_DEBUG/libmcping_widget.a
-X86_OBJECT_PATH=target/x86_64-apple-ios/$RELEASE_OR_DEBUG/libmcping_widget.a
+AARCH64_OBJECT_PATH=../target/aarch64-apple-ios/$RELEASE_OR_DEBUG/libmcping_widget.a
+X86_OBJECT_PATH=../target/x86_64-apple-ios/$RELEASE_OR_DEBUG/libmcping_widget.a
 UNIVERSAL_OBJECT_PATH=$XCODE_PROJ_LIB/mcping_widget.a
 HEADER_FILE_PATH=$XCODE_PROJ_LIB/mcping_widget.h
 
