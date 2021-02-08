@@ -21,6 +21,16 @@ X86_OBJECT_PATH=../target/x86_64-apple-ios/$RELEASE_OR_DEBUG/libmcping_widget.a
 UNIVERSAL_OBJECT_PATH=$XCODE_PROJ_LIB/mcping_widget.a
 HEADER_FILE_PATH=$XCODE_PROJ_LIB/mcping_widget.h
 
+if [[ -n "${DEVELOPER_SDK_DIR:-}" ]]; then
+  # Assume we're in Xcode, which means we're probably cross-compiling.
+  # In this case, we need to add an extra library search path for build scripts and proc-macros,
+  # which run on the host instead of the target.
+  # (macOS Big Sur does not have linkable libraries in /usr/lib/.)
+  #
+  # Workaround taken from https://github.com/signalapp/libsignal-client/blob/master/swift/build_ffi.sh
+  export LIBRARY_PATH="${DEVELOPER_SDK_DIR}/MacOSX.sdk/usr/lib:${LIBRARY_PATH:-}"
+fi
+
 # Build for iOS architectures
 if [ $RELEASE_OR_DEBUG = "release" ]
 then
