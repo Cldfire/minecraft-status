@@ -19,9 +19,31 @@ struct Provider: IntentTimelineProvider {
         let currentDate = Date()
         let refreshDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
 
-        // TODO: nicely handle when a server goes offline
         McPinger.ping(configuration.serverAddress ?? "") { mcInfo in
-            let entry = McServerStatusEntry(date: currentDate, configuration: configuration, mcInfo: mcInfo)
+            let serverResponse: ServerStatus
+
+            if let mcInfo = mcInfo {
+                // Cache the possibly-present favicon
+                //
+                // We want to write this file even when there's no favicon data to cache
+                // so that we can properly represent the offline state for servers that
+                // don't have favicons.
+                //
+                // If we got mcinfo we had to have a serveraddress, so the ! is safe
+                let pingData = CachedFavicon(favicon: mcInfo.favicon)
+                CodableStore.write(configuration.serverAddress!.lowercased() + ".favicon", pingData)
+
+                serverResponse = .online(mcInfo)
+            } else if let serverAddress = configuration.serverAddress, let cachedFavicon: CachedFavicon = CodableStore.read(serverAddress.lowercased() + ".favicon") {
+                // Server is unreachable but was previously reachable at this address, treat it as being
+                // offline and use the cached favicon if possible
+                serverResponse = .offline(cachedFavicon.favicon)
+            } else {
+                // Server is unreachable and was never previously reachable
+                serverResponse = .unreachable
+            }
+
+            let entry = McServerStatusEntry(date: currentDate, configuration: configuration, status: serverResponse)
             let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
             completion(timeline)
         }
@@ -31,18 +53,103 @@ struct Provider: IntentTimelineProvider {
 struct McServerStatusEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationIntent
-    // TODO: store error if mc server can't be pinged
-    let mcInfo: McInfo?
+    let status: ServerStatus
     // TODO: relevance
 }
 
 enum McPinger {
     static func ping(_ serverAddress: String, completion: @escaping (McInfo?) -> Void) {
+        // TODO: not sure that this is the correct way of making a backgroud network request
+        // in a widget
         DispatchQueue.global(qos: .background).async {
             let mcInfo = McInfo.forServerAddress(serverAddress)
             completion(mcInfo)
         }
     }
+}
+
+/// Represents the server status we were able to determine
+enum ServerStatus {
+    /// The server was online, and we got the given info
+    case online(McInfo)
+    /// The server was unreachable, but we were able to reach it at some point in the past.
+    ///
+    /// We may have a cached favicon to make use of.
+    case offline(String?)
+    /// The server was unreachable, and we've never reached it in the past.
+    case unreachable
+
+    func favicon() -> String? {
+        switch self {
+        case let .online(mcInfo):
+            return mcInfo.favicon
+        case let .offline(fav):
+            return fav
+        case .unreachable:
+            return nil
+        }
+    }
+
+    // We return a Text view here so the resulting string has separators in the numbers
+    func playersOnlineText() -> Text {
+        switch self {
+        case let .online(mcInfo):
+            return Text("\(mcInfo.players.online) / \(mcInfo.players.max)")
+        case .offline:
+            return Text("-- / --")
+        case .unreachable:
+            return Text("")
+        }
+    }
+
+    func statusColor() -> Color {
+        if case let .online(mcInfo) = self {
+            // TODO: don't base this color off latency? just green for online and gray
+            // for offline
+            if mcInfo.latency < 400 {
+                return Color.green
+            } else if mcInfo.latency < 1000 {
+                return Color.orange
+            } else {
+                return Color.red
+            }
+        } else {
+            return Color.gray
+        }
+    }
+}
+
+enum CodableStore {
+    static let sharedContainer: URL = {
+        // Write to shared app group container so both the widget and the host app can access
+        FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dev.cldfire.minecraft-status")!
+    }()
+
+    /// Write the given data to a file of the given name (encoded as JSON)
+    static func write<T: Encodable>(_ fileName: String, _ data: T) {
+        do {
+            let encodedData = try JSONEncoder().encode(data)
+            try encodedData.write(to: self.sharedContainer.appendingPathComponent(fileName))
+        } catch {
+            print("Error encoding data to file: \(error)")
+        }
+    }
+
+    /// Read JSON data from the given file of the given name and decode it
+    static func read<T: Decodable>(_ fileName: String) -> T? {
+        do {
+            let encodedData = try Data(contentsOf: sharedContainer.appendingPathComponent(fileName))
+            return try JSONDecoder().decode(T.self, from: encodedData)
+        } catch {
+            print("Error decoding data from file: \(error)")
+            return nil
+        }
+    }
+}
+
+/// In-memory representation of the favicon we may have cached on disk.
+struct CachedFavicon: Codable {
+    let favicon: String?
 }
 
 /// Attempts to convert a maybe-present base64 image string into a `UIImage`.
@@ -66,20 +173,34 @@ func chooseBestHeaderText(for configuration: ConfigurationIntent) -> String {
     }
 }
 
+struct ServerFavicon: View {
+    let faviconString: String?
+
+    var body: some View {
+        // The backing images
+        Image("minecraft-dirt").interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fill).unredacted()
+        Rectangle().opacity(0.65)
+
+        // TODO: what do we do if there's no server icon?
+        if let favicon = convertBase64StringToImage(imageBase64String: faviconString) {
+            Image(uiImage: favicon).interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fit).shadow(radius: 30)
+        }
+    }
+}
+
 struct McpingWidgetExtensionEntryView: View {
     var entry: Provider.Entry
 
     var body: some View {
-        if let mcInfo = entry.mcInfo {
+        if case .unreachable = entry.status {
+            if let serverAddress = entry.configuration.serverAddress, !serverAddress.isEmpty {
+                Text("Unable to ping Minecraft server at address \"\(serverAddress)\"").padding()
+            } else {
+                Text("No server address specified, please edit the widget").padding()
+            }
+        } else {
             ZStack {
-                // The backing images
-                Image("minecraft-dirt").interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fill).unredacted()
-                Rectangle().opacity(0.65)
-
-                // TODO: what do we do if there's no server icon?
-                if let favicon = convertBase64StringToImage(imageBase64String: mcInfo.favicon) {
-                    Image(uiImage: favicon).interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fit).shadow(radius: 30)
-                }
+                ServerFavicon(faviconString: entry.status.favicon())
 
                 // The banner content
                 VStack {
@@ -99,19 +220,11 @@ struct McpingWidgetExtensionEntryView: View {
                             // Server address
                             Text("\(chooseBestHeaderText(for: entry.configuration))").foregroundColor(.white).font(.custom("minecraft", size: 12)).shadow(color: .black, radius: 0.5, x: 1, y: 1).lineLimit(1)
 
-                            // Players online and latency indicator
+                            // Players online and status indicator
                             HStack(spacing: 5) {
-                                Text("\(mcInfo.players.online) / \(mcInfo.players.max)").foregroundColor(.white).font(.custom("minecraft", size: 12)).shadow(color: .black, radius: 0.5, x: 1, y: 1).minimumScaleFactor(0.8).lineLimit(1)
+                                entry.status.playersOnlineText().foregroundColor(.white).font(.custom("minecraft", size: 12)).shadow(color: .black, radius: 0.5, x: 1, y: 1).minimumScaleFactor(0.8).lineLimit(1)
 
-                                Group {
-                                    if mcInfo.latency < 400 {
-                                        Circle().foregroundColor(Color.green)
-                                    } else if mcInfo.latency < 1000 {
-                                        Circle().foregroundColor(Color.orange)
-                                    } else {
-                                        Circle().foregroundColor(Color.red)
-                                    }
-                                }.fixedSize().scaleEffect(0.9)
+                                Circle().foregroundColor(entry.status.statusColor()).fixedSize().scaleEffect(0.9)
                             }
                         }.frame(maxWidth: .infinity).padding(.leading, 10).padding(.trailing, 10)
                     }.frame(height: 45)
@@ -120,12 +233,6 @@ struct McpingWidgetExtensionEntryView: View {
                     Spacer()
                 }
             }.colorScheme(.light) // Force the light colorscheme to keep the translucent banner black
-        } else {
-            if let serverAddress = entry.configuration.serverAddress, !serverAddress.isEmpty {
-                Text("Unable to ping Minecraft server at address \"\(serverAddress)\"").padding()
-            } else {
-                Text("No server address specified, please edit the widget").padding()
-            }
         }
     }
 }
@@ -162,6 +269,12 @@ struct McpingWidgetExtension_Previews: PreviewProvider {
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .redacted(reason: .placeholder)
                 .previewDisplayName("Redacted")
+
+            McpingWidgetExtensionEntryView(entry: previewData[0])
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+                .environment(\.colorScheme, .dark)
+                .redacted(reason: .placeholder)
+                .previewDisplayName("Redacted Dark Mode")
         }
     }
 }
