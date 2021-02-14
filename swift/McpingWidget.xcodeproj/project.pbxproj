@@ -93,6 +93,8 @@
 		4E3C08DD259C1DBB00303A35 /* minecraft.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = minecraft.ttf; sourceTree = "<group>"; };
 		4E3C08E9259C23C300303A35 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		4E3C153B259160C800549980 /* mcping-widget-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mcping-widget-Bridging-Header.h"; sourceTree = "<group>"; };
+		4E4C387625D8E49C00D8C18B /* McpingWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = McpingWidget.entitlements; sourceTree = "<group>"; };
+		4E4C387B25D8E4EB00D8C18B /* McpingWidgetViewExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = McpingWidgetViewExtension.entitlements; sourceTree = "<group>"; };
 		4E6EC426259AAA58004B142B /* McStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McStructs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,6 +146,7 @@
 		4E258F27259AC7D90093B65F /* McpingWidgetViewExtension */ = {
 			isa = PBXGroup;
 			children = (
+				4E4C387B25D8E4EB00D8C18B /* McpingWidgetViewExtension.entitlements */,
 				4E3C08E4259C227C00303A35 /* Fonts */,
 				4E258F28259AC7D90093B65F /* McpingWidgetViewExtension.swift */,
 				4E258F2A259AC7D90093B65F /* McpingWidgetViewExtension.intentdefinition */,
@@ -157,6 +160,7 @@
 		4E308A7B25915FB80073C5D7 = {
 			isa = PBXGroup;
 			children = (
+				4E4C387625D8E49C00D8C18B /* McpingWidget.entitlements */,
 				4E3C153A2591609B00549980 /* mcping-widget-lib */,
 				4E308A8625915FB80073C5D7 /* mcping-widget */,
 				4E308A9825915FBA0073C5D7 /* mcping-widgetTests */,
@@ -498,6 +502,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = McpingWidgetViewExtension/McpingWidgetViewExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = Z79T9AJ776;
@@ -524,6 +529,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = McpingWidgetViewExtension/McpingWidgetViewExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = Z79T9AJ776;
@@ -668,6 +674,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = McpingWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"mcping-widget/Preview Content\"";
@@ -697,6 +704,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = McpingWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"mcping-widget/Preview Content\"";

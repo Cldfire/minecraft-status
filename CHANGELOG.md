@@ -4,6 +4,11 @@ Notable `minecraft-status` changes, tracked in the [keep a changelog](https://ke
 
 ## [Unreleased]
 
+### Added
+
+* Server favicons are now cached
+  * Offline servers are now neatly displayed as being offline in the widget (as long as the server was successfully pinged before)
+
 ### Internal
 
 * Set up CI
