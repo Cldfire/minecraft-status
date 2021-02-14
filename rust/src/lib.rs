@@ -148,12 +148,13 @@ fn get_server_status_rust(address: *const c_char) -> Result<McInfoRaw, McInfoErr
     let address = unsafe { CStr::from_ptr(address) };
     let address = address.to_str()?;
 
-    let (latency, status) = match panic::catch_unwind(|| mcping::get_status(&address)) {
-        Ok(result) => result?,
-        Err(_) => return Err(McInfoError::PanicOccurred),
-    };
-
-    Ok(McInfoRaw::new(latency, status))
+    match panic::catch_unwind(|| -> Result<_, McInfoError> {
+        let (latency, status) = mcping::get_status(address)?;
+        Ok(McInfoRaw::new(latency, status))
+    }) {
+        Ok(result) => result,
+        Err(_) => Err(McInfoError::PanicOccurred),
+    }
 }
 
 /// Ping a Minecraft server at the given `address`.
