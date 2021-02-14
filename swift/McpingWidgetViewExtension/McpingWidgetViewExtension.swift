@@ -103,16 +103,14 @@ enum ServerStatus {
     }
 
     func statusColor() -> Color {
-        if case let .online(mcInfo) = self {
-            // TODO: don't base this color off latency? just green for online and gray
-            // for offline
-            if mcInfo.latency < 400 {
-                return Color.green
-            } else if mcInfo.latency < 1000 {
-                return Color.orange
-            } else {
-                return Color.red
-            }
+        if case .online = self {
+            // We always return green if the server is online, regardless of latency.
+            //
+            // This decision was made because latency is oftentimes irregular in the context
+            // of a phone widget; for instance, when using data rather than wifi. This
+            // irregularity makes latency a poor data point to use to change the status color,
+            // and I personally found it more annoying than useful.
+            return Color.green
         } else {
             return Color.gray
         }

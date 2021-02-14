@@ -9,6 +9,12 @@ Notable `minecraft-status` changes, tracked in the [keep a changelog](https://ke
 * Server favicons are now cached
   * Offline servers are now neatly displayed as being offline in the widget (as long as the server was successfully pinged before)
 
+### Changed
+
+* Latency is no longer considered when choosing a color for the status circle
+  * It's now either green when the server is online or gray when it's offline
+  * I personally found using latency as a data point to be more annoying than helpful
+
 ### Internal
 
 * Set up CI
