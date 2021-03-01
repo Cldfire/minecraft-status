@@ -97,6 +97,11 @@ func present(_ viewController: UIViewController, animated: Bool, completion: (()
         topController = presentedViewController
     }
 
+    // TODO: temporary fix so this doesn't crash on iPads, make this better
+    let popover = viewController.popoverPresentationController
+    popover?.sourceView = topController.view
+    popover?.sourceRect = CGRect(x: 0, y: 0, width: 64, height: 64)
+
     topController.present(viewController, animated: animated, completion: completion)
 }
 
@@ -111,6 +116,7 @@ struct SettingsRowItem: Identifiable {
 }
 
 let headerRows = [
+    // TODO: this URL should be https://support.apple.com/en-us/HT211328 on iPads, this link is for iPhones
     SettingsRowItem(title: "Widget Setup", subtitle: "Learn how to use widgets", systemImageName: "questionmark", color: .blue, action: .openUrl(URL(string: "https://support.apple.com/en-us/HT207122")!)),
 ]
 

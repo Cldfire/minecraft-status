@@ -17,6 +17,10 @@ Notable `minecraft-status` changes, tracked in the [keep a changelog](https://ke
 * TCP connections are now performed with a five-second timeout
   * A widget trying to ping "google.com" will now timeout and display an error message instead of remaining in the redacted view forever
 
+### Fixed
+
+* The app no longer crashes when tapping "Share" on an iPad
+
 ### Internal
 
 * Set up CI
