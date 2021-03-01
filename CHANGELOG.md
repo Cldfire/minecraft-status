@@ -4,6 +4,10 @@ Notable `minecraft-status` changes, tracked in the [keep a changelog](https://ke
 
 ## [Unreleased]
 
+## [v0.1.0-4] - 2021-02-28
+
+A small iteration on the first beta release with some quality of life improvements.
+
 ### Added
 
 * Server favicons are now cached
@@ -27,9 +31,10 @@ Notable `minecraft-status` changes, tracked in the [keep a changelog](https://ke
 * Added build setup guide
 * Reorganized the repo
 
-## [0.1.0-3] - 2021-01-28
+## [v0.1.0-3] - 2021-01-28
 
 Initial release.
 
-[Unreleased]: https://github.com/Cldfire/minecraft-status/compare/v0.0.1-3...HEAD
-[0.1.0-3]: https://github.com/Cldfire/minecraft-status/releases/tag/v0.0.1-3
+[Unreleased]: https://github.com/Cldfire/minecraft-status/compare/v0.0.1-4...HEAD
+[v0.1.0-4]: https://github.com/Cldfire/minecraft-status/compare/v0.0.1-3...v0.0.1-4
+[v0.1.0-3]: https://github.com/Cldfire/minecraft-status/releases/tag/v0.0.1-3
