@@ -3,6 +3,7 @@ use std::{
     mem,
     os::raw::{c_uint, c_ulonglong},
     panic,
+    time::Duration,
 };
 use std::{
     ffi::CString,
@@ -149,7 +150,7 @@ fn get_server_status_rust(address: *const c_char) -> Result<McInfoRaw, McInfoErr
     let address = address.to_str()?;
 
     match panic::catch_unwind(|| -> Result<_, McInfoError> {
-        let (latency, status) = mcping::get_status(address)?;
+        let (latency, status) = mcping::get_status(address, Duration::from_secs(5))?;
         Ok(McInfoRaw::new(latency, status))
     }) {
         Ok(result) => result,

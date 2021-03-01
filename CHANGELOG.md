@@ -14,6 +14,8 @@ Notable `minecraft-status` changes, tracked in the [keep a changelog](https://ke
 * Latency is no longer considered when choosing a color for the status circle
   * It's now either green when the server is online or gray when it's offline
   * I personally found using latency as a data point to be more annoying than helpful
+* TCP connections are now performed with a five-second timeout
+  * A widget trying to ping "google.com" will now timeout and display an error message instead of remaining in the redacted view forever
 
 ### Internal
 
