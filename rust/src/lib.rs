@@ -12,11 +12,14 @@ use std::{
 };
 
 use anyhow::{anyhow, Context};
-use mcping::Response;
 use serde::{Deserialize, Serialize};
+
+#[cfg(test)]
+mod tests;
 
 /// The overall status response.
 #[repr(C)]
+#[derive(Debug)]
 pub enum ServerStatus {
     /// The server was online and we got a valid ping response.
     Online(OnlineResponse),
@@ -35,13 +38,25 @@ pub enum ServerStatus {
     Unreachable(UnreachableResponse),
 }
 
+impl std::fmt::Display for ServerStatus {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            ServerStatus::Online(_) => f.write_str("Online"),
+            ServerStatus::Offline(_) => f.write_str("Offline"),
+            ServerStatus::Unreachable(_) => f.write_str("Unreachable"),
+        }
+    }
+}
+
 #[repr(C)]
+#[derive(Debug)]
 pub struct OnlineResponse {
     /// The data obtained from the server's ping response.
     pub mcinfo: McInfoRaw,
 }
 
 #[repr(C)]
+#[derive(Debug)]
 pub struct OfflineResponse {
     /// The last seen icon this server was using (a Base64-encoded PNG image).
     ///
@@ -50,6 +65,7 @@ pub struct OfflineResponse {
 }
 
 #[repr(C)]
+#[derive(Debug)]
 pub struct UnreachableResponse {
     /// An error string describing why the server wasn't reachable.
     pub error_string: *mut c_char,
@@ -80,14 +96,13 @@ pub struct McInfoRaw {
 
 impl McInfoRaw {
     /// Build this struct from a server's ping response data.
-    fn new(latency: u64, status: Response) -> Self {
+    fn new(latency: u64, status: mcping::Response) -> Self {
         let description = CString::new(status.description.text()).unwrap();
         let favicon = status
             .favicon
             .as_deref()
             .map(process_favicon)
-            .map(CString::new)
-            .unwrap();
+            .and_then(|s| CString::new(s).ok());
 
         Self {
             latency,
@@ -187,6 +202,62 @@ impl From<mcping::Players> for PlayersRaw {
     }
 }
 
+/// Wrapper around `mcping::get_status`.
+///
+/// This wrapper enables both offline and online testing.
+fn mcping_get_status_wrapper(
+    address: &str,
+    timeout: Duration,
+) -> Result<(u64, mcping::Response), mcping::Error> {
+    // Mock some responses for use during testing
+    #[cfg(test)]
+    {
+        let mut response = mcping::Response {
+            version: mcping::Version {
+                name: "".to_string(),
+                protocol: 187,
+            },
+            players: mcping::Players {
+                max: 200,
+                online: 103,
+                sample: None,
+            },
+            description: mcping::Chat::String("".to_string()),
+            favicon: None,
+        };
+
+        match address {
+            "test.server.basic" => return Ok((46, response)),
+            "test.server.full" => {
+                response.version.name = "something".to_string();
+                response.description = mcping::Chat::String("hello! description test".to_string());
+                response.favicon = Some("abase64string".to_string());
+                response.players.sample = Some(vec![
+                    mcping::Player {
+                        id: "1".to_string(),
+                        name: "test1".to_string(),
+                    },
+                    mcping::Player {
+                        id: "2".to_string(),
+                        name: "test2".to_string(),
+                    },
+                ]);
+
+                return Ok((46, response));
+            }
+            "test.server.dnslookupfails" => return Err(mcping::Error::DnsLookupFailed),
+            _ => {
+                // panic if online testing isn't enabled
+                if cfg!(not(feature = "online")) {
+                    panic!("can only use mocked addresses while testing offline")
+                }
+            }
+        }
+    }
+
+    mcping::get_status(address, timeout)
+}
+
 /// The rusty version of what we need to get done.
 ///
 /// The main logic of pinging a server and caching / processing the relevant data
@@ -200,6 +271,12 @@ fn get_server_status_rust(
         // The following logic is meaningless if the server address is a blank
         // string
         return Err(anyhow!("empty server address"));
+    }
+
+    if app_group_container.is_empty() {
+        // The following logic is meaningless if the app group container path
+        // is blank
+        return Err(anyhow!("empty app group container path"));
     }
 
     // Data for a specific server is stored within a folder specifically for
@@ -231,7 +308,7 @@ fn get_server_status_rust(
     // which time our process would likely end up being killed. This would
     // result in the widget being left in the placeholder view rather than
     // being updated with an error message.
-    match mcping::get_status(address, Duration::from_secs(5)) {
+    match mcping_get_status_wrapper(address, Duration::from_secs(5)) {
         Ok((latency, status)) => {
             // Cache the favicon
             let cached_favicon = CachedFavicon {
