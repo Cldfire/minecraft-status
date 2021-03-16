@@ -274,7 +274,7 @@ fn get_server_status_rust(
 
                 Ok(ServerStatus::Offline(OfflineResponse { favicon }))
             } else {
-                Err(e)?
+                Err(e.into())
             }
         }
     }
