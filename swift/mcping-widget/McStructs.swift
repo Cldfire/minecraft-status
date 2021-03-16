@@ -1,6 +1,108 @@
 //
 
 import Foundation
+import SwiftUI
+
+let sharedContainer: URL = {
+    // Write to shared app group container so both the widget and the host app can access
+    FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dev.cldfire.minecraft-status")!
+}()
+
+/// Represents the server status we were able to determine
+enum ServerStatus {
+    /// The server was online, and we got the given info
+    case online(OnlineResponse)
+    /// The server was unreachable, but we were able to reach it at some point in the past.
+    ///
+    /// We may have a cached favicon to make use of.
+    case offline(OfflineResponse)
+    /// The server was unreachable, and we've never reached it in the past.
+    case unreachable(UnreachableResponse)
+
+    /// Attempt to ping the server at the given address.
+    static func forServerAddress(_ serverAddress: String) -> Self {
+        let status = get_server_status(serverAddress, sharedContainer.path)
+
+        defer {
+            free_status_response(status)
+        }
+
+        switch status.tag {
+        case Online:
+            return .online(OnlineResponse(mcInfo: McInfo(status.online.mcinfo)))
+        case Offline:
+            let cachedFavicon: String?
+            if let faviconCstr = status.offline.favicon {
+                cachedFavicon = String(cString: faviconCstr)
+            } else {
+                cachedFavicon = nil
+            }
+
+            return .offline(OfflineResponse(favicon: cachedFavicon))
+        case Unreachable:
+            let errorString: String
+            if let errorStringCstr = status.unreachable.error_string {
+                errorString = String(cString: errorStringCstr)
+            } else {
+                errorString = ""
+            }
+
+            return .unreachable(UnreachableResponse(errorString: errorString))
+        default:
+            fatalError("unexpected type of server status response")
+        }
+    }
+
+    func favicon() -> String? {
+        switch self {
+        case let .online(response):
+            return response.mcInfo.favicon
+        case let .offline(response):
+            return response.favicon
+        case .unreachable:
+            return nil
+        }
+    }
+
+    // We return a Text view here so the resulting string has separators in the numbers
+    func playersOnlineText() -> Text {
+        switch self {
+        case let .online(response):
+            return Text("\(response.mcInfo.players.online) / \(response.mcInfo.players.max)")
+        case .offline:
+            return Text("-- / --")
+        case .unreachable:
+            return Text("")
+        }
+    }
+
+    func statusColor() -> Color {
+        if case .online = self {
+            // We always return green if the server is online, regardless of latency.
+            //
+            // This decision was made because latency is oftentimes irregular in the context
+            // of a phone widget; for instance, when using data rather than wifi. This
+            // irregularity makes latency a poor data point to use to change the status color,
+            // and I personally found it more annoying than useful.
+            return Color.green
+        } else {
+            return Color.gray
+        }
+    }
+}
+
+struct OnlineResponse {
+    var mcInfo: McInfo
+}
+
+struct OfflineResponse {
+    /// The server icon (a Base64-encoded PNG image)
+    var favicon: String?
+}
+
+struct UnreachableResponse {
+    var errorString: String
+}
 
 struct McInfo {
     /// Latency to the server
@@ -18,25 +120,11 @@ struct McInfo {
 // around
 extension McInfo {
     /// Copies data from the given `McInfoRaw` in order to create this struct.
-    ///
-    /// The given `McInfoRaw` will be freed after initialization is finished, regardless of whether or not
-    /// it was successful.
-    init?(_ from: McInfoRaw) {
-        defer {
-            free_mcinfo(from)
-        }
-
+    init(_ from: McInfoRaw) {
         self.latency = from.latency
 
-        guard let version = Version(from.version) else {
-            return nil
-        }
-        self.version = version
-
-        guard let players = Players(from.players) else {
-            return nil
-        }
-        self.players = players
+        self.version = Version(from.version)
+        self.players = Players(from.players)
 
         if let descriptionCstr = from.description {
             self.description = String(cString: descriptionCstr)
@@ -50,20 +138,6 @@ extension McInfo {
             self.favicon = nil
         }
     }
-
-    static func forServerAddress(_ serverAddress: String) -> McInfo? {
-        let rawInfo = UnsafeMutablePointer<McInfoRaw>.allocate(capacity: 1)
-
-        let info: McInfo?
-        if get_server_status(serverAddress, rawInfo) == 1 {
-            info = McInfo(rawInfo.pointee)
-        } else {
-            info = nil
-        }
-
-        rawInfo.deallocate()
-        return info
-    }
 }
 
 struct Version {
@@ -73,7 +147,7 @@ struct Version {
 
 extension Version {
     /// Copies data from the given `VersionRaw` in order to create this struct.
-    init?(_ from: VersionRaw) {
+    init(_ from: VersionRaw) {
         if let nameCstr = from.name {
             self.name = String(cString: nameCstr)
         } else {
@@ -91,7 +165,7 @@ struct Player {
 
 extension Player {
     /// Copies data from the given `PlayerRaw` in order to create this struct.
-    init?(_ from: PlayerRaw) {
+    init(_ from: PlayerRaw) {
         if let nameCstr = from.name {
             self.name = String(cString: nameCstr)
         } else {
@@ -114,7 +188,7 @@ struct Players {
 
 extension Players {
     /// Copies data from the given `PlayersRaw` in order to create this struct.
-    init?(_ from: PlayersRaw) {
+    init(_ from: PlayersRaw) {
         self.max = from.max
         self.online = from.online
 
@@ -122,10 +196,7 @@ extension Players {
         self.sample.reserveCapacity(Int(from.sample_len))
 
         for i in 0..<from.sample_len {
-            guard let player = Player(from.sample[Int(i)]) else {
-                return nil
-            }
-            self.sample.append(player)
+            self.sample.append(Player(from.sample[Int(i)]))
         }
     }
 }

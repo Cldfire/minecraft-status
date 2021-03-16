@@ -266,6 +266,8 @@ name = "mcping-widget"
 version = "0.1.0"
 dependencies = [
  "mcping",
+ "serde",
+ "serde_json",
  "thiserror",
 ]
 

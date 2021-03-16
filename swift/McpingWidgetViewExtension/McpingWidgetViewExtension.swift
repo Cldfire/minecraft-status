@@ -19,31 +19,8 @@ struct Provider: IntentTimelineProvider {
         let currentDate = Date()
         let refreshDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
 
-        McPinger.ping(configuration.serverAddress ?? "") { mcInfo in
-            let serverResponse: ServerStatus
-
-            if let mcInfo = mcInfo {
-                // Cache the possibly-present favicon
-                //
-                // We want to write this file even when there's no favicon data to cache
-                // so that we can properly represent the offline state for servers that
-                // don't have favicons.
-                //
-                // If we got mcinfo we had to have a serveraddress, so the ! is safe
-                let pingData = CachedFavicon(favicon: mcInfo.favicon)
-                CodableStore.write(configuration.serverAddress!.lowercased() + ".favicon", pingData)
-
-                serverResponse = .online(mcInfo)
-            } else if let serverAddress = configuration.serverAddress, let cachedFavicon: CachedFavicon = CodableStore.read(serverAddress.lowercased() + ".favicon") {
-                // Server is unreachable but was previously reachable at this address, treat it as being
-                // offline and use the cached favicon if possible
-                serverResponse = .offline(cachedFavicon.favicon)
-            } else {
-                // Server is unreachable and was never previously reachable
-                serverResponse = .unreachable
-            }
-
-            let entry = McServerStatusEntry(date: currentDate, configuration: configuration, status: serverResponse)
+        McPinger.ping(configuration.serverAddress ?? "") { serverStatus in
+            let entry = McServerStatusEntry(date: currentDate, configuration: configuration, status: serverStatus)
             let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
             completion(timeline)
         }
@@ -58,96 +35,14 @@ struct McServerStatusEntry: TimelineEntry {
 }
 
 enum McPinger {
-    static func ping(_ serverAddress: String, completion: @escaping (McInfo?) -> Void) {
+    static func ping(_ serverAddress: String, completion: @escaping (ServerStatus) -> Void) {
         // TODO: not sure that this is the correct way of making a backgroud network request
         // in a widget
         DispatchQueue.global(qos: .background).async {
-            let mcInfo = McInfo.forServerAddress(serverAddress)
-            completion(mcInfo)
+            let status = ServerStatus.forServerAddress(serverAddress)
+            completion(status)
         }
     }
-}
-
-/// Represents the server status we were able to determine
-enum ServerStatus {
-    /// The server was online, and we got the given info
-    case online(McInfo)
-    /// The server was unreachable, but we were able to reach it at some point in the past.
-    ///
-    /// We may have a cached favicon to make use of.
-    case offline(String?)
-    /// The server was unreachable, and we've never reached it in the past.
-    case unreachable
-
-    func favicon() -> String? {
-        switch self {
-        case let .online(mcInfo):
-            return mcInfo.favicon
-        case let .offline(fav):
-            return fav
-        case .unreachable:
-            return nil
-        }
-    }
-
-    // We return a Text view here so the resulting string has separators in the numbers
-    func playersOnlineText() -> Text {
-        switch self {
-        case let .online(mcInfo):
-            return Text("\(mcInfo.players.online) / \(mcInfo.players.max)")
-        case .offline:
-            return Text("-- / --")
-        case .unreachable:
-            return Text("")
-        }
-    }
-
-    func statusColor() -> Color {
-        if case .online = self {
-            // We always return green if the server is online, regardless of latency.
-            //
-            // This decision was made because latency is oftentimes irregular in the context
-            // of a phone widget; for instance, when using data rather than wifi. This
-            // irregularity makes latency a poor data point to use to change the status color,
-            // and I personally found it more annoying than useful.
-            return Color.green
-        } else {
-            return Color.gray
-        }
-    }
-}
-
-enum CodableStore {
-    static let sharedContainer: URL = {
-        // Write to shared app group container so both the widget and the host app can access
-        FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dev.cldfire.minecraft-status")!
-    }()
-
-    /// Write the given data to a file of the given name (encoded as JSON)
-    static func write<T: Encodable>(_ fileName: String, _ data: T) {
-        do {
-            let encodedData = try JSONEncoder().encode(data)
-            try encodedData.write(to: self.sharedContainer.appendingPathComponent(fileName))
-        } catch {
-            print("Error encoding data to file: \(error)")
-        }
-    }
-
-    /// Read JSON data from the given file of the given name and decode it
-    static func read<T: Decodable>(_ fileName: String) -> T? {
-        do {
-            let encodedData = try Data(contentsOf: sharedContainer.appendingPathComponent(fileName))
-            return try JSONDecoder().decode(T.self, from: encodedData)
-        } catch {
-            print("Error decoding data from file: \(error)")
-            return nil
-        }
-    }
-}
-
-/// In-memory representation of the favicon we may have cached on disk.
-struct CachedFavicon: Codable {
-    let favicon: String?
 }
 
 /// Attempts to convert a maybe-present base64 image string into a `UIImage`.
