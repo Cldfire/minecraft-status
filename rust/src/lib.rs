@@ -11,27 +11,9 @@ use std::{
     os::raw::{c_char, c_longlong},
 };
 
+use anyhow::{anyhow, Context};
 use mcping::Response;
 use serde::{Deserialize, Serialize};
-use thiserror::Error;
-
-#[derive(Debug, Error)]
-pub enum ServerStatusError {
-    #[error("{0}")]
-    McpingError(#[from] mcping::Error),
-    #[error("the pointer to the server address string was null")]
-    InputPointerNull,
-    #[error("{0}")]
-    Utf8Error(#[from] std::str::Utf8Error),
-    #[error("{0}")]
-    IoError(#[from] std::io::Error),
-    #[error("{0}")]
-    JsonError(#[from] serde_json::Error),
-    #[error("a panic occurred in rust")]
-    PanicOccurred,
-    #[error("the given server address string was empty")]
-    EmptyServerAddress,
-}
 
 /// The overall status response.
 #[repr(C)]
@@ -213,11 +195,11 @@ impl From<mcping::Players> for PlayersRaw {
 fn get_server_status_rust(
     address: &str,
     app_group_container: &str,
-) -> Result<ServerStatus, ServerStatusError> {
+) -> Result<ServerStatus, anyhow::Error> {
     if address.is_empty() {
         // The following logic is meaningless if the server address is a blank
         // string
-        return Err(ServerStatusError::EmptyServerAddress);
+        return Err(anyhow!("empty server address"));
     }
 
     // Data for a specific server is stored within a folder specifically for
@@ -232,7 +214,12 @@ fn get_server_status_rust(
         .join("mc_server_data")
         .join(address.to_lowercase());
     // Make sure the folders have been created
-    fs::create_dir_all(&server_folder)?;
+    fs::create_dir_all(&server_folder).with_context(|| {
+        format!(
+            "creating server folder(s): {}",
+            server_folder.to_string_lossy()
+        )
+    })?;
 
     let cached_favicon_path = server_folder.join("cached_favicon");
 
@@ -255,15 +242,31 @@ fn get_server_status_rust(
                     .map(|s| s.to_owned()),
             };
             let cached_favicon = serde_json::to_string(&cached_favicon)?;
-            fs::write(&cached_favicon_path, &cached_favicon)?;
+            fs::write(&cached_favicon_path, &cached_favicon).with_context(|| {
+                format!(
+                    "writing cached favicon struct to {}",
+                    cached_favicon_path.to_string_lossy()
+                )
+            })?;
 
             let mcinfo = McInfoRaw::new(latency, status);
             Ok(ServerStatus::Online(OnlineResponse { mcinfo }))
         }
         Err(e) => {
             if cached_favicon_path.exists() {
-                let data = fs::read(&cached_favicon_path)?;
-                let cached_favicon: CachedFavicon = serde_json::from_slice(&data)?;
+                let data = fs::read(&cached_favicon_path).with_context(|| {
+                    format!(
+                        "reading cached favicon data from {}",
+                        cached_favicon_path.to_string_lossy()
+                    )
+                })?;
+                let cached_favicon: CachedFavicon =
+                    serde_json::from_slice(&data).with_context(|| {
+                        format!(
+                            "deserializing cached favicon data: {}",
+                            String::from_utf8(data).unwrap_or_else(|_| "invalid utf-8".to_string())
+                        )
+                    })?;
 
                 let favicon = if let Some(favicon) = cached_favicon.favicon {
                     let favicon = CString::new(favicon).unwrap();
@@ -285,26 +288,30 @@ fn get_server_status_rust(
 fn get_server_status_catch_panic(
     address: *const c_char,
     app_group_container: *const c_char,
-) -> Result<ServerStatus, ServerStatusError> {
+) -> Result<ServerStatus, anyhow::Error> {
     match panic::catch_unwind(|| {
         if address.is_null() {
-            return Err(ServerStatusError::InputPointerNull);
+            return Err(anyhow!("server address pointer was null"));
         }
 
         let address = unsafe { CStr::from_ptr(address) };
-        let address = address.to_str()?;
+        let address = address
+            .to_str()
+            .with_context(|| "converting server address from cstr to rust str")?;
 
         if app_group_container.is_null() {
-            return Err(ServerStatusError::InputPointerNull);
+            return Err(anyhow!("app group container pointer was null"));
         }
 
         let app_group_container = unsafe { CStr::from_ptr(app_group_container) };
-        let app_group_container = app_group_container.to_str()?;
+        let app_group_container = app_group_container
+            .to_str()
+            .with_context(|| "converting app group container from cstr to rust str")?;
 
         get_server_status_rust(address, app_group_container)
     }) {
         Ok(result) => Ok(result?),
-        Err(_) => Err(ServerStatusError::PanicOccurred),
+        Err(e) => Err(anyhow!("a panic occurred in rust code: {:?}", e)),
     }
 }
 
