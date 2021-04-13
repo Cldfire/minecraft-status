@@ -12,8 +12,10 @@ use std::{
 };
 
 use anyhow::{anyhow, Context};
+use mcping_common::{Player, Players, ProtocolType, Response, Version};
 use serde::{Deserialize, Serialize};
 
+mod mcping_common;
 #[cfg(test)]
 mod tests;
 
@@ -81,6 +83,8 @@ struct CachedFavicon {
 #[repr(C)]
 #[derive(Debug)]
 pub struct McInfoRaw {
+    /// The protocol type of the successful ping.
+    pub protocol_type: ProtocolType,
     /// Latency to the server
     pub latency: c_ulonglong,
     pub version: VersionRaw,
@@ -96,8 +100,8 @@ pub struct McInfoRaw {
 
 impl McInfoRaw {
     /// Build this struct from a server's ping response data.
-    fn new(latency: u64, status: mcping::Response) -> Self {
-        let description = CString::new(status.description.text()).unwrap();
+    fn new(status: Response) -> Self {
+        let description = CString::new(status.motd).unwrap();
         let favicon = status
             .favicon
             .as_deref()
@@ -105,7 +109,8 @@ impl McInfoRaw {
             .and_then(|s| CString::new(s).ok());
 
         Self {
-            latency,
+            protocol_type: status.protocol_type,
+            latency: status.latency,
             version: VersionRaw::from(status.version),
             players: PlayersRaw::from(status.players),
             description: description.into_raw(),
@@ -133,12 +138,12 @@ pub struct VersionRaw {
     pub protocol: c_longlong,
 }
 
-impl From<mcping::Version> for VersionRaw {
-    fn from(version: mcping::Version) -> Self {
+impl From<Version> for VersionRaw {
+    fn from(version: Version) -> Self {
         let name = CString::new(version.name).unwrap();
         Self {
             name: name.into_raw(),
-            protocol: version.protocol,
+            protocol: version.protocol.unwrap_or_default(),
         }
     }
 }
@@ -152,8 +157,8 @@ pub struct PlayerRaw {
     pub id: *mut c_char,
 }
 
-impl From<mcping::Player> for PlayerRaw {
-    fn from(player: mcping::Player) -> Self {
+impl From<Player> for PlayerRaw {
+    fn from(player: Player) -> Self {
         let name = CString::new(player.name).unwrap();
         let id = CString::new(player.id).unwrap();
         Self {
@@ -176,11 +181,15 @@ pub struct PlayersRaw {
     pub sample_len: c_uint,
 }
 
-impl From<mcping::Players> for PlayersRaw {
-    fn from(players: mcping::Players) -> Self {
-        let (sample, sample_len) = if let Some(sample) = players.sample {
+impl From<Players> for PlayersRaw {
+    fn from(players: Players) -> Self {
+        let (sample, sample_len) = if !players.sample.is_empty() {
             // Map into a vector of our repr(C) `Player` struct
-            let mut sample = sample.into_iter().map(PlayerRaw::from).collect::<Vec<_>>();
+            let mut sample = players
+                .sample
+                .into_iter()
+                .map(PlayerRaw::from)
+                .collect::<Vec<_>>();
             sample.shrink_to_fit();
             assert!(sample.len() == sample.capacity());
             let ptr = sample.as_mut_ptr();
@@ -202,48 +211,51 @@ impl From<mcping::Players> for PlayersRaw {
     }
 }
 
-/// Wrapper around `mcping::get_status`.
+/// Wrapper around `mcping_common::get_status`.
 ///
 /// This wrapper enables both offline and online testing.
 fn mcping_get_status_wrapper(
-    address: &str,
-    timeout: Duration,
-) -> Result<(u64, mcping::Response), mcping::Error> {
+    address: String,
+    timeout: Option<Duration>,
+    protocol_type: ProtocolType,
+) -> Result<Response, mcping::Error> {
     // Mock some responses for use during testing
     #[cfg(test)]
     {
-        let mut response = mcping::Response {
-            version: mcping::Version {
+        let mut response = Response {
+            protocol_type: mcping_common::ProtocolType::Java,
+            latency: 63,
+            version: Version {
                 name: "".to_string(),
-                protocol: 187,
+                protocol: Some(187),
             },
-            players: mcping::Players {
+            players: Players {
                 max: 200,
                 online: 103,
-                sample: None,
+                sample: vec![],
             },
-            description: mcping::Chat::String("".to_string()),
+            motd: "".to_string(),
             favicon: None,
         };
 
-        match address {
-            "test.server.basic" => return Ok((46, response)),
+        match address.as_str() {
+            "test.server.basic" => return Ok(response),
             "test.server.full" => {
                 response.version.name = "something".to_string();
-                response.description = mcping::Chat::String("hello! description test".to_string());
+                response.motd = "hello! description test".to_string();
                 response.favicon = Some("abase64string".to_string());
-                response.players.sample = Some(vec![
-                    mcping::Player {
+                response.players.sample = vec![
+                    Player {
                         id: "1".to_string(),
                         name: "test1".to_string(),
                     },
-                    mcping::Player {
+                    Player {
                         id: "2".to_string(),
                         name: "test2".to_string(),
                     },
-                ]);
+                ];
 
-                return Ok((46, response));
+                return Ok(response);
             }
             "test.server.dnslookupfails" => return Err(mcping::Error::DnsLookupFailed),
             _ => {
@@ -255,7 +267,7 @@ fn mcping_get_status_wrapper(
         }
     }
 
-    mcping::get_status(address, timeout)
+    mcping_common::get_status(address, timeout, protocol_type)
 }
 
 /// The rusty version of what we need to get done.
@@ -265,6 +277,7 @@ fn mcping_get_status_wrapper(
 /// needed.
 fn get_server_status_rust(
     address: &str,
+    protocol_type: ProtocolType,
     app_group_container: &str,
 ) -> Result<ServerStatus, anyhow::Error> {
     if address.is_empty() {
@@ -308,8 +321,12 @@ fn get_server_status_rust(
     // which time our process would likely end up being killed. This would
     // result in the widget being left in the placeholder view rather than
     // being updated with an error message.
-    match mcping_get_status_wrapper(address, Duration::from_secs(5)) {
-        Ok((latency, status)) => {
+    match mcping_get_status_wrapper(
+        address.to_string(),
+        Some(Duration::from_secs(5)),
+        protocol_type,
+    ) {
+        Ok(status) => {
             // Cache the favicon
             let cached_favicon = CachedFavicon {
                 favicon: status
@@ -326,7 +343,7 @@ fn get_server_status_rust(
                 )
             })?;
 
-            let mcinfo = McInfoRaw::new(latency, status);
+            let mcinfo = McInfoRaw::new(status);
             Ok(ServerStatus::Online(OnlineResponse { mcinfo }))
         }
         Err(e) => {
@@ -364,6 +381,7 @@ fn get_server_status_rust(
 /// occur.
 fn get_server_status_catch_panic(
     address: *const c_char,
+    protocol_type: ProtocolType,
     app_group_container: *const c_char,
 ) -> Result<ServerStatus, anyhow::Error> {
     match panic::catch_unwind(|| {
@@ -385,7 +403,7 @@ fn get_server_status_catch_panic(
             .to_str()
             .with_context(|| "converting app group container from cstr to rust str")?;
 
-        get_server_status_rust(address, app_group_container)
+        get_server_status_rust(address, protocol_type, app_group_container)
     }) {
         Ok(result) => Ok(result?),
         Err(e) => Err(anyhow!("a panic occurred in rust code: {:?}", e)),
@@ -401,9 +419,10 @@ fn get_server_status_catch_panic(
 #[no_mangle]
 pub unsafe extern "C" fn get_server_status(
     address: *const c_char,
+    protocol_type: ProtocolType,
     app_group_container: *const c_char,
 ) -> ServerStatus {
-    match get_server_status_catch_panic(address, app_group_container) {
+    match get_server_status_catch_panic(address, protocol_type, app_group_container) {
         Ok(status) => status,
         Err(e) => {
             // Note that we need to be careful not to panic here

@@ -272,8 +272,7 @@ checksum = "7ffc5c5338469d4d3ea17d269fa8ea3512ad247247c30bd2df69e68309ed0a08"
 [[package]]
 name = "mcping"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "423fbf8cc3d136ecfee8fa35de12962c929cdb6362cfadaaa7e0cce1ff4da3e0"
+source = "git+https://github.com/Scetch/mcping.git#7e74d2220a61557b5514768edb7da42d2758e143"
 dependencies = [
  "byteorder",
  "rand",
