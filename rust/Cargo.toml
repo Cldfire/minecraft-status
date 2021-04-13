@@ -10,7 +10,7 @@ edition = "2018"
 crate-type = ["lib", "staticlib"]
 
 [dependencies]
-mcping = "0.2"
+mcping = { git = "https://github.com/Scetch/mcping.git" }
 anyhow = "1.0"
 serde = "1.0"
 serde_json = "1.0"
