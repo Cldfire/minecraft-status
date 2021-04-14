@@ -12,6 +12,8 @@ use std::{
 };
 
 use anyhow::{anyhow, Context};
+use identicon_rs::Identicon;
+use image::EncodableLayout;
 use mcping_common::{Player, Players, ProtocolType, Response, Version};
 use serde::{Deserialize, Serialize};
 
@@ -60,10 +62,8 @@ pub struct OnlineResponse {
 #[repr(C)]
 #[derive(Debug)]
 pub struct OfflineResponse {
-    /// The last seen icon this server was using (a Base64-encoded PNG image).
-    ///
-    /// This will be a null pointer if the server didn't have an icon.
-    pub favicon: *mut c_char,
+    /// The server's favicon (a cached copy or generated favicon).
+    pub favicon: FaviconRaw,
 }
 
 #[repr(C)]
@@ -92,15 +92,14 @@ pub struct McInfoRaw {
     pub players: PlayersRaw,
     /// The server's description text
     pub description: *mut c_char,
-    /// The server icon (a Base64-encoded PNG image)
-    ///
-    /// This will be a null pointer if the server didn't have an icon.
-    pub favicon: *mut c_char,
+    /// The server's favicon.
+    pub favicon: FaviconRaw,
 }
 
 impl McInfoRaw {
-    /// Build this struct from a server's ping response data.
-    fn new(status: Response) -> Self {
+    /// Build this struct from a server's ping response data and the address that
+    /// was pinged.
+    fn new(status: Response, address: &str) -> Self {
         let description = CString::new(status.motd).unwrap();
         let favicon = status
             .favicon
@@ -114,9 +113,18 @@ impl McInfoRaw {
             version: VersionRaw::from(status.version),
             players: PlayersRaw::from(status.players),
             description: description.into_raw(),
-            favicon: favicon
-                .map(|s| s.into_raw())
-                .unwrap_or(std::ptr::null_mut()),
+            favicon: if let Some(favicon) = favicon {
+                FaviconRaw::ServerProvided(favicon.into_raw())
+            } else if let Some(favicon) = make_base64_identicon(IdenticonInput {
+                protocol_type: status.protocol_type,
+                address,
+            })
+            .and_then(|s| CString::new(s).ok())
+            {
+                FaviconRaw::Generated(favicon.into_raw())
+            } else {
+                FaviconRaw::NoFavicon
+            },
         }
     }
 }
@@ -211,6 +219,18 @@ impl From<Players> for PlayersRaw {
     }
 }
 
+/// The server's favicon image.
+#[repr(C)]
+#[derive(Debug)]
+pub enum FaviconRaw {
+    /// The server provided a favicon.
+    ServerProvided(*mut c_char),
+    /// We generated a favicon because the server didn't provide one.
+    Generated(*mut c_char),
+    /// There is no favicon image.
+    NoFavicon,
+}
+
 /// Wrapper around `mcping_common::get_status`.
 ///
 /// This wrapper enables both offline and online testing.
@@ -268,6 +288,51 @@ fn mcping_get_status_wrapper(
     }
 
     mcping_common::get_status(address, timeout, protocol_type)
+}
+
+struct IdenticonInput<'a> {
+    protocol_type: ProtocolType,
+    address: &'a str,
+}
+
+impl<'a> IdenticonInput<'a> {
+    fn to_string(&self) -> String {
+        format!("{:?}{}", self.protocol_type, self.address)
+    }
+}
+
+fn make_base64_identicon(input: IdenticonInput) -> Option<String> {
+    let identicon = Identicon::new(input.to_string())
+        .size(9)
+        .unwrap()
+        .scale(54)
+        .unwrap()
+        .border(6)
+        .background_color((0, 0, 0));
+    let dynamic_image = identicon.generate_image();
+    let mut rgba_image = dynamic_image.to_rgba8();
+
+    // Replace the background color with transparency
+    //
+    // We handle the background in swiftui land so we can react to system theme
+    // changes
+    rgba_image
+        .pixels_mut()
+        .filter(|p| *p == &image::Rgba([0, 0, 0, 255]))
+        .for_each(|p| *p = image::Rgba([0, 0, 0, 0]));
+
+    let mut buffer = Vec::new();
+
+    image::png::PngEncoder::new(&mut buffer)
+        .encode(
+            rgba_image.as_bytes(),
+            rgba_image.width(),
+            rgba_image.height(),
+            image::ColorType::Rgba8,
+        )
+        .ok()?;
+
+    Some(base64::encode(&buffer))
 }
 
 /// The rusty version of what we need to get done.
@@ -343,7 +408,7 @@ fn get_server_status_rust(
                 )
             })?;
 
-            let mcinfo = McInfoRaw::new(status);
+            let mcinfo = McInfoRaw::new(status, address);
             Ok(ServerStatus::Online(OnlineResponse { mcinfo }))
         }
         Err(e) => {
@@ -364,9 +429,16 @@ fn get_server_status_rust(
 
                 let favicon = if let Some(favicon) = cached_favicon.favicon {
                     let favicon = CString::new(favicon).unwrap();
-                    favicon.into_raw()
+                    FaviconRaw::ServerProvided(favicon.into_raw())
+                } else if let Some(identicon) = make_base64_identicon(IdenticonInput {
+                    protocol_type,
+                    address,
+                }) {
+                    // Use generated identicon favicon
+                    let favicon = CString::new(identicon).unwrap();
+                    FaviconRaw::Generated(favicon.into_raw())
                 } else {
-                    std::ptr::null_mut()
+                    FaviconRaw::NoFavicon
                 };
 
                 Ok(ServerStatus::Offline(OfflineResponse { favicon }))
@@ -440,11 +512,7 @@ pub unsafe extern "C" fn get_server_status(
 pub extern "C" fn free_status_response(response: ServerStatus) {
     match response {
         ServerStatus::Online(OnlineResponse { mcinfo }) => free_mcinfo(mcinfo),
-        ServerStatus::Offline(OfflineResponse { favicon }) => {
-            if !favicon.is_null() {
-                let _ = unsafe { CString::from_raw(favicon) };
-            }
-        }
+        ServerStatus::Offline(OfflineResponse { favicon }) => free_favicon(favicon),
         ServerStatus::Unreachable(UnreachableResponse { error_string }) => {
             if !error_string.is_null() {
                 let _ = unsafe { CString::from_raw(error_string) };
@@ -457,9 +525,7 @@ pub extern "C" fn free_status_response(response: ServerStatus) {
 pub extern "C" fn free_mcinfo(mcinfo: McInfoRaw) {
     let _ = unsafe { CString::from_raw(mcinfo.description) };
 
-    if !mcinfo.favicon.is_null() {
-        let _ = unsafe { CString::from_raw(mcinfo.favicon) };
-    }
+    free_favicon(mcinfo.favicon);
 
     let _ = unsafe { CString::from_raw(mcinfo.version.name) };
 
@@ -476,5 +542,17 @@ pub extern "C" fn free_mcinfo(mcinfo: McInfoRaw) {
             let _ = unsafe { CString::from_raw(player.name) };
             let _ = unsafe { CString::from_raw(player.id) };
         }
+    }
+}
+
+#[no_mangle]
+pub extern "C" fn free_favicon(favicon: FaviconRaw) {
+    match favicon {
+        FaviconRaw::ServerProvided(p) | FaviconRaw::Generated(p) => {
+            if !p.is_null() {
+                let _ = unsafe { CString::from_raw(p) };
+            }
+        }
+        FaviconRaw::NoFavicon => {}
     }
 }

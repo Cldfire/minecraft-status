@@ -31,14 +31,7 @@ enum ServerStatus {
         case Online:
             return .online(OnlineResponse(mcInfo: McInfo(status.online.mcinfo)))
         case Offline:
-            let cachedFavicon: String?
-            if let faviconCstr = status.offline.favicon {
-                cachedFavicon = String(cString: faviconCstr)
-            } else {
-                cachedFavicon = nil
-            }
-
-            return .offline(OfflineResponse(favicon: cachedFavicon))
+            return .offline(OfflineResponse(favicon: Favicon.fromRaw(status.offline.favicon)))
         case Unreachable:
             let errorString: String
             if let errorStringCstr = status.unreachable.error_string {
@@ -53,14 +46,14 @@ enum ServerStatus {
         }
     }
 
-    func favicon() -> String? {
+    func favicon() -> Favicon {
         switch self {
         case let .online(response):
             return response.mcInfo.favicon
         case let .offline(response):
             return response.favicon
         case .unreachable:
-            return nil
+            return .noFavicon
         }
     }
 
@@ -97,7 +90,7 @@ struct OnlineResponse {
 
 struct OfflineResponse {
     /// The server icon (a Base64-encoded PNG image)
-    var favicon: String?
+    var favicon: Favicon
 }
 
 struct UnreachableResponse {
@@ -113,7 +106,7 @@ struct McInfo {
     /// The server's description text
     var description: String
     /// The server icon (a Base64-encoded PNG image)
-    var favicon: String?
+    var favicon: Favicon
 }
 
 // Using a separate extension for this initializer keeps the default memberwise initializer
@@ -132,11 +125,7 @@ extension McInfo {
             self.description = ""
         }
 
-        if let faviconCstr = from.favicon {
-            self.favicon = String(cString: faviconCstr)
-        } else {
-            self.favicon = nil
-        }
+        self.favicon = Favicon.fromRaw(from.favicon)
     }
 }
 
@@ -197,6 +186,61 @@ extension Players {
 
         for i in 0..<from.sample_len {
             self.sample.append(Player(from.sample[Int(i)]))
+        }
+    }
+}
+
+/// Various favicons that we can be working with.
+enum Favicon {
+    /// The server provided the given favicon.
+    case serverProvided(String)
+    /// The server didn't provide a favicon, so we generated one.
+    case generated(String)
+    /// No favicon to use.
+    case noFavicon
+
+    static func fromRaw(_ from: FaviconRaw) -> Self {
+        switch from.tag {
+        case ServerProvided:
+            let favicon: String?
+            if let faviconCstr = from.server_provided {
+                favicon = String(cString: faviconCstr)
+            } else {
+                favicon = nil
+            }
+            return .serverProvided(favicon!)
+        case Generated:
+            let favicon: String?
+            if let faviconCstr = from.generated {
+                favicon = String(cString: faviconCstr)
+            } else {
+                favicon = nil
+            }
+            return .generated(favicon!)
+        case NoFavicon:
+            return noFavicon
+        default:
+            fatalError("unexpected type of favicon")
+        }
+    }
+
+    func faviconString() -> String? {
+        switch self {
+        case let .serverProvided(faviconString):
+            return faviconString
+        case let .generated(faviconString):
+            return faviconString
+        case .noFavicon:
+            return nil
+        }
+    }
+
+    func isGenerated() -> Bool {
+        switch self {
+        case .generated:
+            return true
+        default:
+            return false
         }
     }
 }

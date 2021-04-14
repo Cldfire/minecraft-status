@@ -8,7 +8,7 @@ use std::{io, sync::mpsc, thread, time::Duration};
 
 /// The various protocol types that can be used for a ping.
 #[repr(C)]
-#[derive(Debug, Clone, Eq, PartialEq, Hash)]
+#[derive(Debug, Clone, Copy, Eq, PartialEq, Hash)]
 pub enum ProtocolType {
     /// Ping using the Java protocol only.
     Java,

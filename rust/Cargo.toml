@@ -15,6 +15,9 @@ anyhow = "1.0"
 serde = "1.0"
 serde_json = "1.0"
 expect-test = "1.1"
+identicon-rs = "2.0.2"
+base64 = "0.13"
+image = "0.23"
 
 [dev-dependencies]
 tempfile = "3.2"
