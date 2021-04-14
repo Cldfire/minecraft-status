@@ -9,13 +9,13 @@ pub struct IdenticonInput<'a> {
 }
 
 impl<'a> IdenticonInput<'a> {
-    fn to_string(&self) -> String {
+    fn make_string(&self) -> String {
         format!("{:?}{}", self.protocol_type, self.address)
     }
 }
 
 pub fn make_base64_identicon(input: IdenticonInput) -> Option<String> {
-    let identicon = Identicon::new(input.to_string())
+    let identicon = Identicon::new(input.make_string())
         .size(9)
         .unwrap()
         .scale(54)
