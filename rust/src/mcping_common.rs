@@ -18,6 +18,16 @@ pub enum ProtocolType {
     Auto,
 }
 
+impl std::fmt::Display for ProtocolType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            ProtocolType::Java => f.write_str("java"),
+            ProtocolType::Bedrock => f.write_str("bedrock"),
+            ProtocolType::Auto => f.write_str("auto"),
+        }
+    }
+}
+
 #[derive(Debug, Clone, Eq, PartialEq, Hash)]
 pub struct Response {
     pub protocol_type: ProtocolType,

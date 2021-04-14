@@ -118,9 +118,9 @@ impl std::fmt::Display for McInfoRaw {
 }
 
 impl McInfoRaw {
-    /// Build this struct from a server's ping response data and the address that
-    /// was pinged.
-    fn new(status: Response, address: &str) -> Self {
+    /// Build this struct from a server's ping response data and some data to build
+    /// and identicon from if necessary.
+    fn new(status: Response, identicon_input: IdenticonInput) -> Self {
         let description = CString::new(status.motd).unwrap();
         let favicon = status
             .favicon
@@ -136,11 +136,8 @@ impl McInfoRaw {
             description: description.into_raw(),
             favicon: if let Some(favicon) = favicon {
                 FaviconRaw::ServerProvided(favicon.into_raw())
-            } else if let Some(favicon) = make_base64_identicon(IdenticonInput {
-                protocol_type: status.protocol_type,
-                address,
-            })
-            .and_then(|s| CString::new(s).ok())
+            } else if let Some(favicon) =
+                make_base64_identicon(identicon_input).and_then(|s| CString::new(s).ok())
             {
                 FaviconRaw::Generated(favicon.into_raw())
             } else {
@@ -353,7 +350,7 @@ fn get_server_status_rust(
     // handle unifying `mc.server.net` and `mc.server.net:25565`, though.
     let server_folder = Path::new(app_group_container)
         .join("mc_server_data")
-        .join(address.to_lowercase());
+        .join(format!("{}-{}", address.to_lowercase(), protocol_type));
     // Make sure the folders have been created
     fs::create_dir_all(&server_folder).with_context(|| {
         format!(
@@ -363,6 +360,12 @@ fn get_server_status_rust(
     })?;
 
     let cached_favicon_path = server_folder.join("cached_favicon");
+
+    // Prepare the data to create identicons with if necessary
+    let identicon_input = IdenticonInput {
+        protocol_type,
+        address,
+    };
 
     // A five-second timeout is used to avoid exceeding the amount of time our
     // widget process is given to run in.
@@ -394,7 +397,7 @@ fn get_server_status_rust(
                 )
             })?;
 
-            let mcinfo = McInfoRaw::new(status, address);
+            let mcinfo = McInfoRaw::new(status, identicon_input);
             Ok(ServerStatus::Online(OnlineResponse { mcinfo }))
         }
         Err(e) => {
@@ -416,10 +419,7 @@ fn get_server_status_rust(
                 let favicon = if let Some(favicon) = cached_favicon.favicon {
                     let favicon = CString::new(favicon).unwrap();
                     FaviconRaw::ServerProvided(favicon.into_raw())
-                } else if let Some(identicon) = make_base64_identicon(IdenticonInput {
-                    protocol_type,
-                    address,
-                }) {
+                } else if let Some(identicon) = make_base64_identicon(identicon_input) {
                     // Use generated identicon favicon
                     let favicon = CString::new(identicon).unwrap();
                     FaviconRaw::Generated(favicon.into_raw())
