@@ -45,8 +45,8 @@ pub enum ServerStatus {
 impl std::fmt::Display for ServerStatus {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            ServerStatus::Online(_) => f.write_str("Online"),
-            ServerStatus::Offline(_) => f.write_str("Offline"),
+            ServerStatus::Online(r) => f.write_fmt(format_args!("Online: {}", r)),
+            ServerStatus::Offline(r) => f.write_fmt(format_args!("Offline: {}", r)),
             ServerStatus::Unreachable(_) => f.write_str("Unreachable"),
         }
     }
@@ -59,11 +59,23 @@ pub struct OnlineResponse {
     pub mcinfo: McInfoRaw,
 }
 
+impl std::fmt::Display for OnlineResponse {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_fmt(format_args!("{}", self.mcinfo))
+    }
+}
+
 #[repr(C)]
 #[derive(Debug)]
 pub struct OfflineResponse {
     /// The server's favicon (a cached copy or generated favicon).
     pub favicon: FaviconRaw,
+}
+
+impl std::fmt::Display for OfflineResponse {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_fmt(format_args!("{}", self.favicon))
+    }
 }
 
 #[repr(C)]
@@ -94,6 +106,15 @@ pub struct McInfoRaw {
     pub description: *mut c_char,
     /// The server's favicon.
     pub favicon: FaviconRaw,
+}
+
+impl std::fmt::Display for McInfoRaw {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("McInfoRaw")
+            .field("protocol_type", &self.protocol_type)
+            .field("favicon", &format!("{}", self.favicon))
+            .finish()
+    }
 }
 
 impl McInfoRaw {
@@ -229,6 +250,16 @@ pub enum FaviconRaw {
     Generated(*mut c_char),
     /// There is no favicon image.
     NoFavicon,
+}
+
+impl std::fmt::Display for FaviconRaw {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            FaviconRaw::ServerProvided(_) => f.write_str("ServerProvided"),
+            FaviconRaw::Generated(_) => f.write_str("Generated"),
+            FaviconRaw::NoFavicon => f.write_str("NoFavicon"),
+        }
+    }
 }
 
 /// Wrapper around `mcping_common::get_status`.
