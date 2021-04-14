@@ -81,16 +81,21 @@ func chooseBestHeaderText(for configuration: ConfigurationIntent) -> String {
 }
 
 struct ServerFavicon: View {
-    let faviconString: String?
+    let favicon: Favicon
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-        // The backing images
-        Image("minecraft-dirt").interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fill).unredacted()
-        Rectangle().opacity(0.65)
+        if favicon.isGenerated() {
+            // Add a background behind generated favicons
+            Rectangle().foregroundColor(Color(UIColor.systemBackground))
+        } else {
+            // Minecraft dirt block backing
+            Image("minecraft-dirt").interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fill).unredacted()
+            Rectangle().opacity(0.60).foregroundColor(.black)
+        }
 
-        // TODO: what do we do if there's no server icon?
-        if let favicon = convertBase64StringToImage(imageBase64String: faviconString) {
-            Image(uiImage: favicon).interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fit).shadow(radius: 30)
+        if let faviconImage = convertBase64StringToImage(imageBase64String: favicon.faviconString()) {
+            Image(uiImage: faviconImage).interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fit).shadow(radius: favicon.isGenerated() ? 0 : 30).colorScheme(.light)
         }
     }
 }
@@ -107,7 +112,7 @@ struct McpingWidgetExtensionEntryView: View {
             }
         } else {
             ZStack {
-                ServerFavicon(faviconString: entry.status.favicon())
+                ServerFavicon(favicon: entry.status.favicon())
 
                 // The banner content
                 VStack {
@@ -120,7 +125,7 @@ struct McpingWidgetExtensionEntryView: View {
 
                     ZStack {
                         // The translucent banner backing (stretches horizontally across the entire widget)
-                        Rectangle().opacity(0.7)
+                        Rectangle().opacity(0.7).foregroundColor(.black)
 
                         // The content on top of the banner
                         VStack(alignment: .leading, spacing: 4) {
@@ -139,7 +144,7 @@ struct McpingWidgetExtensionEntryView: View {
                     // This spacer separates the banner from the bottom of the widget
                     Spacer()
                 }
-            }.colorScheme(.light) // Force the light colorscheme to keep the translucent banner black
+            }
         }
     }
 }
