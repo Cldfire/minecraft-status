@@ -59,7 +59,7 @@ fn ping_success_basic() {
         ProtocolType::Java,
         expect![[r#"
             Ok(
-                "Online",
+                "Online: McInfoRaw { protocol_type: Java, favicon: \"Generated\" }",
             )
         "#]],
     );
@@ -73,7 +73,7 @@ fn ping_success_full() {
         ProtocolType::Java,
         expect![[r#"
             Ok(
-                "Online",
+                "Online: McInfoRaw { protocol_type: Java, favicon: \"ServerProvided\" }",
             )
         "#]],
     );
@@ -105,7 +105,7 @@ fn ping_hypixel() {
         ProtocolType::Java,
         expect![[r#"
             Ok(
-                "Online",
+                "Online: McInfoRaw { protocol_type: Java, favicon: \"ServerProvided\" }",
             )
         "#]],
     );
@@ -140,7 +140,7 @@ fn ping_hyperlands() {
         ProtocolType::Bedrock,
         expect![[r#"
             Ok(
-                "Online",
+                "Online: McInfoRaw { protocol_type: Bedrock, favicon: \"Generated\" }",
             )
         "#]],
     );
@@ -155,7 +155,7 @@ fn ping_hypixel_auto() {
         ProtocolType::Auto,
         expect![[r#"
             Ok(
-                "Online",
+                "Online: McInfoRaw { protocol_type: Java, favicon: \"ServerProvided\" }",
             )
         "#]],
     );
@@ -170,7 +170,7 @@ fn ping_hyperlands_auto() {
         ProtocolType::Auto,
         expect![[r#"
             Ok(
-                "Online",
+                "Online: McInfoRaw { protocol_type: Bedrock, favicon: \"Generated\" }",
             )
         "#]],
     );
