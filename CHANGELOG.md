@@ -4,6 +4,20 @@ Notable `minecraft-status` changes, tracked in the [keep a changelog](https://ke
 
 ## [Unreleased]
 
+### Added
+
+* Added support for pinging Bedrock servers
+* Added an auto-detect mode that will successfully ping both Bedrock and Java servers
+* Added identicon generation to provide an icon for servers that don't set one
+  * Bedrock servers can't set icons at all, so this is especially important there
+* Added a toggle to choose between displaying the server's favicon or a generated identicon
+* Added a link to my Twitter so you can follow me ;)
+
+### Internal
+
+* Moved all of the business logic entirely into Rust
+* Created a basic test suite to ensure the core logic doesn't break
+
 ## [v0.1.0-4] - 2021-02-28
 
 A small iteration on the first beta release with some quality of life improvements.
