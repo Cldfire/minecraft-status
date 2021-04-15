@@ -4,7 +4,7 @@
 ![Swift CI](https://github.com/Cldfire/minecraft-status/workflows/Swift%20CI/badge.svg)
 [![dependency status](https://deps.rs/repo/github/cldfire/minecraft-status/status.svg)](https://deps.rs/repo/github/cldfire/minecraft-status)
 
-An iOS app with widgets that display the results of pinging a Minecraft server.
+An iOS app with widgets that display the results of pinging a Minecraft server. Both Bedrock and Java edition servers are supported.
 
 Built on top of the [mcping](https://github.com/Scetch/mcping) crate.
 
