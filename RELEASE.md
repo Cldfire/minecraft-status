@@ -12,7 +12,7 @@ This file documents the release process for Minecraft Status.
 1. Window > Organizer from the menubar
 1. Select the new archive, click "Validate App" and run through that
 1. Select the new archive, click "Distribute App" and upload the archive to the app store
-  * Make sure to not include bitcode
+    * Make sure to not include bitcode
 1. Wait for the build to appear in App Store Connect
 1. Wait for the build to be processed
 1. Handle the "Manage Compliance" stuff
