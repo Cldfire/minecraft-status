@@ -45,7 +45,7 @@ struct SettingsRow: View {
 
     var body: some View {
         HStack(alignment: .center, spacing: 16.0) {
-            Image(systemName: item.systemImageName)
+            item.imageName.imageForName()
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 17.0, height: 17.0)
@@ -90,6 +90,20 @@ enum SettingsRowItemAction {
     }
 }
 
+enum ImageName {
+    case system(String)
+    case asset(String)
+
+    func imageForName() -> Image {
+        switch self {
+        case let .system(name):
+            return Image(systemName: name)
+        case let .asset(name):
+            return Image(name)
+        }
+    }
+}
+
 func present(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
     guard var topController = UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.rootViewController else { return }
 
@@ -110,18 +124,19 @@ struct SettingsRowItem: Identifiable {
     var id = UUID()
     var title: String
     var subtitle: String
-    var systemImageName: String
+    var imageName: ImageName
     var color: Color
     var action: SettingsRowItemAction
 }
 
 let headerRows = [
     // TODO: this URL should be https://support.apple.com/en-us/HT211328 on iPads, this link is for iPhones
-    SettingsRowItem(title: "Widget Setup", subtitle: "Learn how to use widgets", systemImageName: "questionmark", color: .blue, action: .openUrl(URL(string: "https://support.apple.com/en-us/HT207122")!)),
+    SettingsRowItem(title: "Widget Setup", subtitle: "Learn how to use widgets", imageName: .system("questionmark"), color: .blue, action: .openUrl(URL(string: "https://support.apple.com/en-us/HT207122")!)),
 ]
 
 let footerRows = [
-    SettingsRowItem(title: "Rate the App", subtitle: "Reviews are greatly appreciated!", systemImageName: "star.fill", color: .pink, action: .openUrl(URL(string: "itms-apps://apps.apple.com/app/id1549596839?action=write-review")!)),
-    SettingsRowItem(title: "Share", subtitle: "Tell your friends!", systemImageName: "square.and.arrow.up", color: .green, action: .shareUrl(URL(string: "https://apps.apple.com/app/id1549596839")!)),
-    SettingsRowItem(title: "Open Source", subtitle: "Contribute and file issues", systemImageName: "swift", color: .orange, action: .openUrl(URL(string: "https://github.com/Cldfire/minecraft-status")!)),
+    SettingsRowItem(title: "Rate the App", subtitle: "Reviews are greatly appreciated!", imageName: .system("star.fill"), color: .pink, action: .openUrl(URL(string: "itms-apps://apps.apple.com/app/id1549596839?action=write-review")!)),
+    SettingsRowItem(title: "Share", subtitle: "Tell your friends!", imageName: .system("square.and.arrow.up"), color: .green, action: .shareUrl(URL(string: "https://apps.apple.com/app/id1549596839")!)),
+    SettingsRowItem(title: "Open Source", subtitle: "Contribute and file issues", imageName: .system("swift"), color: .orange, action: .openUrl(URL(string: "https://github.com/Cldfire/minecraft-status")!)),
+    SettingsRowItem(title: "@_cldfire", subtitle: "Follow me on Twitter for updates", imageName: .asset("twitterLogoWhite"), color: Color("twitterBlue"), action: .openUrl(URL(string: "https://twitter.com/_cldfire")!)),
 ]
