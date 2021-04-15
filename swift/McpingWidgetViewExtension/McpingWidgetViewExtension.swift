@@ -19,8 +19,9 @@ struct Provider: IntentTimelineProvider {
         let currentDate = Date()
         let refreshDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
         let protocolType = protocolTypeFromConfig(configuration.protocolTypeConfig)
+        let alwaysUseIdenticon = !(configuration.useServerFavicon as? Bool ?? true)
 
-        McPinger.ping(configuration.serverAddress ?? "", protocolType: protocolType) { serverStatus in
+        McPinger.ping(configuration.serverAddress ?? "", protocolType, alwaysUseIdenticon) { serverStatus in
             let entry = McServerStatusEntry(date: currentDate, configuration: configuration, status: serverStatus)
             let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
             completion(timeline)
@@ -36,11 +37,11 @@ struct McServerStatusEntry: TimelineEntry {
 }
 
 enum McPinger {
-    static func ping(_ serverAddress: String, protocolType: ProtocolType, completion: @escaping (ServerStatus) -> Void) {
+    static func ping(_ serverAddress: String, _ protocolType: ProtocolType, _ alwaysUseIdenticon: Bool, completion: @escaping (ServerStatus) -> Void) {
         // TODO: not sure that this is the correct way of making a backgroud network request
         // in a widget
         DispatchQueue.global(qos: .background).async {
-            let status = ServerStatus.forServerAddress(serverAddress, protocolType: protocolType)
+            let status = ServerStatus.forServerAddress(serverAddress, protocolType, alwaysUseIdenticon)
             completion(status)
         }
     }

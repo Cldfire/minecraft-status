@@ -20,8 +20,8 @@ enum ServerStatus {
     case unreachable(UnreachableResponse)
 
     /// Attempt to ping the server at the given address.
-    static func forServerAddress(_ serverAddress: String, protocolType: ProtocolType) -> Self {
-        let status = get_server_status(serverAddress, protocolType, sharedContainer.path)
+    static func forServerAddress(_ serverAddress: String, _ protocolType: ProtocolType, _ alwaysUseIdenticon: Bool) -> Self {
+        let status = get_server_status(serverAddress, protocolType, alwaysUseIdenticon, sharedContainer.path)
 
         defer {
             free_status_response(status)

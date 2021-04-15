@@ -120,13 +120,13 @@ impl std::fmt::Display for McInfoRaw {
 impl McInfoRaw {
     /// Build this struct from a server's ping response data and some data to build
     /// and identicon from if necessary.
-    fn new(status: Response, identicon_input: IdenticonInput) -> Self {
+    fn new(status: Response, identicon_input: IdenticonInput, always_use_identicon: bool) -> Self {
         let description = CString::new(status.motd).unwrap();
-        let favicon = status
-            .favicon
-            .as_deref()
-            .map(process_favicon)
-            .and_then(|s| CString::new(s).ok());
+        let favicon = FaviconRaw::from_data_and_options(
+            status.favicon.as_deref(),
+            identicon_input,
+            always_use_identicon,
+        );
 
         Self {
             protocol_type: status.protocol_type,
@@ -134,15 +134,7 @@ impl McInfoRaw {
             version: VersionRaw::from(status.version),
             players: PlayersRaw::from(status.players),
             description: description.into_raw(),
-            favicon: if let Some(favicon) = favicon {
-                FaviconRaw::ServerProvided(favicon.into_raw())
-            } else if let Some(favicon) =
-                make_base64_identicon(identicon_input).and_then(|s| CString::new(s).ok())
-            {
-                FaviconRaw::Generated(favicon.into_raw())
-            } else {
-                FaviconRaw::NoFavicon
-            },
+            favicon,
         }
     }
 }
@@ -259,6 +251,34 @@ impl std::fmt::Display for FaviconRaw {
     }
 }
 
+impl FaviconRaw {
+    /// Picks the best favicon based on the given data and options.
+    fn from_data_and_options(
+        server_favicon: Option<&str>,
+        identicon_input: IdenticonInput,
+        always_use_identicon: bool,
+    ) -> Self {
+        let make_generated = || {
+            make_base64_identicon(identicon_input)
+                .and_then(|s| CString::new(s).ok())
+                .map(|s| Self::Generated(s.into_raw()))
+                .unwrap_or(Self::NoFavicon)
+        };
+
+        if always_use_identicon {
+            // Always generate an identicon
+            make_generated()
+        } else {
+            // Try to use the server favicon and fallback to a generated identicon
+            server_favicon
+                .map(process_favicon)
+                .and_then(|s| CString::new(s).ok())
+                .map(|s| Self::ServerProvided(s.into_raw()))
+                .unwrap_or_else(make_generated)
+        }
+    }
+}
+
 /// Wrapper around `mcping_common::get_status`.
 ///
 /// This wrapper enables both offline and online testing.
@@ -326,6 +346,7 @@ fn mcping_get_status_wrapper(
 fn get_server_status_rust(
     address: &str,
     protocol_type: ProtocolType,
+    always_use_identicon: bool,
     app_group_container: &str,
 ) -> Result<ServerStatus, anyhow::Error> {
     if address.is_empty() {
@@ -397,7 +418,7 @@ fn get_server_status_rust(
                 )
             })?;
 
-            let mcinfo = McInfoRaw::new(status, identicon_input);
+            let mcinfo = McInfoRaw::new(status, identicon_input, always_use_identicon);
             Ok(ServerStatus::Online(OnlineResponse { mcinfo }))
         }
         Err(e) => {
@@ -416,16 +437,11 @@ fn get_server_status_rust(
                         )
                     })?;
 
-                let favicon = if let Some(favicon) = cached_favicon.favicon {
-                    let favicon = CString::new(favicon).unwrap();
-                    FaviconRaw::ServerProvided(favicon.into_raw())
-                } else if let Some(identicon) = make_base64_identicon(identicon_input) {
-                    // Use generated identicon favicon
-                    let favicon = CString::new(identicon).unwrap();
-                    FaviconRaw::Generated(favicon.into_raw())
-                } else {
-                    FaviconRaw::NoFavicon
-                };
+                let favicon = FaviconRaw::from_data_and_options(
+                    cached_favicon.favicon.as_deref(),
+                    identicon_input,
+                    always_use_identicon,
+                );
 
                 Ok(ServerStatus::Offline(OfflineResponse { favicon }))
             } else {
@@ -440,6 +456,7 @@ fn get_server_status_rust(
 fn get_server_status_catch_panic(
     address: *const c_char,
     protocol_type: ProtocolType,
+    always_use_identicon: bool,
     app_group_container: *const c_char,
 ) -> Result<ServerStatus, anyhow::Error> {
     match panic::catch_unwind(|| {
@@ -461,7 +478,12 @@ fn get_server_status_catch_panic(
             .to_str()
             .with_context(|| "converting app group container from cstr to rust str")?;
 
-        get_server_status_rust(address, protocol_type, app_group_container)
+        get_server_status_rust(
+            address,
+            protocol_type,
+            always_use_identicon,
+            app_group_container,
+        )
     }) {
         Ok(result) => Ok(result?),
         Err(e) => Err(anyhow!("a panic occurred in rust code: {:?}", e)),
@@ -478,9 +500,15 @@ fn get_server_status_catch_panic(
 pub unsafe extern "C" fn get_server_status(
     address: *const c_char,
     protocol_type: ProtocolType,
+    always_use_identicon: bool,
     app_group_container: *const c_char,
 ) -> ServerStatus {
-    match get_server_status_catch_panic(address, protocol_type, app_group_container) {
+    match get_server_status_catch_panic(
+        address,
+        protocol_type,
+        always_use_identicon,
+        app_group_container,
+    ) {
         Ok(status) => status,
         Err(e) => {
             // Note that we need to be careful not to panic here
