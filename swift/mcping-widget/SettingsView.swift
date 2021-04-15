@@ -119,6 +119,17 @@ func present(_ viewController: UIViewController, animated: Bool, completion: (()
     topController.present(viewController, animated: animated, completion: completion)
 }
 
+func widgetHelpURL() -> URL {
+    switch UIDevice.current.userInterfaceIdiom {
+    case .pad:
+        // Link to iPad widget help article
+        return URL(string: "https://support.apple.com/en-us/HT211328")!
+    default:
+        // Link to iPhone widget help article
+        return URL(string: "https://support.apple.com/en-us/HT207122")!
+    }
+}
+
 /// The data for a settings row item.
 struct SettingsRowItem: Identifiable {
     var id = UUID()
@@ -130,8 +141,7 @@ struct SettingsRowItem: Identifiable {
 }
 
 let headerRows = [
-    // TODO: this URL should be https://support.apple.com/en-us/HT211328 on iPads, this link is for iPhones
-    SettingsRowItem(title: "Widget Setup", subtitle: "Learn how to use widgets", imageName: .system("questionmark"), color: .blue, action: .openUrl(URL(string: "https://support.apple.com/en-us/HT207122")!)),
+    SettingsRowItem(title: "Widget Setup", subtitle: "Learn how to use widgets", imageName: .system("questionmark"), color: .blue, action: .openUrl(widgetHelpURL())),
 ]
 
 let footerRows = [
