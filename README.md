@@ -12,6 +12,11 @@ Built on top of the [mcping](https://github.com/Scetch/mcping) crate.
 
 <img src="./readme-assets/screenshot.png" alt="screenshot of small widget on home screen" height=500>
 
+## Features
+
+* Java and Bedrock support
+* Generated identicons for servers without icons
+
 ## Building
 
 See [`SETUP.md`](./SETUP.md).
