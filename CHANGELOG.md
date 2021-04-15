@@ -4,6 +4,10 @@ Notable `minecraft-status` changes, tracked in the [keep a changelog](https://ke
 
 ## [Unreleased]
 
+## [v0.1.0-5] - 2021-04-14
+
+This release adds support for pinging Bedrock Minecraft servers! The widgets default to an "Auto" mode that can ping any Minecraft server type successfully, and you can choose a specific type in the widget's settings as well if necessary.
+
 ### Added
 
 * Added support for pinging Bedrock servers
@@ -49,6 +53,7 @@ A small iteration on the first beta release with some quality of life improvemen
 
 Initial release.
 
-[Unreleased]: https://github.com/Cldfire/minecraft-status/compare/v0.0.1-4...HEAD
+[Unreleased]: https://github.com/Cldfire/minecraft-status/compare/v0.0.1-5...HEAD
+[v0.1.0-5]: https://github.com/Cldfire/minecraft-status/compare/v0.0.1-4...v0.0.1-5
 [v0.1.0-4]: https://github.com/Cldfire/minecraft-status/compare/v0.0.1-3...v0.0.1-4
 [v0.1.0-3]: https://github.com/Cldfire/minecraft-status/releases/tag/v0.0.1-3
