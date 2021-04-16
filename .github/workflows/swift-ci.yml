@@ -22,7 +22,7 @@ jobs:
           key: ${{ runner.os }}-mint-${{ hashFiles('**/Mintfile') }}
           restore-keys: ${{ runner.os }}-mint-
 
-      - name: Install Dependencies
+      - name: Swift Bootstrap
         run: sh swift/scripts/bootstrap.sh
 
       - name: SwiftLint
@@ -31,30 +31,44 @@ jobs:
       - name: SwiftFormat
         run: mint run swiftformat . --lint
 
-  # TODO: I think this job is running into the big sur issue described in
-  # https://github.com/TimNN/cargo-lipo/issues/41#issuecomment-745623541
-  # Test:
-  #   runs-on: macos-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v1
+  Test:
+    runs-on: macos-latest
+    env:
+      MINT_PATH: ${{ github.workspace }}/mint
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
 
-  #     - name: Rust Toolchain
-  #       uses: actions-rs/toolchain@v1
-  #       with:
-  #         profile: minimal
-  #         toolchain: stable
+      - name: Cache Mint Packages
+        uses: actions/cache@v1
+        with:
+          path: ${{ env.MINT_PATH }}
+          key: ${{ runner.os }}-mint-${{ hashFiles('**/Mintfile') }}
+          restore-keys: ${{ runner.os }}-mint-
 
-  #     - name: Install cbindgen
-  #       uses: actions-rs/cargo@v1
-  #       with:
-  #         command: install
-  #         args: cbindgen
+      - name: Swift Bootstrap
+        run: sh swift/scripts/bootstrap.sh
 
-  #     - name: Test
-  #       uses: sersoft-gmbh/xcodebuild-action@v1
-  #       with:
-  #         project: swift/McPingWidget.xcodeproj
-  #         scheme: Minecraft Status
-  #         destination: platform=iOS Simulator,name=iPhone 12
-  #         action: test
+      - name: Rust Toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+
+      - name: Install cbindgen
+        uses: actions-rs/cargo@v1
+        with:
+          command: install
+          args: cbindgen
+
+      - name: Test
+        uses: sersoft-gmbh/xcodebuild-action@v1
+        with:
+          project: swift/McPingWidget.xcodeproj
+          scheme: Minecraft Status
+          destination: platform=iOS Simulator,name=iPhone 12
+          action: test
+          # quiet: false
+          # use-xcpretty: false
+          # hide-shell-script-environment: false
+
