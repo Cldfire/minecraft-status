@@ -15,11 +15,13 @@ use anyhow::{anyhow, Context};
 use identicon::{make_base64_identicon, IdenticonInput};
 use mcping_common::{Player, Players, ProtocolType, Response, Version};
 use serde::{Deserialize, Serialize};
+use week_stats::{determine_week_stats, WeekStats};
 
 mod identicon;
 mod mcping_common;
 #[cfg(test)]
 mod tests;
+mod week_stats;
 
 /// The overall status response.
 #[repr(C)]
@@ -57,6 +59,8 @@ impl std::fmt::Display for ServerStatus {
 pub struct OnlineResponse {
     /// The data obtained from the server's ping response.
     pub mcinfo: McInfoRaw,
+    /// Statistics about the server over the past week or so.
+    pub week_stats: WeekStats,
 }
 
 impl std::fmt::Display for OnlineResponse {
@@ -70,6 +74,8 @@ impl std::fmt::Display for OnlineResponse {
 pub struct OfflineResponse {
     /// The server's favicon (a cached copy or generated favicon).
     pub favicon: FaviconRaw,
+    /// Statistics about the server over the past week or so.
+    pub week_stats: WeekStats,
 }
 
 impl std::fmt::Display for OfflineResponse {
@@ -371,7 +377,11 @@ fn get_server_status_rust(
     // handle unifying `mc.server.net` and `mc.server.net:25565`, though.
     let server_folder = Path::new(app_group_container)
         .join("mc_server_data")
-        .join(format!("{}-{}", address.to_lowercase(), protocol_type));
+        .join(format!(
+            "{}_{}",
+            address.to_lowercase().replace('.', "_").replace(':', "_"),
+            protocol_type
+        ));
     // Make sure the folders have been created
     fs::create_dir_all(&server_folder).with_context(|| {
         format!(
@@ -381,6 +391,9 @@ fn get_server_status_rust(
     })?;
 
     let cached_favicon_path = server_folder.join("cached_favicon");
+    let week_stats_path = server_folder.join("week_stats");
+    // Drop `server_folder` so we don't accidentally use it again
+    drop(server_folder);
 
     // Prepare the data to create identicons with if necessary
     let identicon_input = IdenticonInput {
@@ -418,8 +431,12 @@ fn get_server_status_rust(
                 )
             })?;
 
+            // Handle week stats
+            let week_stats =
+                determine_week_stats(&week_stats_path, status.players.online, status.players.max)?;
+
             let mcinfo = McInfoRaw::new(status, identicon_input, always_use_identicon);
-            Ok(ServerStatus::Online(OnlineResponse { mcinfo }))
+            Ok(ServerStatus::Online(OnlineResponse { mcinfo, week_stats }))
         }
         Err(e) => {
             if cached_favicon_path.exists() {
@@ -443,7 +460,13 @@ fn get_server_status_rust(
                     always_use_identicon,
                 );
 
-                Ok(ServerStatus::Offline(OfflineResponse { favicon }))
+                // Handle week stats (server is offline, so just use zeroes)
+                let week_stats = determine_week_stats(&week_stats_path, 0, 0)?;
+
+                Ok(ServerStatus::Offline(OfflineResponse {
+                    favicon,
+                    week_stats,
+                }))
             } else {
                 Err(e.into())
             }
@@ -525,8 +548,21 @@ pub unsafe extern "C" fn get_server_status(
 #[no_mangle]
 pub extern "C" fn free_status_response(response: ServerStatus) {
     match response {
-        ServerStatus::Online(OnlineResponse { mcinfo }) => free_mcinfo(mcinfo),
-        ServerStatus::Offline(OfflineResponse { favicon }) => free_favicon(favicon),
+        ServerStatus::Online(OnlineResponse { mcinfo, week_stats }) => {
+            free_mcinfo(mcinfo);
+            // `WeekStats` doesn't have any heap-allocated stuff, so we don't need
+            // to free it
+            drop(week_stats);
+        }
+        ServerStatus::Offline(OfflineResponse {
+            favicon,
+            week_stats,
+        }) => {
+            free_favicon(favicon);
+            // `WeekStats` doesn't have any heap-allocated stuff, so we don't need
+            // to free it
+            drop(week_stats);
+        }
         ServerStatus::Unreachable(UnreachableResponse { error_string }) => {
             if !error_string.is_null() {
                 let _ = unsafe { CString::from_raw(error_string) };

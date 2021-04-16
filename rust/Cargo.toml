@@ -18,6 +18,7 @@ expect-test = "1.1"
 identicon-rs = "2.0.2"
 base64 = "0.13"
 image = "0.23.14"
+chrono = { version = "0.4", features = ["serde"] }
 
 [dev-dependencies]
 tempfile = "3.2"

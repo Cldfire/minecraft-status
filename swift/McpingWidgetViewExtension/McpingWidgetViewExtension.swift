@@ -107,9 +107,9 @@ struct McpingWidgetExtensionEntryView: View {
     var body: some View {
         if case .unreachable = entry.status {
             if let serverAddress = entry.configuration.serverAddress, !serverAddress.isEmpty {
-                Text("Unable to ping Minecraft server at address \"\(serverAddress)\"").padding()
+                Text("Unable to ping Minecraft server \"\(serverAddress)\"").padding()
             } else {
-                Text("No server address specified, please edit the widget").padding()
+                Text("Please edit the widget and set a server address").padding()
             }
         } else {
             ZStack {

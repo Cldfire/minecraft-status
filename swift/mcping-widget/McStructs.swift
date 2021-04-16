@@ -29,9 +29,9 @@ enum ServerStatus {
 
         switch status.tag {
         case Online:
-            return .online(OnlineResponse(mcInfo: McInfo(status.online.mcinfo)))
+            return .online(OnlineResponse(mcInfo: McInfo(status.online.mcinfo), weekStats: WeekStatsSwift(status.online.week_stats)))
         case Offline:
-            return .offline(OfflineResponse(favicon: Favicon.fromRaw(status.offline.favicon)))
+            return .offline(OfflineResponse(favicon: Favicon.fromRaw(status.offline.favicon), weekStats: WeekStatsSwift(status.offline.week_stats)))
         case Unreachable:
             let errorString: String
             if let errorStringCstr = status.unreachable.error_string {
@@ -86,11 +86,13 @@ enum ServerStatus {
 
 struct OnlineResponse {
     var mcInfo: McInfo
+    var weekStats: WeekStatsSwift
 }
 
 struct OfflineResponse {
     /// The server icon (a Base64-encoded PNG image)
     var favicon: Favicon
+    var weekStats: WeekStatsSwift
 }
 
 struct UnreachableResponse {
@@ -242,5 +244,21 @@ enum Favicon {
         default:
             return false
         }
+    }
+}
+
+/// Week stats but with an array instead of a tuple.
+struct WeekStatsSwift {
+    var dailyStats: [RangeStats]
+    var peakOnline: Int64
+    var peakMax: Int64
+}
+
+extension WeekStatsSwift {
+    /// Copies data from the given `WeekStats` in order to create this struct.
+    init(_ from: WeekStats) {
+        self.dailyStats = [from.daily_stats.0, from.daily_stats.1, from.daily_stats.2, from.daily_stats.3, from.daily_stats.4, from.daily_stats.5, from.daily_stats.6, from.daily_stats.7]
+        self.peakOnline = from.peak_online
+        self.peakMax = from.peak_max
     }
 }
