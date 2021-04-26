@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4E308A8325915FB80073C5D7"
-               BuildableName = "McpingWidget.app"
-               BlueprintName = "McpingWidget"
-               ReferencedContainer = "container:McpingWidget.xcodeproj">
+               BuildableName = "MinecraftStatus.app"
+               BlueprintName = "MinecraftStatus"
+               ReferencedContainer = "container:MinecraftStatus.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,10 +28,30 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4E308A9425915FBA0073C5D7"
+               BuildableName = "MinecraftStatusTests.xctest"
+               BlueprintName = "MinecraftStatusTests"
+               ReferencedContainer = "container:MinecraftStatus.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4E308A9F25915FBA0073C5D7"
+               BuildableName = "MinecraftStatusUITests.xctest"
+               BlueprintName = "MinecraftStatusUITests"
+               ReferencedContainer = "container:MinecraftStatus.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -45,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4E308A8325915FB80073C5D7"
-            BuildableName = "McpingWidget.app"
-            BlueprintName = "McpingWidget"
-            ReferencedContainer = "container:McpingWidget.xcodeproj">
+            BuildableName = "MinecraftStatus.app"
+            BlueprintName = "MinecraftStatus"
+            ReferencedContainer = "container:MinecraftStatus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,14 +82,14 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4E308A8325915FB80073C5D7"
-            BuildableName = "McpingWidget.app"
-            BlueprintName = "McpingWidget"
-            ReferencedContainer = "container:McpingWidget.xcodeproj">
+            BuildableName = "MinecraftStatus.app"
+            BlueprintName = "MinecraftStatus"
+            ReferencedContainer = "container:MinecraftStatus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Release">
+      buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"

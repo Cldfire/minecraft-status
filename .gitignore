@@ -2,5 +2,5 @@
 
 xcuserdata/
 .DS_Store
-swift/mcping-widget-lib/mcping_widget.h
-swift/mcping-widget-lib/mcping_widget.a
+swift/MinecraftStatusLib/minecraft_status.h
+swift/MinecraftStatusLib/minecraft_status.a

@@ -8,6 +8,11 @@ Notable `minecraft-status` changes, tracked in the [keep a changelog](https://ke
 
 * "Widget Setup" now links to the iPad widget help article on iPads
 
+### Internal
+
+* Set up a Swift CI test job
+* Renamed a bunch of stuff for more consistent naming
+
 ## [v0.1.0-5] - 2021-04-14
 
 This release adds support for pinging Bedrock Minecraft servers! The widgets default to an "Auto" mode that can ping any Minecraft server type successfully, and you can choose a specific type in the widget's settings as well if necessary.

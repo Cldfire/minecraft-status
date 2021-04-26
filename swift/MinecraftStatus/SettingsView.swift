@@ -29,7 +29,7 @@ struct SettingsView: View {
     }
 
     var footer: some View {
-        McpingWidgetApp.fullVersion
+        MinecraftStatusApp.fullVersion
             .map { Text("version \($0)") }
             .textCase(.uppercase)
             .foregroundColor(.secondary)

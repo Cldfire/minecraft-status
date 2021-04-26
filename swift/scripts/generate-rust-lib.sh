@@ -3,7 +3,7 @@ set -e
 # Location of rust project
 RUST_PROJ="../rust"
 # Location of the lib folder in the XCode project
-XCODE_PROJ_LIB="$PROJECT_DIR/mcping-widget-lib"
+XCODE_PROJ_LIB="$PROJECT_DIR/MinecraftStatusLib"
 # Provide access to Rust utilities
 PATH="$HOME/.cargo/bin:$PATH"
 
@@ -16,10 +16,10 @@ fi
 
 cd "$RUST_PROJ"
 
-AARCH64_OBJECT_PATH=../target/aarch64-apple-ios/$RELEASE_OR_DEBUG/libmcping_widget.a
-X86_OBJECT_PATH=../target/x86_64-apple-ios/$RELEASE_OR_DEBUG/libmcping_widget.a
-UNIVERSAL_OBJECT_PATH=$XCODE_PROJ_LIB/mcping_widget.a
-HEADER_FILE_PATH=$XCODE_PROJ_LIB/mcping_widget.h
+AARCH64_OBJECT_PATH=../target/aarch64-apple-ios/$RELEASE_OR_DEBUG/libminecraft_status.a
+X86_OBJECT_PATH=../target/x86_64-apple-ios/$RELEASE_OR_DEBUG/libminecraft_status.a
+UNIVERSAL_OBJECT_PATH=$XCODE_PROJ_LIB/minecraft_status.a
+HEADER_FILE_PATH=$XCODE_PROJ_LIB/minecraft_status.h
 
 if [[ -n "${DEVELOPER_SDK_DIR:-}" ]]; then
   # Assume we're in Xcode, which means we're probably cross-compiling.

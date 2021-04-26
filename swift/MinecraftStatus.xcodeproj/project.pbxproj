@@ -7,23 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4E1FCB35259BF07B0018AAA3 /* mcping_widget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1FCB34259BF07B0018AAA3 /* mcping_widget.a */; };
-		4E1FCB36259BF07B0018AAA3 /* mcping_widget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1FCB34259BF07B0018AAA3 /* mcping_widget.a */; };
+		4E1FCB35259BF07B0018AAA3 /* minecraft_status.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1FCB34259BF07B0018AAA3 /* minecraft_status.a */; };
+		4E1FCB36259BF07B0018AAA3 /* minecraft_status.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1FCB34259BF07B0018AAA3 /* minecraft_status.a */; };
 		4E258F24259AC7D90093B65F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E258F23259AC7D90093B65F /* WidgetKit.framework */; };
 		4E258F26259AC7D90093B65F /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E258F25259AC7D90093B65F /* SwiftUI.framework */; };
-		4E258F29259AC7D90093B65F /* McpingWidgetViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E258F28259AC7D90093B65F /* McpingWidgetViewExtension.swift */; };
+		4E258F29259AC7D90093B65F /* MinecraftStatusWidgetViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E258F28259AC7D90093B65F /* MinecraftStatusWidgetViewExtension.swift */; };
 		4E258F2C259AC7DA0093B65F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E258F2B259AC7DA0093B65F /* Assets.xcassets */; };
-		4E258F2E259AC7DA0093B65F /* McpingWidgetViewExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 4E258F2A259AC7D90093B65F /* McpingWidgetViewExtension.intentdefinition */; };
-		4E258F2F259AC7DA0093B65F /* McpingWidgetViewExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 4E258F2A259AC7D90093B65F /* McpingWidgetViewExtension.intentdefinition */; };
-		4E258F32259AC7DA0093B65F /* McpingWidgetViewExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4E258F21259AC7D90093B65F /* McpingWidgetViewExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4E258F2E259AC7DA0093B65F /* MinecraftStatusWidgetViewExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 4E258F2A259AC7D90093B65F /* MinecraftStatusWidgetViewExtension.intentdefinition */; };
+		4E258F2F259AC7DA0093B65F /* MinecraftStatusWidgetViewExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 4E258F2A259AC7D90093B65F /* MinecraftStatusWidgetViewExtension.intentdefinition */; };
+		4E258F32259AC7DA0093B65F /* MinecraftStatusWidgetViewExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4E258F21259AC7D90093B65F /* MinecraftStatusWidgetViewExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4E258F51259ACBA90093B65F /* McStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EC426259AAA58004B142B /* McStructs.swift */; };
 		4E258F5B259BCD300093B65F /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E258F5A259BCD300093B65F /* PreviewData.swift */; };
-		4E308A8825915FB80073C5D7 /* McpingWidgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308A8725915FB80073C5D7 /* McpingWidgetApp.swift */; };
+		4E308A8825915FB80073C5D7 /* MinecraftStatusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308A8725915FB80073C5D7 /* MinecraftStatusApp.swift */; };
 		4E308A8A25915FB80073C5D7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308A8925915FB80073C5D7 /* SettingsView.swift */; };
 		4E308A8C25915FBA0073C5D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E308A8B25915FBA0073C5D7 /* Assets.xcassets */; };
 		4E308A8F25915FBA0073C5D7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E308A8E25915FBA0073C5D7 /* Preview Assets.xcassets */; };
-		4E308A9A25915FBA0073C5D7 /* McpingWidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308A9925915FBA0073C5D7 /* McpingWidgetTests.swift */; };
-		4E308AA525915FBA0073C5D7 /* McpingWidgetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308AA425915FBA0073C5D7 /* McpingWidgetUITests.swift */; };
+		4E308A9A25915FBA0073C5D7 /* MinecraftStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308A9925915FBA0073C5D7 /* MinecraftStatusTests.swift */; };
+		4E308AA525915FBA0073C5D7 /* MinecraftStatusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308AA425915FBA0073C5D7 /* MinecraftStatusUITests.swift */; };
 		4E3C08DE259C1DBB00303A35 /* minecraft.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C08DD259C1DBB00303A35 /* minecraft.ttf */; };
 		4E3C08DF259C1DBB00303A35 /* minecraft.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C08DD259C1DBB00303A35 /* minecraft.ttf */; };
 		4E6EC427259AAA58004B142B /* McStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EC426259AAA58004B142B /* McStructs.swift */; };
@@ -35,21 +35,21 @@
 			containerPortal = 4E308A7C25915FB80073C5D7 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 4E258F20259AC7D90093B65F;
-			remoteInfo = McpingWidgetViewExtension;
+			remoteInfo = MinecraftStatusWidgetViewExtension;
 		};
 		4E308A9625915FBA0073C5D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4E308A7C25915FB80073C5D7 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 4E308A8325915FB80073C5D7;
-			remoteInfo = "mcping-widget";
+			remoteInfo = MinecraftStatus;
 		};
 		4E308AA125915FBA0073C5D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4E308A7C25915FB80073C5D7 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 4E308A8325915FB80073C5D7;
-			remoteInfo = "mcping-widget";
+			remoteInfo = MinecraftStatus;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -60,7 +60,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				4E258F32259AC7DA0093B65F /* McpingWidgetViewExtension.appex in Embed App Extensions */,
+				4E258F32259AC7DA0093B65F /* MinecraftStatusWidgetViewExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,33 +68,33 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4E1FCB34259BF07B0018AAA3 /* mcping_widget.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = mcping_widget.a; sourceTree = "<group>"; };
-		4E1FCB3F259BF1350018AAA3 /* mcping_widget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mcping_widget.h; sourceTree = "<group>"; };
-		4E258F21259AC7D90093B65F /* McpingWidgetViewExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = McpingWidgetViewExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E1FCB34259BF07B0018AAA3 /* minecraft_status.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = minecraft_status.a; sourceTree = "<group>"; };
+		4E1FCB3F259BF1350018AAA3 /* minecraft_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = minecraft_status.h; sourceTree = "<group>"; };
+		4E258F21259AC7D90093B65F /* MinecraftStatusWidgetViewExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MinecraftStatusWidgetViewExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E258F23259AC7D90093B65F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		4E258F25259AC7D90093B65F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		4E258F28259AC7D90093B65F /* McpingWidgetViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McpingWidgetViewExtension.swift; sourceTree = "<group>"; };
-		4E258F2A259AC7D90093B65F /* McpingWidgetViewExtension.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = McpingWidgetViewExtension.intentdefinition; sourceTree = "<group>"; };
+		4E258F28259AC7D90093B65F /* MinecraftStatusWidgetViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinecraftStatusWidgetViewExtension.swift; sourceTree = "<group>"; };
+		4E258F2A259AC7D90093B65F /* MinecraftStatusWidgetViewExtension.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = MinecraftStatusWidgetViewExtension.intentdefinition; sourceTree = "<group>"; };
 		4E258F2B259AC7DA0093B65F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E258F2D259AC7DA0093B65F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E258F5A259BCD300093B65F /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
-		4E308A8425915FB80073C5D7 /* McpingWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = McpingWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E308A8725915FB80073C5D7 /* McpingWidgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McpingWidgetApp.swift; sourceTree = "<group>"; };
+		4E308A8425915FB80073C5D7 /* MinecraftStatus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinecraftStatus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E308A8725915FB80073C5D7 /* MinecraftStatusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinecraftStatusApp.swift; sourceTree = "<group>"; };
 		4E308A8925915FB80073C5D7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		4E308A8B25915FBA0073C5D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E308A8E25915FBA0073C5D7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4E308A9025915FBA0073C5D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4E308A9525915FBA0073C5D7 /* McpingWidgetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = McpingWidgetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E308A9925915FBA0073C5D7 /* McpingWidgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McpingWidgetTests.swift; sourceTree = "<group>"; };
+		4E308A9525915FBA0073C5D7 /* MinecraftStatusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MinecraftStatusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E308A9925915FBA0073C5D7 /* MinecraftStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinecraftStatusTests.swift; sourceTree = "<group>"; };
 		4E308A9B25915FBA0073C5D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4E308AA025915FBA0073C5D7 /* McpingWidgetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = McpingWidgetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E308AA425915FBA0073C5D7 /* McpingWidgetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McpingWidgetUITests.swift; sourceTree = "<group>"; };
+		4E308AA025915FBA0073C5D7 /* MinecraftStatusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MinecraftStatusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E308AA425915FBA0073C5D7 /* MinecraftStatusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinecraftStatusUITests.swift; sourceTree = "<group>"; };
 		4E308AA625915FBA0073C5D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E3C08DD259C1DBB00303A35 /* minecraft.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = minecraft.ttf; sourceTree = "<group>"; };
 		4E3C08E9259C23C300303A35 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		4E3C153B259160C800549980 /* mcping-widget-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mcping-widget-Bridging-Header.h"; sourceTree = "<group>"; };
-		4E4C387625D8E49C00D8C18B /* McpingWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = McpingWidget.entitlements; sourceTree = "<group>"; };
-		4E4C387B25D8E4EB00D8C18B /* McpingWidgetViewExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = McpingWidgetViewExtension.entitlements; sourceTree = "<group>"; };
+		4E3C153B259160C800549980 /* Minecraft-Status-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Minecraft-Status-Bridging-Header.h"; sourceTree = "<group>"; };
+		4E4C387625D8E49C00D8C18B /* MinecraftStatus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinecraftStatus.entitlements; sourceTree = "<group>"; };
+		4E4C387B25D8E4EB00D8C18B /* MinecraftStatusWidgetViewExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinecraftStatusWidgetViewExtension.entitlements; sourceTree = "<group>"; };
 		4E6EC426259AAA58004B142B /* McStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McStructs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,7 +105,7 @@
 			files = (
 				4E258F26259AC7D90093B65F /* SwiftUI.framework in Frameworks */,
 				4E258F24259AC7D90093B65F /* WidgetKit.framework in Frameworks */,
-				4E1FCB36259BF07B0018AAA3 /* mcping_widget.a in Frameworks */,
+				4E1FCB36259BF07B0018AAA3 /* minecraft_status.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,7 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E1FCB35259BF07B0018AAA3 /* mcping_widget.a in Frameworks */,
+				4E1FCB35259BF07B0018AAA3 /* minecraft_status.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,29 +143,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4E258F27259AC7D90093B65F /* McpingWidgetViewExtension */ = {
+		4E258F27259AC7D90093B65F /* MinecraftStatusWidgetViewExtension */ = {
 			isa = PBXGroup;
 			children = (
-				4E4C387B25D8E4EB00D8C18B /* McpingWidgetViewExtension.entitlements */,
+				4E4C387B25D8E4EB00D8C18B /* MinecraftStatusWidgetViewExtension.entitlements */,
 				4E3C08E4259C227C00303A35 /* Fonts */,
-				4E258F28259AC7D90093B65F /* McpingWidgetViewExtension.swift */,
-				4E258F2A259AC7D90093B65F /* McpingWidgetViewExtension.intentdefinition */,
+				4E258F28259AC7D90093B65F /* MinecraftStatusWidgetViewExtension.swift */,
+				4E258F2A259AC7D90093B65F /* MinecraftStatusWidgetViewExtension.intentdefinition */,
 				4E258F2B259AC7DA0093B65F /* Assets.xcassets */,
 				4E258F2D259AC7DA0093B65F /* Info.plist */,
 				4E258F5A259BCD300093B65F /* PreviewData.swift */,
 			);
-			path = McpingWidgetViewExtension;
+			path = MinecraftStatusWidgetViewExtension;
 			sourceTree = "<group>";
 		};
 		4E308A7B25915FB80073C5D7 = {
 			isa = PBXGroup;
 			children = (
-				4E4C387625D8E49C00D8C18B /* McpingWidget.entitlements */,
-				4E3C153A2591609B00549980 /* mcping-widget-lib */,
-				4E308A8625915FB80073C5D7 /* mcping-widget */,
-				4E308A9825915FBA0073C5D7 /* mcping-widgetTests */,
-				4E308AA325915FBA0073C5D7 /* mcping-widgetUITests */,
-				4E258F27259AC7D90093B65F /* McpingWidgetViewExtension */,
+				4E4C387625D8E49C00D8C18B /* MinecraftStatus.entitlements */,
+				4E3C153A2591609B00549980 /* MinecraftStatusLib */,
+				4E308A8625915FB80073C5D7 /* MinecraftStatus */,
+				4E308A9825915FBA0073C5D7 /* MinecraftStatusTests */,
+				4E308AA325915FBA0073C5D7 /* MinecraftStatusUITests */,
+				4E258F27259AC7D90093B65F /* MinecraftStatusWidgetViewExtension */,
 				4E258F22259AC7D90093B65F /* Frameworks */,
 				4E308A8525915FB80073C5D7 /* Products */,
 			);
@@ -174,25 +174,25 @@
 		4E308A8525915FB80073C5D7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4E308A8425915FB80073C5D7 /* McpingWidget.app */,
-				4E308A9525915FBA0073C5D7 /* McpingWidgetTests.xctest */,
-				4E308AA025915FBA0073C5D7 /* McpingWidgetUITests.xctest */,
-				4E258F21259AC7D90093B65F /* McpingWidgetViewExtension.appex */,
+				4E308A8425915FB80073C5D7 /* MinecraftStatus.app */,
+				4E308A9525915FBA0073C5D7 /* MinecraftStatusTests.xctest */,
+				4E308AA025915FBA0073C5D7 /* MinecraftStatusUITests.xctest */,
+				4E258F21259AC7D90093B65F /* MinecraftStatusWidgetViewExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4E308A8625915FB80073C5D7 /* mcping-widget */ = {
+		4E308A8625915FB80073C5D7 /* MinecraftStatus */ = {
 			isa = PBXGroup;
 			children = (
 				4E308A9025915FBA0073C5D7 /* Info.plist */,
 				4E308A8925915FB80073C5D7 /* SettingsView.swift */,
-				4E308A8725915FB80073C5D7 /* McpingWidgetApp.swift */,
+				4E308A8725915FB80073C5D7 /* MinecraftStatusApp.swift */,
 				4E308A8B25915FBA0073C5D7 /* Assets.xcassets */,
 				4E308A8D25915FBA0073C5D7 /* Preview Content */,
 				4E6EC426259AAA58004B142B /* McStructs.swift */,
 			);
-			path = "mcping-widget";
+			path = MinecraftStatus;
 			sourceTree = "<group>";
 		};
 		4E308A8D25915FBA0073C5D7 /* Preview Content */ = {
@@ -203,22 +203,22 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		4E308A9825915FBA0073C5D7 /* mcping-widgetTests */ = {
+		4E308A9825915FBA0073C5D7 /* MinecraftStatusTests */ = {
 			isa = PBXGroup;
 			children = (
-				4E308A9925915FBA0073C5D7 /* McpingWidgetTests.swift */,
+				4E308A9925915FBA0073C5D7 /* MinecraftStatusTests.swift */,
 				4E308A9B25915FBA0073C5D7 /* Info.plist */,
 			);
-			path = "mcping-widgetTests";
+			path = MinecraftStatusTests;
 			sourceTree = "<group>";
 		};
-		4E308AA325915FBA0073C5D7 /* mcping-widgetUITests */ = {
+		4E308AA325915FBA0073C5D7 /* MinecraftStatusUITests */ = {
 			isa = PBXGroup;
 			children = (
-				4E308AA425915FBA0073C5D7 /* McpingWidgetUITests.swift */,
+				4E308AA425915FBA0073C5D7 /* MinecraftStatusUITests.swift */,
 				4E308AA625915FBA0073C5D7 /* Info.plist */,
 			);
-			path = "mcping-widgetUITests";
+			path = MinecraftStatusUITests;
 			sourceTree = "<group>";
 		};
 		4E3C08E4259C227C00303A35 /* Fonts */ = {
@@ -230,22 +230,22 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		4E3C153A2591609B00549980 /* mcping-widget-lib */ = {
+		4E3C153A2591609B00549980 /* MinecraftStatusLib */ = {
 			isa = PBXGroup;
 			children = (
-				4E3C153B259160C800549980 /* mcping-widget-Bridging-Header.h */,
-				4E1FCB3F259BF1350018AAA3 /* mcping_widget.h */,
-				4E1FCB34259BF07B0018AAA3 /* mcping_widget.a */,
+				4E3C153B259160C800549980 /* Minecraft-Status-Bridging-Header.h */,
+				4E1FCB3F259BF1350018AAA3 /* minecraft_status.h */,
+				4E1FCB34259BF07B0018AAA3 /* minecraft_status.a */,
 			);
-			path = "mcping-widget-lib";
+			path = MinecraftStatusLib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4E258F20259AC7D90093B65F /* McpingWidgetViewExtension */ = {
+		4E258F20259AC7D90093B65F /* MinecraftStatusWidgetViewExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4E258F36259AC7DA0093B65F /* Build configuration list for PBXNativeTarget "McpingWidgetViewExtension" */;
+			buildConfigurationList = 4E258F36259AC7DA0093B65F /* Build configuration list for PBXNativeTarget "MinecraftStatusWidgetViewExtension" */;
 			buildPhases = (
 				4E1FCB23259BEE610018AAA3 /* ShellScript */,
 				4E258F1D259AC7D90093B65F /* Sources */,
@@ -257,14 +257,14 @@
 			);
 			dependencies = (
 			);
-			name = McpingWidgetViewExtension;
-			productName = McpingWidgetViewExtension;
-			productReference = 4E258F21259AC7D90093B65F /* McpingWidgetViewExtension.appex */;
+			name = MinecraftStatusWidgetViewExtension;
+			productName = MinecraftStatusWidgetViewExtension;
+			productReference = 4E258F21259AC7D90093B65F /* MinecraftStatusWidgetViewExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		4E308A8325915FB80073C5D7 /* McpingWidget */ = {
+		4E308A8325915FB80073C5D7 /* MinecraftStatus */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4E308AA925915FBA0073C5D7 /* Build configuration list for PBXNativeTarget "McpingWidget" */;
+			buildConfigurationList = 4E308AA925915FBA0073C5D7 /* Build configuration list for PBXNativeTarget "MinecraftStatus" */;
 			buildPhases = (
 				4E308A8025915FB80073C5D7 /* Sources */,
 				4E308A8125915FB80073C5D7 /* Frameworks */,
@@ -276,14 +276,14 @@
 			dependencies = (
 				4E258F31259AC7DA0093B65F /* PBXTargetDependency */,
 			);
-			name = McpingWidget;
-			productName = "mcping-widget";
-			productReference = 4E308A8425915FB80073C5D7 /* McpingWidget.app */;
+			name = MinecraftStatus;
+			productName = MinecraftStatus;
+			productReference = 4E308A8425915FB80073C5D7 /* MinecraftStatus.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4E308A9425915FBA0073C5D7 /* McpingWidgetTests */ = {
+		4E308A9425915FBA0073C5D7 /* MinecraftStatusTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4E308AAC25915FBA0073C5D7 /* Build configuration list for PBXNativeTarget "McpingWidgetTests" */;
+			buildConfigurationList = 4E308AAC25915FBA0073C5D7 /* Build configuration list for PBXNativeTarget "MinecraftStatusTests" */;
 			buildPhases = (
 				4E308A9125915FBA0073C5D7 /* Sources */,
 				4E308A9225915FBA0073C5D7 /* Frameworks */,
@@ -294,14 +294,14 @@
 			dependencies = (
 				4E308A9725915FBA0073C5D7 /* PBXTargetDependency */,
 			);
-			name = McpingWidgetTests;
-			productName = "mcping-widgetTests";
-			productReference = 4E308A9525915FBA0073C5D7 /* McpingWidgetTests.xctest */;
+			name = MinecraftStatusTests;
+			productName = MinecraftStatusTests;
+			productReference = 4E308A9525915FBA0073C5D7 /* MinecraftStatusTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		4E308A9F25915FBA0073C5D7 /* McpingWidgetUITests */ = {
+		4E308A9F25915FBA0073C5D7 /* MinecraftStatusUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4E308AAF25915FBA0073C5D7 /* Build configuration list for PBXNativeTarget "McpingWidgetUITests" */;
+			buildConfigurationList = 4E308AAF25915FBA0073C5D7 /* Build configuration list for PBXNativeTarget "MinecraftStatusUITests" */;
 			buildPhases = (
 				4E308A9C25915FBA0073C5D7 /* Sources */,
 				4E308A9D25915FBA0073C5D7 /* Frameworks */,
@@ -312,9 +312,9 @@
 			dependencies = (
 				4E308AA225915FBA0073C5D7 /* PBXTargetDependency */,
 			);
-			name = McpingWidgetUITests;
-			productName = "mcping-widgetUITests";
-			productReference = 4E308AA025915FBA0073C5D7 /* McpingWidgetUITests.xctest */;
+			name = MinecraftStatusUITests;
+			productName = MinecraftStatusUITests;
+			productReference = 4E308AA025915FBA0073C5D7 /* MinecraftStatusUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -343,7 +343,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4E308A7F25915FB80073C5D7 /* Build configuration list for PBXProject "McpingWidget" */;
+			buildConfigurationList = 4E308A7F25915FB80073C5D7 /* Build configuration list for PBXProject "MinecraftStatus" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -356,10 +356,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4E308A8325915FB80073C5D7 /* McpingWidget */,
-				4E308A9425915FBA0073C5D7 /* McpingWidgetTests */,
-				4E308A9F25915FBA0073C5D7 /* McpingWidgetUITests */,
-				4E258F20259AC7D90093B65F /* McpingWidgetViewExtension */,
+				4E308A8325915FB80073C5D7 /* MinecraftStatus */,
+				4E308A9425915FBA0073C5D7 /* MinecraftStatusTests */,
+				4E308A9F25915FBA0073C5D7 /* MinecraftStatusUITests */,
+				4E258F20259AC7D90093B65F /* MinecraftStatusWidgetViewExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -443,9 +443,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E258F5B259BCD300093B65F /* PreviewData.swift in Sources */,
-				4E258F2E259AC7DA0093B65F /* McpingWidgetViewExtension.intentdefinition in Sources */,
+				4E258F2E259AC7DA0093B65F /* MinecraftStatusWidgetViewExtension.intentdefinition in Sources */,
 				4E258F51259ACBA90093B65F /* McStructs.swift in Sources */,
-				4E258F29259AC7D90093B65F /* McpingWidgetViewExtension.swift in Sources */,
+				4E258F29259AC7D90093B65F /* MinecraftStatusWidgetViewExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,8 +455,8 @@
 			files = (
 				4E308A8A25915FB80073C5D7 /* SettingsView.swift in Sources */,
 				4E6EC427259AAA58004B142B /* McStructs.swift in Sources */,
-				4E258F2F259AC7DA0093B65F /* McpingWidgetViewExtension.intentdefinition in Sources */,
-				4E308A8825915FB80073C5D7 /* McpingWidgetApp.swift in Sources */,
+				4E258F2F259AC7DA0093B65F /* MinecraftStatusWidgetViewExtension.intentdefinition in Sources */,
+				4E308A8825915FB80073C5D7 /* MinecraftStatusApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,7 +464,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E308A9A25915FBA0073C5D7 /* McpingWidgetTests.swift in Sources */,
+				4E308A9A25915FBA0073C5D7 /* MinecraftStatusTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,7 +472,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E308AA525915FBA0073C5D7 /* McpingWidgetUITests.swift in Sources */,
+				4E308AA525915FBA0073C5D7 /* MinecraftStatusUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,17 +481,17 @@
 /* Begin PBXTargetDependency section */
 		4E258F31259AC7DA0093B65F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4E258F20259AC7D90093B65F /* McpingWidgetViewExtension */;
+			target = 4E258F20259AC7D90093B65F /* MinecraftStatusWidgetViewExtension */;
 			targetProxy = 4E258F30259AC7DA0093B65F /* PBXContainerItemProxy */;
 		};
 		4E308A9725915FBA0073C5D7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4E308A8325915FB80073C5D7 /* McpingWidget */;
+			target = 4E308A8325915FB80073C5D7 /* MinecraftStatus */;
 			targetProxy = 4E308A9625915FBA0073C5D7 /* PBXContainerItemProxy */;
 		};
 		4E308AA225915FBA0073C5D7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4E308A8325915FB80073C5D7 /* McpingWidget */;
+			target = 4E308A8325915FB80073C5D7 /* MinecraftStatus */;
 			targetProxy = 4E308AA125915FBA0073C5D7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -502,23 +502,23 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = McpingWidgetViewExtension/McpingWidgetViewExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MinecraftStatusWidgetViewExtension/MinecraftStatusWidgetViewExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = Z79T9AJ776;
-				INFOPLIST_FILE = McpingWidgetViewExtension/Info.plist;
+				INFOPLIST_FILE = MinecraftStatusWidgetViewExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/mcping-widget-lib";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/MinecraftStatusLib";
 				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.minecraft-status.McpingWidgetViewExtension";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.minecraft-status.MinecraftStatusWidgetViewExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "mcping-widget-lib/mcping-widget-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "MinecraftStatusLib/Minecraft-Status-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -529,23 +529,23 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = McpingWidgetViewExtension/McpingWidgetViewExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MinecraftStatusWidgetViewExtension/MinecraftStatusWidgetViewExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = Z79T9AJ776;
-				INFOPLIST_FILE = McpingWidgetViewExtension/Info.plist;
+				INFOPLIST_FILE = MinecraftStatusWidgetViewExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/mcping-widget-lib";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/MinecraftStatusLib";
 				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.minecraft-status.McpingWidgetViewExtension";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.minecraft-status.MinecraftStatusWidgetViewExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "mcping-widget-lib/mcping-widget-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "MinecraftStatusLib/Minecraft-Status-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -674,23 +674,23 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = McpingWidget.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MinecraftStatus.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
-				DEVELOPMENT_ASSET_PATHS = "\"mcping-widget/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MinecraftStatus/Preview Content\"";
 				DEVELOPMENT_TEAM = Z79T9AJ776;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "mcping-widget/Info.plist";
+				INFOPLIST_FILE = MinecraftStatus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/mcping-widget-lib";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/MinecraftStatusLib";
 				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.minecraft-status";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "mcping-widget-lib/mcping-widget-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "MinecraftStatusLib/Minecraft-Status-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -704,23 +704,23 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = McpingWidget.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MinecraftStatus.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
-				DEVELOPMENT_ASSET_PATHS = "\"mcping-widget/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MinecraftStatus/Preview Content\"";
 				DEVELOPMENT_TEAM = Z79T9AJ776;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "mcping-widget/Info.plist";
+				INFOPLIST_FILE = MinecraftStatus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/mcping-widget-lib";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/MinecraftStatusLib";
 				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.minecraft-status";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "mcping-widget-lib/mcping-widget-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "MinecraftStatusLib/Minecraft-Status-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -733,18 +733,18 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z79T9AJ776;
-				INFOPLIST_FILE = "mcping-widgetTests/Info.plist";
+				INFOPLIST_FILE = MinecraftStatusTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.mcping-widgetTests";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.cldfire.MinecraftStatusTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/McpingWidget.app/McpingWidget";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MinecraftStatus.app/MinecraftStatus";
 			};
 			name = Debug;
 		};
@@ -755,18 +755,18 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z79T9AJ776;
-				INFOPLIST_FILE = "mcping-widgetTests/Info.plist";
+				INFOPLIST_FILE = MinecraftStatusTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.mcping-widgetTests";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.cldfire.MinecraftStatusTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/McpingWidget.app/McpingWidget";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MinecraftStatus.app/MinecraftStatus";
 			};
 			name = Release;
 		};
@@ -776,17 +776,17 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z79T9AJ776;
-				INFOPLIST_FILE = "mcping-widgetUITests/Info.plist";
+				INFOPLIST_FILE = MinecraftStatusUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.mcping-widgetUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.cldfire.MinecraftStatusUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "mcping-widget";
+				TEST_TARGET_NAME = MinecraftStatus;
 			};
 			name = Debug;
 		};
@@ -796,24 +796,24 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z79T9AJ776;
-				INFOPLIST_FILE = "mcping-widgetUITests/Info.plist";
+				INFOPLIST_FILE = MinecraftStatusUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.cldfire.mcping-widgetUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.cldfire.MinecraftStatusUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "mcping-widget";
+				TEST_TARGET_NAME = MinecraftStatus;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4E258F36259AC7DA0093B65F /* Build configuration list for PBXNativeTarget "McpingWidgetViewExtension" */ = {
+		4E258F36259AC7DA0093B65F /* Build configuration list for PBXNativeTarget "MinecraftStatusWidgetViewExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4E258F34259AC7DA0093B65F /* Debug */,
@@ -822,7 +822,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4E308A7F25915FB80073C5D7 /* Build configuration list for PBXProject "McpingWidget" */ = {
+		4E308A7F25915FB80073C5D7 /* Build configuration list for PBXProject "MinecraftStatus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4E308AA725915FBA0073C5D7 /* Debug */,
@@ -831,7 +831,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4E308AA925915FBA0073C5D7 /* Build configuration list for PBXNativeTarget "McpingWidget" */ = {
+		4E308AA925915FBA0073C5D7 /* Build configuration list for PBXNativeTarget "MinecraftStatus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4E308AAA25915FBA0073C5D7 /* Debug */,
@@ -840,7 +840,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4E308AAC25915FBA0073C5D7 /* Build configuration list for PBXNativeTarget "McpingWidgetTests" */ = {
+		4E308AAC25915FBA0073C5D7 /* Build configuration list for PBXNativeTarget "MinecraftStatusTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4E308AAD25915FBA0073C5D7 /* Debug */,
@@ -849,7 +849,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4E308AAF25915FBA0073C5D7 /* Build configuration list for PBXNativeTarget "McpingWidgetUITests" */ = {
+		4E308AAF25915FBA0073C5D7 /* Build configuration list for PBXNativeTarget "MinecraftStatusUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4E308AB025915FBA0073C5D7 /* Debug */,
