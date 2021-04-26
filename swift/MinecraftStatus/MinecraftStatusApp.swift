@@ -3,7 +3,7 @@
 import SwiftUI
 
 @main
-struct McpingWidgetApp: App {
+struct MinecraftStatusApp: App {
     var body: some Scene {
         WindowGroup {
             SettingsView()
@@ -11,7 +11,7 @@ struct McpingWidgetApp: App {
     }
 }
 
-extension McpingWidgetApp {
+extension MinecraftStatusApp {
     /// App's current version.
     static var version: String? {
         Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String

@@ -1,5 +1,5 @@
 [package]
-name = "mcping-widget"
+name = "minecraft-status"
 version = "0.1.0"
 authors = ["Cldfire"]
 edition = "2018"

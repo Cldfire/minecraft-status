@@ -101,7 +101,7 @@ struct ServerFavicon: View {
     }
 }
 
-struct McpingWidgetExtensionEntryView: View {
+struct MinecraftStatusWidgetExtensionEntryView: View {
     var entry: Provider.Entry
 
     var body: some View {
@@ -151,12 +151,12 @@ struct McpingWidgetExtensionEntryView: View {
 }
 
 @main
-struct McpingWidgetExtension: Widget {
-    let kind: String = "McpingWidgetViewExtension"
+struct MinecraftStatusWidgetExtension: Widget {
+    let kind: String = "MinecraftStatusWidgetViewExtension"
 
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
-            McpingWidgetExtensionEntryView(entry: entry)
+            MinecraftStatusWidgetExtensionEntryView(entry: entry)
         }
         .configurationDisplayName("Minecraft Server Icon")
         .description("Information about a Minecraft server on top of its icon")
@@ -165,25 +165,25 @@ struct McpingWidgetExtension: Widget {
     }
 }
 
-struct McpingWidgetExtension_Previews: PreviewProvider {
+struct MinecraftStatusWidgetExtension_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ForEach(0..<previewData.count, id: \.self) { i in
-                McpingWidgetExtensionEntryView(entry: previewData[i])
+                MinecraftStatusWidgetExtensionEntryView(entry: previewData[i])
                     .previewContext(WidgetPreviewContext(family: .systemSmall))
             }
 
-            McpingWidgetExtensionEntryView(entry: previewData[0])
+            MinecraftStatusWidgetExtensionEntryView(entry: previewData[0])
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .environment(\.colorScheme, .dark)
                 .previewDisplayName("Dark Mode")
 
-            McpingWidgetExtensionEntryView(entry: previewData[0])
+            MinecraftStatusWidgetExtensionEntryView(entry: previewData[0])
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .redacted(reason: .placeholder)
                 .previewDisplayName("Redacted")
 
-            McpingWidgetExtensionEntryView(entry: previewData[0])
+            MinecraftStatusWidgetExtensionEntryView(entry: previewData[0])
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .environment(\.colorScheme, .dark)
                 .redacted(reason: .placeholder)

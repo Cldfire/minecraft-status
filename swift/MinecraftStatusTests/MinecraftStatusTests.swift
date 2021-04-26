@@ -1,9 +1,9 @@
 //
 
-@testable import McpingWidget
+@testable import MinecraftStatus
 import XCTest
 
-class McpingWidgetTests: XCTestCase {
+class MinecraftStatusTests: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }

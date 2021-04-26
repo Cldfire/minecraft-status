@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4E258F20259AC7D90093B65F"
-               BuildableName = "McpingWidgetViewExtension.appex"
-               BlueprintName = "McpingWidgetViewExtension"
-               ReferencedContainer = "container:McpingWidget.xcodeproj">
+               BuildableName = "MinecraftStatusWidgetViewExtension.appex"
+               BlueprintName = "MinecraftStatusWidgetViewExtension"
+               ReferencedContainer = "container:MinecraftStatus.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -30,9 +30,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4E308A8325915FB80073C5D7"
-               BuildableName = "McpingWidget.app"
-               BlueprintName = "McpingWidget"
-               ReferencedContainer = "container:McpingWidget.xcodeproj">
+               BuildableName = "MinecraftStatus.app"
+               BlueprintName = "MinecraftStatus"
+               ReferencedContainer = "container:MinecraftStatus.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -63,18 +63,18 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4E258F20259AC7D90093B65F"
-            BuildableName = "McpingWidgetViewExtension.appex"
-            BlueprintName = "McpingWidgetViewExtension"
-            ReferencedContainer = "container:McpingWidget.xcodeproj">
+            BuildableName = "MinecraftStatusWidgetViewExtension.appex"
+            BlueprintName = "MinecraftStatusWidgetViewExtension"
+            ReferencedContainer = "container:MinecraftStatus.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4E308A8325915FB80073C5D7"
-            BuildableName = "McpingWidget.app"
-            BlueprintName = "McpingWidget"
-            ReferencedContainer = "container:McpingWidget.xcodeproj">
+            BuildableName = "MinecraftStatus.app"
+            BlueprintName = "MinecraftStatus"
+            ReferencedContainer = "container:MinecraftStatus.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <EnvironmentVariables>
@@ -107,9 +107,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4E308A8325915FB80073C5D7"
-            BuildableName = "McpingWidget.app"
-            BlueprintName = "McpingWidget"
-            ReferencedContainer = "container:McpingWidget.xcodeproj">
+            BuildableName = "MinecraftStatus.app"
+            BlueprintName = "MinecraftStatus"
+            ReferencedContainer = "container:MinecraftStatus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

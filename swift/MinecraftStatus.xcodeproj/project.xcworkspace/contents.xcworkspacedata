@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:McpingWidget.xcodeproj">
+      location = "self:/Users/cldfire/programming/minecraft-status/swift/MinecraftStatus.xcodeproj">
    </FileRef>
 </Workspace>

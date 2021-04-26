@@ -64,7 +64,7 @@ jobs:
       - name: Test
         uses: sersoft-gmbh/xcodebuild-action@v1
         with:
-          project: swift/McPingWidget.xcodeproj
+          project: swift/MinecraftStatus.xcodeproj
           scheme: Minecraft Status
           destination: platform=iOS Simulator,name=iPhone 12
           action: test
