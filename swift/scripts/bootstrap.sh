@@ -1,6 +1,5 @@
 #!/bin/sh
 
-cd $SRCROOT/../
 echo "checking for homebrew updates";
 brew update
 
