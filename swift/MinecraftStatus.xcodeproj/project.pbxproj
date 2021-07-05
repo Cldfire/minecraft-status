@@ -26,6 +26,13 @@
 		4E308AA525915FBA0073C5D7 /* MinecraftStatusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E308AA425915FBA0073C5D7 /* MinecraftStatusUITests.swift */; };
 		4E3C08DE259C1DBB00303A35 /* minecraft.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C08DD259C1DBB00303A35 /* minecraft.ttf */; };
 		4E3C08DF259C1DBB00303A35 /* minecraft.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E3C08DD259C1DBB00303A35 /* minecraft.ttf */; };
+		4E59EFA4266D902700B970C1 /* MinecraftStatusCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E59EFA2266D902700B970C1 /* MinecraftStatusCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E59EFA7266D902700B970C1 /* MinecraftStatusCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E59EFA0266D902700B970C1 /* MinecraftStatusCommon.framework */; };
+		4E59EFA8266D902700B970C1 /* MinecraftStatusCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E59EFA0266D902700B970C1 /* MinecraftStatusCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4E59EFAD266D904000B970C1 /* MinecraftStatusCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E59EFA0266D902700B970C1 /* MinecraftStatusCommon.framework */; };
+		4E59EFAE266D904000B970C1 /* MinecraftStatusCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E59EFA0266D902700B970C1 /* MinecraftStatusCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4E59EFB3266D905D00B970C1 /* LayeredBarGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59EFB2266D905D00B970C1 /* LayeredBarGraph.swift */; };
+		4E59EFB5266DA53800B970C1 /* GraphWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59EFB4266DA53800B970C1 /* GraphWidgetView.swift */; };
 		4E6EC427259AAA58004B142B /* McStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EC426259AAA58004B142B /* McStructs.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +58,20 @@
 			remoteGlobalIDString = 4E308A8325915FB80073C5D7;
 			remoteInfo = MinecraftStatus;
 		};
+		4E59EFA5266D902700B970C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E308A7C25915FB80073C5D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E59EF9F266D902700B970C1;
+			remoteInfo = MinecraftStatusCommon;
+		};
+		4E59EFAF266D904000B970C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E308A7C25915FB80073C5D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E59EF9F266D902700B970C1;
+			remoteInfo = MinecraftStatusCommon;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -63,6 +84,28 @@
 				4E258F32259AC7DA0093B65F /* MinecraftStatusWidgetViewExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E59EFA9266D902700B970C1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4E59EFA8266D902700B970C1 /* MinecraftStatusCommon.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E59EFB1266D904000B970C1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4E59EFAE266D904000B970C1 /* MinecraftStatusCommon.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -95,6 +138,11 @@
 		4E3C153B259160C800549980 /* Minecraft-Status-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Minecraft-Status-Bridging-Header.h"; sourceTree = "<group>"; };
 		4E4C387625D8E49C00D8C18B /* MinecraftStatus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinecraftStatus.entitlements; sourceTree = "<group>"; };
 		4E4C387B25D8E4EB00D8C18B /* MinecraftStatusWidgetViewExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinecraftStatusWidgetViewExtension.entitlements; sourceTree = "<group>"; };
+		4E59EFA0266D902700B970C1 /* MinecraftStatusCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MinecraftStatusCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E59EFA2266D902700B970C1 /* MinecraftStatusCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinecraftStatusCommon.h; sourceTree = "<group>"; };
+		4E59EFA3266D902700B970C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E59EFB2266D905D00B970C1 /* LayeredBarGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayeredBarGraph.swift; sourceTree = "<group>"; };
+		4E59EFB4266DA53800B970C1 /* GraphWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphWidgetView.swift; sourceTree = "<group>"; };
 		4E6EC426259AAA58004B142B /* McStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McStructs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E258F26259AC7D90093B65F /* SwiftUI.framework in Frameworks */,
+				4E59EFAD266D904000B970C1 /* MinecraftStatusCommon.framework in Frameworks */,
 				4E258F24259AC7D90093B65F /* WidgetKit.framework in Frameworks */,
 				4E1FCB36259BF07B0018AAA3 /* minecraft_status.a in Frameworks */,
 			);
@@ -114,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E1FCB35259BF07B0018AAA3 /* minecraft_status.a in Frameworks */,
+				4E59EFA7266D902700B970C1 /* MinecraftStatusCommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +175,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4E308A9D25915FBA0073C5D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E59EF9D266D902700B970C1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -153,6 +210,7 @@
 				4E258F2B259AC7DA0093B65F /* Assets.xcassets */,
 				4E258F2D259AC7DA0093B65F /* Info.plist */,
 				4E258F5A259BCD300093B65F /* PreviewData.swift */,
+				4E59EFB4266DA53800B970C1 /* GraphWidgetView.swift */,
 			);
 			path = MinecraftStatusWidgetViewExtension;
 			sourceTree = "<group>";
@@ -166,6 +224,7 @@
 				4E308A9825915FBA0073C5D7 /* MinecraftStatusTests */,
 				4E308AA325915FBA0073C5D7 /* MinecraftStatusUITests */,
 				4E258F27259AC7D90093B65F /* MinecraftStatusWidgetViewExtension */,
+				4E59EFA1266D902700B970C1 /* MinecraftStatusCommon */,
 				4E258F22259AC7D90093B65F /* Frameworks */,
 				4E308A8525915FB80073C5D7 /* Products */,
 			);
@@ -178,6 +237,7 @@
 				4E308A9525915FBA0073C5D7 /* MinecraftStatusTests.xctest */,
 				4E308AA025915FBA0073C5D7 /* MinecraftStatusUITests.xctest */,
 				4E258F21259AC7D90093B65F /* MinecraftStatusWidgetViewExtension.appex */,
+				4E59EFA0266D902700B970C1 /* MinecraftStatusCommon.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -240,7 +300,28 @@
 			path = MinecraftStatusLib;
 			sourceTree = "<group>";
 		};
+		4E59EFA1266D902700B970C1 /* MinecraftStatusCommon */ = {
+			isa = PBXGroup;
+			children = (
+				4E59EFA2266D902700B970C1 /* MinecraftStatusCommon.h */,
+				4E59EFA3266D902700B970C1 /* Info.plist */,
+				4E59EFB2266D905D00B970C1 /* LayeredBarGraph.swift */,
+			);
+			path = MinecraftStatusCommon;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		4E59EF9B266D902700B970C1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E59EFA4266D902700B970C1 /* MinecraftStatusCommon.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		4E258F20259AC7D90093B65F /* MinecraftStatusWidgetViewExtension */ = {
@@ -252,10 +333,12 @@
 				4E38E85B25CF898500BF6025 /* ShellScript */,
 				4E258F1E259AC7D90093B65F /* Frameworks */,
 				4E258F1F259AC7D90093B65F /* Resources */,
+				4E59EFB1266D904000B970C1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4E59EFB0266D904000B970C1 /* PBXTargetDependency */,
 			);
 			name = MinecraftStatusWidgetViewExtension;
 			productName = MinecraftStatusWidgetViewExtension;
@@ -270,11 +353,13 @@
 				4E308A8125915FB80073C5D7 /* Frameworks */,
 				4E308A8225915FB80073C5D7 /* Resources */,
 				4E258F33259AC7DA0093B65F /* Embed App Extensions */,
+				4E59EFA9266D902700B970C1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				4E258F31259AC7DA0093B65F /* PBXTargetDependency */,
+				4E59EFA6266D902700B970C1 /* PBXTargetDependency */,
 			);
 			name = MinecraftStatus;
 			productName = MinecraftStatus;
@@ -317,6 +402,24 @@
 			productReference = 4E308AA025915FBA0073C5D7 /* MinecraftStatusUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		4E59EF9F266D902700B970C1 /* MinecraftStatusCommon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E59EFAC266D902700B970C1 /* Build configuration list for PBXNativeTarget "MinecraftStatusCommon" */;
+			buildPhases = (
+				4E59EF9B266D902700B970C1 /* Headers */,
+				4E59EF9C266D902700B970C1 /* Sources */,
+				4E59EF9D266D902700B970C1 /* Frameworks */,
+				4E59EF9E266D902700B970C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MinecraftStatusCommon;
+			productName = MinecraftStatusCommon;
+			productReference = 4E59EFA0266D902700B970C1 /* MinecraftStatusCommon.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -341,6 +444,10 @@
 						CreatedOnToolsVersion = 12.3;
 						TestTargetID = 4E308A8325915FB80073C5D7;
 					};
+					4E59EF9F266D902700B970C1 = {
+						CreatedOnToolsVersion = 12.5;
+						LastSwiftMigration = 1250;
+					};
 				};
 			};
 			buildConfigurationList = 4E308A7F25915FB80073C5D7 /* Build configuration list for PBXProject "MinecraftStatus" */;
@@ -360,6 +467,7 @@
 				4E308A9425915FBA0073C5D7 /* MinecraftStatusTests */,
 				4E308A9F25915FBA0073C5D7 /* MinecraftStatusUITests */,
 				4E258F20259AC7D90093B65F /* MinecraftStatusWidgetViewExtension */,
+				4E59EF9F266D902700B970C1 /* MinecraftStatusCommon */,
 			);
 		};
 /* End PBXProject section */
@@ -392,6 +500,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4E308A9E25915FBA0073C5D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E59EF9E266D902700B970C1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -443,6 +558,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E258F5B259BCD300093B65F /* PreviewData.swift in Sources */,
+				4E59EFB5266DA53800B970C1 /* GraphWidgetView.swift in Sources */,
 				4E258F2E259AC7DA0093B65F /* MinecraftStatusWidgetViewExtension.intentdefinition in Sources */,
 				4E258F51259ACBA90093B65F /* McStructs.swift in Sources */,
 				4E258F29259AC7D90093B65F /* MinecraftStatusWidgetViewExtension.swift in Sources */,
@@ -476,6 +592,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4E59EF9C266D902700B970C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E59EFB3266D905D00B970C1 /* LayeredBarGraph.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -493,6 +617,16 @@
 			isa = PBXTargetDependency;
 			target = 4E308A8325915FB80073C5D7 /* MinecraftStatus */;
 			targetProxy = 4E308AA125915FBA0073C5D7 /* PBXContainerItemProxy */;
+		};
+		4E59EFA6266D902700B970C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4E59EF9F266D902700B970C1 /* MinecraftStatusCommon */;
+			targetProxy = 4E59EFA5266D902700B970C1 /* PBXContainerItemProxy */;
+		};
+		4E59EFB0266D904000B970C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4E59EF9F266D902700B970C1 /* MinecraftStatusCommon */;
+			targetProxy = 4E59EFAF266D904000B970C1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -810,6 +944,69 @@
 			};
 			name = Release;
 		};
+		4E59EFAA266D902700B970C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = Z79T9AJ776;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = MinecraftStatusCommon/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.cldfire.MinecraftStatusCommon;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4E59EFAB266D902700B970C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = Z79T9AJ776;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = MinecraftStatusCommon/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.cldfire.MinecraftStatusCommon;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -854,6 +1051,15 @@
 			buildConfigurations = (
 				4E308AB025915FBA0073C5D7 /* Debug */,
 				4E308AB125915FBA0073C5D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4E59EFAC266D902700B970C1 /* Build configuration list for PBXNativeTarget "MinecraftStatusCommon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E59EFAA266D902700B970C1 /* Debug */,
+				4E59EFAB266D902700B970C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

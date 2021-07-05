@@ -86,17 +86,28 @@ struct ServerFavicon: View {
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-        if favicon.isGenerated() {
-            // Add a background behind generated favicons
-            Rectangle().foregroundColor(Color(UIColor.systemBackground))
-        } else {
-            // Minecraft dirt block backing
-            Image("minecraft-dirt").interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fill).unredacted()
-            Rectangle().opacity(0.60).foregroundColor(.black)
-        }
+        ZStack {
+            if favicon.isGenerated() {
+                // Add a background behind generated favicons
+                Color(UIColor.systemBackground)
+            } else {
+                // Minecraft dirt block backing
+                Image("minecraft-dirt")
+                    .interpolation(.none)
+                    .antialiased(false)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .unredacted()
+                    .overlay(
+                        GeometryReader { geometry in
+                            Rectangle().opacity(0.60).foregroundColor(.black).frame(width: geometry.size.width, height: geometry.size.height)
+                        }
+                    )
+            }
 
-        if let faviconImage = convertBase64StringToImage(imageBase64String: favicon.faviconString()) {
-            Image(uiImage: faviconImage).interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fit).shadow(radius: favicon.isGenerated() ? 0 : 30).colorScheme(.light)
+            if let faviconImage = convertBase64StringToImage(imageBase64String: favicon.faviconString()) {
+                Image(uiImage: faviconImage).interpolation(.none).antialiased(false).resizable().aspectRatio(contentMode: .fit).shadow(radius: favicon.isGenerated() ? 0 : 30).colorScheme(.light)
+            }
         }
     }
 }
@@ -150,8 +161,9 @@ struct MinecraftStatusWidgetExtensionEntryView: View {
     }
 }
 
-@main
-struct MinecraftStatusWidgetExtension: Widget {
+// TODO: split these files up better
+struct MinecraftStatusIconWidget: Widget {
+    // TODO: not sure if I can change this now that it's shipped to users
     let kind: String = "MinecraftStatusWidgetViewExtension"
 
     var body: some WidgetConfiguration {
@@ -162,6 +174,28 @@ struct MinecraftStatusWidgetExtension: Widget {
         .description("Information about a Minecraft server on top of its icon")
         // TODO: work on the large widget a bit
         .supportedFamilies([.systemSmall, .systemLarge])
+    }
+}
+
+struct MinecraftStatusGraphWidget: Widget {
+    let kind: String = "MinecraftStatusGraphWidget"
+
+    var body: some WidgetConfiguration {
+        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+            GraphWidgetView(entry: entry)
+        }
+        .configurationDisplayName("Minecraft Server Player Graph")
+        .description("Information about a Minecraft server along with an online player graph for the last week")
+        // TODO: work on the large widget a bit
+        .supportedFamilies([.systemMedium])
+    }
+}
+
+@main
+struct MinecraftStatusWidgets: WidgetBundle {
+    var body: some Widget {
+        MinecraftStatusIconWidget()
+        MinecraftStatusGraphWidget()
     }
 }
 

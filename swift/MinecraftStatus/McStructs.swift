@@ -57,6 +57,17 @@ enum ServerStatus {
         }
     }
 
+    func weekStats() -> WeekStatsSwift? {
+        switch self {
+        case let .online(response):
+            return response.weekStats
+        case let .offline(response):
+            return response.weekStats
+        case .unreachable:
+            return nil
+        }
+    }
+
     // We return a Text view here so the resulting string has separators in the numbers
     func playersOnlineText() -> Text {
         switch self {
