@@ -101,8 +101,62 @@ struct ServerFavicon: View {
     }
 }
 
+struct OverlayBanner: View {
+    var entry: Provider.Entry
+    @Environment(\.widgetFamily) var family
+
+    var body: some View {
+        VStack {
+            // These spacers move the banner towards the bottom of the widget
+            Spacer()
+            Spacer()
+            Spacer()
+            Spacer()
+            Spacer()
+
+            HStack {
+                // The banner content
+                VStack(alignment: .leading, spacing: 4) {
+                    // Server address
+                    Text("\(chooseBestHeaderText(for: entry.configuration))").foregroundColor(.white).shadow(color: .black, radius: 0.5, x: 1, y: 1).lineLimit(1)
+
+                    // Players online and status indicator
+                    HStack(spacing: 5) {
+                        entry.status.playersOnlineText().foregroundColor(.white).shadow(color: .black, radius: 0.5, x: 1, y: 1).minimumScaleFactor(0.8).lineLimit(1)
+
+                        Circle().foregroundColor(entry.status.statusColor()).fixedSize().scaleEffect(family == .systemLarge ? 1.0 : 0.9)
+                    }
+                }
+                .font(.custom("minecraft", size: family == .systemLarge ? 14 : 12))
+                .frame(height: 45, alignment: .leading)
+                .frame(maxWidth: family == .systemLarge ? .none : .infinity)
+                .padding(.leading, family == .systemLarge ? 20 : 10)
+                .padding(.trailing, family == .systemLarge ? 20 : 10)
+                .padding(.top, family == .systemLarge ? 5 : 0)
+                .padding(.bottom, family == .systemLarge ? 5 : 0)
+                .background(
+                    Color.black
+                        .opacity(0.7)
+                        .cornerRadius(family == .systemLarge ? 8 : 0)
+                )
+
+                if family == .systemLarge {
+                    // Shove the banner to the left side for the large widget
+                    Spacer()
+                }
+            }
+            .padding(.leading, family == .systemLarge ? 20 : 0)
+            .padding(.trailing, family == .systemLarge ? 100 : 0)
+
+            // This spacer separates the banner from the bottom of the widget
+            Spacer()
+        }
+    }
+}
+
 struct MinecraftStatusWidgetExtensionEntryView: View {
     var entry: Provider.Entry
+    @Environment(\.widgetFamily) var family
 
     var body: some View {
         if case .unreachable = entry.status {
@@ -114,37 +168,7 @@ struct MinecraftStatusWidgetExtensionEntryView: View {
         } else {
             ZStack {
                 ServerFavicon(favicon: entry.status.favicon())
-
-                // The banner content
-                VStack {
-                    // These spacers move the banner towards the bottom of the widget
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Spacer()
-
-                    ZStack {
-                        // The translucent banner backing (stretches horizontally across the entire widget)
-                        Rectangle().opacity(0.7).foregroundColor(.black)
-
-                        // The content on top of the banner
-                        VStack(alignment: .leading, spacing: 4) {
-                            // Server address
-                            Text("\(chooseBestHeaderText(for: entry.configuration))").foregroundColor(.white).font(.custom("minecraft", size: 12)).shadow(color: .black, radius: 0.5, x: 1, y: 1).lineLimit(1)
-
-                            // Players online and status indicator
-                            HStack(spacing: 5) {
-                                entry.status.playersOnlineText().foregroundColor(.white).font(.custom("minecraft", size: 12)).shadow(color: .black, radius: 0.5, x: 1, y: 1).minimumScaleFactor(0.8).lineLimit(1)
-
-                                Circle().foregroundColor(entry.status.statusColor()).fixedSize().scaleEffect(0.9)
-                            }
-                        }.frame(maxWidth: .infinity).padding(.leading, 10).padding(.trailing, 10)
-                    }.frame(height: 45)
-
-                    // This spacer separates the banner from the bottom of the widget
-                    Spacer()
-                }
+                OverlayBanner(entry: entry)
             }
         }
     }
@@ -188,6 +212,11 @@ struct MinecraftStatusWidgetExtension_Previews: PreviewProvider {
                 .environment(\.colorScheme, .dark)
                 .redacted(reason: .placeholder)
                 .previewDisplayName("Redacted Dark Mode")
+
+            ForEach(0..<previewData.count, id: \.self) { i in
+                MinecraftStatusWidgetExtensionEntryView(entry: previewData[i])
+                    .previewContext(WidgetPreviewContext(family: .systemLarge))
+            }
         }
     }
 }

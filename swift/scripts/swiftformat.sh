@@ -1,5 +1,6 @@
 if which mint >/dev/null; then
-    mint run swiftformat $SRCROOT/../
+    cd $SRCROOT/../
+    xcrun --sdk macosx mint run swiftformat .
 else
     echo "warning: Mint not installed, see setup instructions in README"
 fi
