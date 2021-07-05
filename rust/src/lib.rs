@@ -17,8 +17,8 @@ use mcping_common::{Player, Players, ProtocolType, Response, Version};
 use serde::{Deserialize, Serialize};
 use week_stats::{determine_week_stats, WeekStats};
 
-mod identicon;
-mod mcping_common;
+pub mod identicon;
+pub mod mcping_common;
 #[cfg(test)]
 mod tests;
 mod week_stats;

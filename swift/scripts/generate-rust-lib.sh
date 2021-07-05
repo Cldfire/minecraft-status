@@ -32,12 +32,17 @@ if [[ -n "${DEVELOPER_SDK_DIR:-}" ]]; then
 fi
 
 # Build for iOS architectures
+#
+# For some reason, having LIBRARY_PATH set when building for x86_64-apple-ios breaks
+# the build on my machine, so unsetting it prior to building those targets
 if [ $RELEASE_OR_DEBUG = "release" ]
 then
     cargo build --release --target aarch64-apple-ios
+    export LIBRARY_PATH=""
     cargo build --release --target x86_64-apple-ios
 else
     cargo build --target aarch64-apple-ios
+    export LIBRARY_PATH=""
     cargo build --target x86_64-apple-ios
 fi
 
