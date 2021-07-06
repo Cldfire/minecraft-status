@@ -6,7 +6,7 @@ use minecraft_status::{
 fn main() {
     let input = IdenticonInput {
         protocol_type: ProtocolType::Bedrock,
-        address: "try.ok.game.org".into(),
+        address: "try.ok.game.org",
     };
     println!("{}", identicon::make_base64_identicon(input).unwrap());
 }
