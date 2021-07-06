@@ -4,6 +4,15 @@ Notable `minecraft-status` changes, tracked in the [keep a changelog](https://ke
 
 ## [Unreleased]
 
+## [v1.0.0-1] - 2021-07-05
+
+The 1.0 release that will be going live on the App Store soon! While I was initially planning to add more widget types to the app prior to launching on the App Store, real-life time constraints put an end to those ideas, so I've cleaned up the wonderful existing functionality in the "Minecraft Server Icon" widget and gotten the necessary bits together to release Minecraft Status to the world.
+
+### Changed
+
+* The "Minecraft Server Icon" widget now has an improved appearance in the large size
+* The app icon has been updated to be more release-worthy
+
 ### Fixed
 
 * "Widget Setup" now links to the iPad widget help article on iPads
@@ -12,6 +21,8 @@ Notable `minecraft-status` changes, tracked in the [keep a changelog](https://ke
 
 * Set up a Swift CI test job
 * Renamed a bunch of stuff for more consistent naming
+* Fixed multiple build issues
+* Disabled bitcode in the xcode project settings
 
 ## [v0.1.0-5] - 2021-04-14
 
@@ -62,7 +73,8 @@ A small iteration on the first beta release with some quality of life improvemen
 
 Initial release.
 
-[Unreleased]: https://github.com/Cldfire/minecraft-status/compare/v0.0.1-5...HEAD
+[Unreleased]: https://github.com/Cldfire/minecraft-status/compare/v1.0.0-1...HEAD
+[v1.0.0-1]: https://github.com/Cldfire/minecraft-status/compare/v0.0.1-5...v1.0.0-1
 [v0.1.0-5]: https://github.com/Cldfire/minecraft-status/compare/v0.0.1-4...v0.0.1-5
 [v0.1.0-4]: https://github.com/Cldfire/minecraft-status/compare/v0.0.1-3...v0.0.1-4
 [v0.1.0-3]: https://github.com/Cldfire/minecraft-status/releases/tag/v0.0.1-3
