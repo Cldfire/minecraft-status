@@ -20,3 +20,7 @@ Built on top of the [mcping](https://github.com/Scetch/mcping) crate.
 ## Building
 
 See [`SETUP.md`](./SETUP.md).
+
+## Links
+
+[Privacy Policy](./PRIVACY_POLICY.md)
