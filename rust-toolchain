@@ -1,4 +1,4 @@
 [toolchain]
-channel = "stable"
+channel = "1.56.0"
 components = ["rustfmt", "clippy"]
 targets = ["aarch64-apple-ios", "x86_64-apple-ios"]
